@@ -7,4 +7,5 @@ urlpatterns = [
     url('^panel/$',views.panel,name='panel'),
     url('^login/$',views.mylogin,name='mylogin'),
     url('^logout/$',views.mylogout,name='mylogout'),
+    url(r'^panel/setting/$', views.site_setting, name='site_setting'),
 ]

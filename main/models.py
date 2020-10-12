@@ -8,6 +8,7 @@ class Main(models.Model):
 
     name = models.CharField(max_length=30)
     about = models.TextField()
+    abouttxt = models.TextField(default="")
     fb = models.CharField(default="-",max_length=30)
     tw = models.CharField(default="-",max_length=30)
     yt = models.CharField(default="-",max_length=30)
@@ -16,6 +17,13 @@ class Main(models.Model):
 
     set_name = models.CharField(default="-",max_length=30)
 
+    picurl = models.TextField(default="")
+    picname = models.TextField(default="")
 
-    def __str__ (self):
-        return '%s|%s' %(self.set_name,self.pk)
+    picurl2 = models.TextField(default="")
+    picname2 = models.TextField(default="")
+
+
+    def __str__(self):
+        return self.set_name + " | " + str(self.pk)
+    

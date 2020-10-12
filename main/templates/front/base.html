@@ -71,13 +71,11 @@
 								Contact
 							</a>
 
-							<a href="#" class="left-topbar-item">
-								Sing up
+							<a href="{%url 'mylogin'%}" class="left-topbar-item">
+								Sign up/log in
 							</a>
 
-							<a href="#" class="left-topbar-item">
-								Log in
-							</a>
+
 
 							<a href="#" class="left-topbar-item"></a>
 						</div>
@@ -107,7 +105,7 @@
 			<div class="wrap-logo no-banner container">
 				<!-- Logo desktop -->
 				<div class="logo">
-					<a href="/"><img src="{%static 'front/images/icons/logo-01.png'%}" alt="LOGO"></a>
+					<a href="/"><img src="{{site.picurl}}" alt="LOGO"></a>
 				</div>
 			</div>
 
@@ -266,37 +264,29 @@
 					<div class="col-lg-4 p-b-20">
 						<div class="size-h-3 flex-s-c">
 							<a href="index.html">
-								<img class="max-s-full" src="{%static 'front/images/icons/1'%}" alt="LOGO">
+								<img class="max-s-full" src="{{site.picurl2}}" alt="LOGO">
 							</a>
 						</div>
 
 						<div>
 							<p class="f1-s-1 cl11 p-b-16">
-								Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur tempor magna eget elit efficitur, at accumsan sem placerat. Nulla tellus libero, mattis nec molestie at, facilisis ut turpis. Vestibulum dolor metus, tincidunt eget odio
-							</p>
+								{{site.about|safe}}
 
 							<p class="f1-s-1 cl11 p-b-16">
 								tell : {{site.tell}}
 							</p>
 
 							<div class="p-t-15">
-								<a href="#" class="fs-18 cl11 hov-cl10 trans-03 m-r-8">
+								<a href="{{site.fb}}" class="fs-18 cl11 hov-cl10 trans-03 m-r-8">
 									<span class="fab fa-facebook-f"></span>
 								</a>
 
-								<a href="#" class="fs-18 cl11 hov-cl10 trans-03 m-r-8">
+								<a href="{{site.tw}}" class="fs-18 cl11 hov-cl10 trans-03 m-r-8">
 									<span class="fab fa-twitter"></span>
 								</a>
 
-								<a href="#" class="fs-18 cl11 hov-cl10 trans-03 m-r-8">
-									<span class="fab fa-pinterest-p"></span>
-								</a>
 
-								<a href="#" class="fs-18 cl11 hov-cl10 trans-03 m-r-8">
-									<span class="fab fa-vimeo-v"></span>
-								</a>
-
-								<a href="#" class="fs-18 cl11 hov-cl10 trans-03 m-r-8">
+								<a href="{{site.yt}}" class="fs-18 cl11 hov-cl10 trans-03 m-r-8">
 									<span class="fab fa-youtube"></span>
 								</a>
 							</div>
@@ -374,7 +364,7 @@
 							</h5>
 						</div>
 						{%for cat in cat%}
-
+						{% if cat.count != 0 %}
 						<ul class="m-t--12">
 							<li class="how-bor1 p-rl-5 p-tb-10">
 								<a href="#" class="f1-s-5 cl11 hov-cl10 trans-03 p-tb-8">
@@ -383,6 +373,7 @@
 							</li>
 
 						</ul>
+						{%endif%}
 						{%endfor%}
 					</div>
 				</div>
@@ -395,7 +386,7 @@
 
 
 					<a href="{{site.link}}" class="f1-s-1 cl10 hov-link1">
-Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made by My Team</a>
+Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This site is made by Alireza Shirmohammadi</a>
 <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
 				</span>
 			</div>
