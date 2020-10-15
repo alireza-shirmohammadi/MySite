@@ -12,7 +12,9 @@ def home (request):
     cat=Cat.objects.all()
     subcat=SubCat.objects.all()
     lastnews=News.objects.all().order_by('-pk')[:3]
-    return render(request,'front/home.html',{'site':site,'news':news,'cat':cat,'subcat':subcat,'lastnews':lastnews})
+    popnews= News.objects.all().order_by('-show')
+    popnews2 = News.objects.all().order_by('-show')[:3]
+    return render(request,'front/home.html',{'site':site,'news':news,'cat':cat,'subcat':subcat,'lastnews':lastnews,'popnews2':popnews2,'popnews':popnews})
 def about (request):
     site=Main.objects.get(pk=1)
     return render(request,'front/about.html',{'site':site})

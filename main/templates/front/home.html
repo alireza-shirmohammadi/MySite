@@ -105,7 +105,9 @@
 							<div class="col-sm-6 p-r-25 p-r-15-sr991">
 								<!-- Item post -->
 
-
+								{%for pop in popnews%}
+								{%if pop.show != 0 %}
+								{%if newscat.pk == pop.ocatid %}
 								<div class="flex-wr-sb-s m-b-30">
 									<a href="#" class="size-w-1 wrap-pic-w hov1 trans-03">
 										<img src="{{pop.picurl}}" alt="IMG">
@@ -114,7 +116,7 @@
 									<div class="size-w-2">
 										<h5 class="p-b-5">
 											<a href="#" class="f1-s-5 cl3 hov-cl10 trans-03">
-												test
+												{{pop.name}}
 											</a>
 										</h5>
 
@@ -133,7 +135,9 @@
 										</span>
 									</div>
 								</div>
-
+								{%endif%}
+								{%endif%}
+								{%endfor%}
 
 
 

@@ -8,9 +8,27 @@ from cat.models import Cat
 # Create your views here.
 
 def news_detail(request,pk):
-    news=News.objects.filter(pk=pk)
+    shownews=News.objects.filter(pk=pk)
     site=Main.objects.get(pk=1)
-    return render(request,'front/news_detail.html',{'site':site,'news':news})
+    news=News.objects.all().order_by('-pk')
+    cat=Cat.objects.all()
+    subcat=SubCat.objects.all()
+    lastnews=News.objects.all().order_by('-pk')[:3]
+    popnews = News.objects.all().order_by('-show')
+    popnews2 = News.objects.all().order_by('-show')[:3]
+    tagname = News.objects.get(pk=pk).tag
+    tag = tagname.split(',')
+
+    try:
+
+        mynews = News.objects.get(pk=pk)
+        mynews.show = mynews.show + 1
+        mynews.save()
+
+    except:
+
+        print("Can't Add Show")
+    return render(request,'front/news_detail.html',{'site':site,'news':news,'cat':cat,'subcat':subcat,'lastnews':lastnews,'shownews':shownews,'popnews':popnews,'popnews2':popnews2,'tag':tag})
 def news_list(request):
       # login check start
     if not request.user.is_authenticated :
@@ -46,6 +64,7 @@ def news_add(request):
         newstxtshort=request.POST.get('newstxtshort')
         newstxt=request.POST.get('newstxt')
         catid = request.POST.get('newscat')
+        tag=request.POST.get('tag')
         if newstitle=='' or newscat== '' or newstxtshort=='' or newstxt=='' or newscat == "" :
             error= "All Fields Requirded"
             return render (request,'back/error.html',{'error':error})
@@ -63,7 +82,7 @@ def news_add(request):
                     newsname = SubCat.objects.get(pk=catid).name
                     ocatid = SubCat.objects.get(pk=catid).catid
 
-                    b = News(name=newstitle, short_txt=newstxtshort, body_txt=newstxt, date=today, picname=filename, picurl=url, writer=request.user, catname=newsname, catid=catid, show=0, time=time, ocatid=ocatid)
+                    b = News(name=newstitle, short_txt=newstxtshort, body_txt=newstxt, date=today, picname=filename, picurl=url, writer=request.user, catname=newsname, catid=catid,tag=tag, show=0, time=time, ocatid=ocatid)
                     b.save()
 
                     count = len(News.objects.filter(ocatid=ocatid))
@@ -140,6 +159,7 @@ def news_edit(request,pk):
         newstxtshort = request.POST.get('newstxtshort')
         newstxt = request.POST.get('newstxt')
         catid = request.POST.get('newscat')
+        tag=request.POST.get('tag')
 
 
 
@@ -173,7 +193,7 @@ def news_edit(request,pk):
                     b.picurl = url
                     b.catname = newsname
                     b.catid = catid
-
+                    b.tag=tag
 
                     b.save()
 
@@ -206,7 +226,7 @@ def news_edit(request,pk):
             b.body_txt = newstxt
             b.catname = newsname
             b.catid = catid
-
+            b.tag=tag
 
             b.save()
 

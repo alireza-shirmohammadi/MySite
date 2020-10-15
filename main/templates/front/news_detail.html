@@ -15,7 +15,7 @@
 {% block mainblock %}
 
 
-{% for i in news %}
+{% for i in shownews %}
 
 <!-- Breadcrumb -->
 <div class="container">
@@ -116,7 +116,7 @@
 								{% if p.count != 0 %}
 
 								<li class="how-bor3 p-rl-4">
-									<a href="{%url 'news_all_show' word=p.name %}" class="dis-block f1-s-10 text-uppercase cl2 hov-cl10 trans-03 p-tb-13">
+									<a href="#" class="dis-block f1-s-10 text-uppercase cl2 hov-cl10 trans-03 p-tb-13">
 										{{p.name}} ({{p.count}})
 									</a>
 								</li>
@@ -143,7 +143,7 @@
 								{% for pop in popnews %}
 								{% if pop.ocatid == i.ocatid %}
 								<li class="flex-wr-sb-s p-b-30">
-									<a href="{%url 'news_detail' word=pop.name %}" class="size-w-10 wrap-pic-w hov1 trans-03">
+									<a href="{%url 'news_detail' pk=pop.pk %}" class="size-w-10 wrap-pic-w hov1 trans-03">
 										<img src="{{pop.picurl}}" alt="IMG">
 									</a>
 
@@ -155,7 +155,7 @@
 										</h6>
 
 										<span class="cl8 txt-center p-b-24">
-											<a href="{%url 'news_detail' word=pop.name %}" class="f1-s-6 cl8 hov-cl10 trans-03">
+											<a href="{%url 'news_detail' pk=pop.pk %}" class="f1-s-6 cl8 hov-cl10 trans-03">
 												{{pop.catname}}
 											</a>
 
