@@ -24,6 +24,7 @@ urlpatterns = [
     url('', include('news.urls')),
     url('', include('cat.urls')),
     url('', include('subcat.urls')),
+    url('', include('contactform.urls')),
 ]
 if settings.DEBUG:
 

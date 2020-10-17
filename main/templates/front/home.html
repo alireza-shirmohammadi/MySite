@@ -109,20 +109,20 @@
 								{%if pop.show != 0 %}
 								{%if newscat.pk == pop.ocatid %}
 								<div class="flex-wr-sb-s m-b-30">
-									<a href="#" class="size-w-1 wrap-pic-w hov1 trans-03">
+									<a href="{%url 'news_detail' pop.pk %}" class="size-w-1 wrap-pic-w hov1 trans-03">
 										<img src="{{pop.picurl}}" alt="IMG">
 									</a>
 
 									<div class="size-w-2">
 										<h5 class="p-b-5">
-											<a href="#" class="f1-s-5 cl3 hov-cl10 trans-03">
+											<a href="{%url 'news_detail' pop.pk %}" class="f1-s-5 cl3 hov-cl10 trans-03">
 												{{pop.name}}
 											</a>
 										</h5>
 
 										<span class="cl8">
 											<a href="#" class="f1-s-6 cl8 hov-cl10 trans-03">
-												test
+												{{pop.catname}}
 											</a>
 
 											<span class="f1-s-3 m-rl-3">
@@ -130,7 +130,7 @@
 											</span>
 
 											<span class="f1-s-3">
-												test
+												{{pop.date}} | {{pop.time}}
 											</span>
 										</span>
 									</div>
