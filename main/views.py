@@ -202,9 +202,7 @@ def change_pass(request):
 
                 if i > "0" and i < "9" :
                     count1 = 1
-
-
-                if i > 'a' and i < 'z' :
+                if (i > "A" and i < "Z") or ( i > 'a' and i < 'z')  :
                     count2 = 1
 
 
