@@ -43,17 +43,12 @@
 							</span>
 
 							<span class="dis-inline-block cl16 slide100-txt pos-relative size-w-0" data-in="fadeInDown" data-out="fadeOutDown">
+								{%for i in trending%}
 								<span class="dis-inline-block slide100-txt-item animated visible-false">
-									Interest rate angst trips up US equity bull market
+									{{i.txt}}
 								</span>
+								{%endfor%}
 
-								<span class="dis-inline-block slide100-txt-item animated visible-false">
-									Designer fashion show kicks off Variety Week
-								</span>
-
-								<span class="dis-inline-block slide100-txt-item animated visible-false">
-									Microsoft quisque at ipsum vel orci eleifend ultrices
-								</span>
 							</span>
 						</div>
 					</div>
@@ -70,11 +65,15 @@
 							<a href="{%url 'contact' %}" class="left-topbar-item">
 								Contact
 							</a>
-
+							{% if user.is_authenticated %}
+							<a href="{%url 'panel'%}" class="left-topbar-item">
+								Hi , {{request.user}}
+							</a>
+							{%else%}
 							<a href="{%url 'mylogin'%}" class="left-topbar-item">
 								Sign up/log in
 							</a>
-
+							{%endif%}
 
 
 							<a href="#" class="left-topbar-item"></a>

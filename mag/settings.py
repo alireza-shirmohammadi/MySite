@@ -42,6 +42,9 @@ INSTALLED_APPS = [
     'cat',
     'subcat',
     'contactform',
+    'trending',
+    'manager',
+    
 ]
 
 MIDDLEWARE = [
