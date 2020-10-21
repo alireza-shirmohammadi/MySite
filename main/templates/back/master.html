@@ -1,5 +1,6 @@
 
 {% load staticfiles %}
+{% load extra_auth %}
 
 <!--login check-->
 {% if user.is_authenticated %}
@@ -151,7 +152,7 @@
                                 {% endif %}
 
 
-
+                                {% if request.user|has_group:"mastergroup" %}
                                 <li class="sidebar-header">
                                     <span class="sidebar-header-options clearfix"><a href="javascript:void(0)" data-toggle="tooltip" title="Quick Settings"><i class="gi gi-settings"></i></a></span>
                                     <span class="sidebar-header-title">Site Settings</span>
@@ -199,7 +200,7 @@
                                             <a href="/panel/manager/perms/" class=""><i class="gi gi-show_big_thumbnails sidebar-nav-icon"></i><span class="sidebar-nav-mini-hide">Permission</span></a>
                                         </li>
 
-
+                                        {%endif%}
 
 
 
