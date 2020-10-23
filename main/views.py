@@ -7,7 +7,7 @@ from cat.models import Cat
 from manager.models import Manager
 from django.contrib.auth import authenticate, login, logout
 from django.core.files.storage import FileSystemStorage
-from django.contrib.auth.models import User
+from django.contrib.auth.models import User,Permission,Group
 # Create your views here.
 def home (request):
     site=Main.objects.get(pk=1)
@@ -34,7 +34,12 @@ def panel (request):
     if not request.user.is_authenticated :
         return redirect('mylogin')
     # login check end
+    perm=0
+    for i in (Permission.objects.filter(user=request.user)):
+        if i.codename=='master_user':perm=1
+
     return render (request,'back/home.html')
+
 def mylogin (request):
     if request.method == 'POST' :
 
@@ -160,7 +165,7 @@ def about_setting (request):
 
 def contact (request):
     trending=Trending.objects.all().order_by('-pk')[:5]
-    site = Main.objects.get(pk=2)
+    site = Main.objects.get(pk=1)
     news = News.objects.all().order_by('-pk')
     cat = Cat.objects.all()
     subcat = SubCat.objects.all()
