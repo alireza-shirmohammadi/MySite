@@ -8,5 +8,7 @@ urlpatterns = [
     url('^panel/news/add/$',views.news_add,name='news_add'),
     url('^panel/news/delete/(?P<pk>\d+)/$',views.news_delete,name='news_delete'),
     url('^panel/news/edit/(?P<pk>\d+)/$',views.news_edit,name='news_edit'),
+    url(r'^panel/news/publish/(?P<pk>\d+)/$', views.news_publish, name='news_publish'),
+    url(r'^panel/news/unpublish/(?P<pk>\d+)/$', views.news_unpublish, name='news_unpublish'),
 
 ]

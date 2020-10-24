@@ -6,17 +6,18 @@ import datetime
 from subcat.models import SubCat
 from cat.models import Cat
 from trending.models import Trending
+from django.contrib.auth.models import User,Group,Permission
 # Create your views here.
 
 def news_detail(request,pk):
     shownews=News.objects.filter(pk=pk)
     site=Main.objects.get(pk=1)
-    news=News.objects.all().order_by('-pk')
+    news=News.objects.filter(act=1).order_by('-pk')
     cat=Cat.objects.all()
     subcat=SubCat.objects.all()
-    lastnews=News.objects.all().order_by('-pk')[:3]
-    popnews = News.objects.all().order_by('-show')
-    popnews2 = News.objects.all().order_by('-show')[:3]
+    lastnews=News.objects.filter(act=1).order_by('-pk')[:3]
+    popnews= News.objects.filter(act=1).order_by('-show')
+    popnews2 = News.objects.filter(act=1).order_by('-show')[:3]
     tagname = News.objects.get(pk=pk).tag
     trending=Trending.objects.all().order_by('-pk')[:5]
     tag = tagname.split(',')
@@ -36,7 +37,13 @@ def news_list(request):
     if not request.user.is_authenticated :
         return redirect('mylogin')
     # login check end
-    news=News.objects.all()
+    perm=0
+    for i in request.user.groups.all():
+        if i.name=='masteruser':perm=1
+    if perm==1 :
+        news=News.objects.all()
+    else:
+        news=News.objects.filter(writer=request.user)
     return render(request,'back/news_list.html',{'news':news})
 def news_add(request):
       # login check start
@@ -84,7 +91,7 @@ def news_add(request):
                     newsname = SubCat.objects.get(pk=catid).name
                     ocatid = SubCat.objects.get(pk=catid).catid
 
-                    b = News(name=newstitle, short_txt=newstxtshort, body_txt=newstxt, date=today, picname=filename, picurl=url, writer=request.user, catname=newsname, catid=catid,tag=tag, show=0, time=time, ocatid=ocatid)
+                    b = News(name=newstitle, short_txt=newstxtshort, body_txt=newstxt, date=today, picname=filename, picurl=url, writer=request.user, catname=newsname, catid=catid,tag=tag, show=0, time=time, ocatid=ocatid,)
                     b.save()
 
                     count = len(News.objects.filter(ocatid=ocatid))
@@ -124,6 +131,11 @@ def news_delete(request,pk):
         return redirect('mylogin')
     # login check end
 
+    b=News.objects.get(pk=pk).writer
+    if str(request.user) != str(b) :
+        error = "Access Diend"
+        return render(request, 'back/error.html' , {'error':error})
+
     try:
 
         b = News.objects.get(pk=pk)
@@ -149,6 +161,12 @@ def news_edit(request,pk):
     if len(News.objects.filter(pk=pk)) == 0 :
         error = "News Not Found"
         return render(request, 'back/error.html' , {'error':error})
+
+    b=News.objects.get(pk=pk).writer
+    if request.user != b :
+        error = "Access Diend"
+        return render(request, 'back/error.html' , {'error':error})
+
 
 
     news = News.objects.get(pk=pk)
@@ -196,6 +214,7 @@ def news_edit(request,pk):
                     b.catname = newsname
                     b.catid = catid
                     b.tag=tag
+                    b.act=0
 
                     b.save()
 
@@ -229,9 +248,22 @@ def news_edit(request,pk):
             b.catname = newsname
             b.catid = catid
             b.tag=tag
+            b.tag=0
 
             b.save()
 
             return redirect('news_list')
 
     return render(request, 'back/news_edit.html', {'pk':pk, 'news':news, 'cat':cat})
+
+def news_publish (request,pk):
+    b=News.objects.get(pk=pk)
+    b.act=1
+    b.save()
+    return redirect('news_list')
+
+def news_unpublish (request,pk):
+    b=News.objects.get(pk=pk)
+    b.act=0
+    b.save()
+    return redirect('news_list')
