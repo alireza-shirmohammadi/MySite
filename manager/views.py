@@ -25,11 +25,8 @@ def manager_list (request):
          error = "Access Denied"
          return render(request, 'back/error.html' , {'error':error})
 
-
-        manager = Manager.objects.all()
-
-
-        return render(request,'back/manager_list.html',{'manager':manager})
+     manager = Manager.objects.all()
+     return render(request,'back/manager_list.html',{'manager':manager})
 
 def manager_del (request,pk):
       # login check start
@@ -48,12 +45,12 @@ def manager_del (request,pk):
 
 
 
-        manager = Manager.objects.get(pk=pk)
-        user = User.objects.filter(username=manager.utext)
-        user.delete()
-        manager.delete()
+     manager = Manager.objects.get(pk=pk)
+     user = User.objects.filter(username=manager.utext)
+     user.delete()
+     manager.delete()
 
-        return redirect('manager_list')
+     return redirect('manager_list')
 
 def manager_group (request):
      # login check start
