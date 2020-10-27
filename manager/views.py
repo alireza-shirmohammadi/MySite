@@ -11,20 +11,42 @@ from django.contrib.auth.models import User, Group , Permission
 from django.contrib.contenttypes.models import ContentType
 
 def manager_list (request):
-     # login check start
-        if not request.user.is_authenticated :
-            return redirect('mylogin')
-        # login check end
+      # login check start
+     if not request.user.is_authenticated :
+         return redirect('mylogin')
+     # login check end
+
+
+     perm = 0
+     for i in request.user.groups.all():
+         if i.name == "masteruser" : perm = 1
+
+     if perm == 0 :
+         error = "Access Denied"
+         return render(request, 'back/error.html' , {'error':error})
+
+
         manager = Manager.objects.all()
 
 
         return render(request,'back/manager_list.html',{'manager':manager})
 
 def manager_del (request,pk):
-     # login check start
-        if not request.user.is_authenticated :
-            return redirect('mylogin')
-        # login check end
+      # login check start
+     if not request.user.is_authenticated :
+         return redirect('mylogin')
+     # login check end
+
+
+     perm = 0
+     for i in request.user.groups.all():
+         if i.name == "masteruser" : perm = 1
+
+     if perm == 0 :
+         error = "Access Denied"
+         return render(request, 'back/error.html' , {'error':error})
+
+
 
         manager = Manager.objects.get(pk=pk)
         user = User.objects.filter(username=manager.utext)
@@ -357,7 +379,7 @@ def groups_perms_add(request,name):
     if perm == 0 :
         error = "Access Denied"
         return render(request, 'back/error.html' , {'error':error})
-        
+
     if request.method=='POST':
         pname=request.POST.get('pname')
         group=Group.objects.get(name=name)

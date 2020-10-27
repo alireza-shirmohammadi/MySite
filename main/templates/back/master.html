@@ -200,6 +200,11 @@
                                             <a href="/panel/manager/perms/" class=""><i class="gi gi-show_big_thumbnails sidebar-nav-icon"></i><span class="sidebar-nav-mini-hide">Permission</span></a>
                                         </li>
 
+
+
+
+
+
                                         {%endif%}
 
 
@@ -230,6 +235,18 @@
 
                                         </ul>
                                     </li>
+
+                                    {% if request.user|has_group:"masteruser" %}
+                                    <li>
+                                         <a href="#" class="sidebar-nav-menu"><i class="fa fa-angle-left sidebar-nav-indicator sidebar-nav-mini-hide"></i><i class="gi gi-show_big_thumbnails sidebar-nav-icon"></i><span class="sidebar-nav-mini-hide">Newsletter</span></a>
+                                         <ul>
+                                             <li>
+                                                 <a href="/panel/newsletter/emails/">Emails</a>
+                                             </li>
+
+                                         </ul>
+                                     </li>
+
 
                                     <li>
                                         <a href="#" class="sidebar-nav-menu"><i class="fa fa-angle-left sidebar-nav-indicator sidebar-nav-mini-hide"></i><i class="gi gi-show_big_thumbnails sidebar-nav-icon"></i><span class="sidebar-nav-mini-hide">category</span></a>
@@ -269,8 +286,9 @@
                                     <a href="/panel/trending/" class=""><i class="gi gi-show_big_thumbnails sidebar-nav-icon"></i><span class="sidebar-nav-mini-hide">Trending</span></a>
                                 </li>
 
-
+                                {%endif%}
                             </ul>
+
                             <!-- END Sidebar Navigation -->
 
 
@@ -320,17 +338,51 @@
                             </div>
                         </form>
                         <ul class="nav navbar-nav-custom pull-right">
+                            <!-- END Search Form -->
+                            <!-- Right Header Navigation -->
+                            <ul class="nav navbar-nav-custom pull-right">
                             <!-- Alternative Sidebar Toggle Button -->
                             <li>
                                 <!-- If you do not want the main sidebar to open when the alternative sidebar is closed, just remove the second parameter: App.sidebar('toggle-sidebar-alt'); -->
                                 <a href="/";this.blur();">
                                   <i class="hi hi-home"></i>
-                                    
+
                                 </a>
                             </li>
                           </ul>
-                        <!-- END Search Form -->
 
+                          <!-- User Dropdown -->
+                               <li class="dropdown">
+                                   <a href="javascript:void(0)" class="dropdown-toggle" data-toggle="dropdown">
+                                       <img src="{%static 'back/img/placeholders/avatars/avatar2.jpg'%}" alt="avatar"> <i class="fa fa-angle-down"></i>
+                                   </a>
+                                   <ul class="dropdown-menu dropdown-custom dropdown-menu-right">
+                                       <li class="dropdown-header text-center">Account</li>
+
+                                       <li>
+                                           <a href="page_ready_user_profile.html">
+                                               <i class="fa fa-user fa-fw pull-right"></i>
+                                               Profile
+                                           </a>
+                                           <!-- Opens the user settings modal that can be found at the bottom of each page (page_footer.html in PHP version) -->
+                                           <a href="#modal-user-settings" data-toggle="modal">
+                                               <i class="fa fa-cog fa-fw pull-right"></i>
+                                               Settings
+                                           </a>
+                                       </li>
+                                       <li class="divider"></li>
+                                       <li>
+                                           <a href="{%url 'change_pass' %}"><i class="fa fa-lock fa-fw pull-right"></i> Change Password</a>
+                                           <a href="{%url 'mylogout' %}"><i class="fa fa-ban fa-fw pull-right"></i> Logout</a>
+                                       </li>
+
+                                       </li>
+                                   </ul>
+                               </li>
+                               <!-- END User Dropdown -->
+
+                             </ul>
+                     <!-- END Right Header Navigation -->
 
                     </header>
                     <!-- END Header -->

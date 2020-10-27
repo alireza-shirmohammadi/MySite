@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.humanize',
     'main',
     'news',
     'cat',
@@ -44,7 +45,8 @@ INSTALLED_APPS = [
     'contactform',
     'trending',
     'manager',
-    
+    'newsletter',
+
 ]
 
 MIDDLEWARE = [

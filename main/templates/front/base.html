@@ -262,7 +262,7 @@
 				<div class="row">
 					<div class="col-lg-4 p-b-20">
 						<div class="size-h-3 flex-s-c">
-							<a href="index.html">
+							<a href="/">
 								<img class="max-s-full" src="{{site.picurl2}}" alt="LOGO">
 							</a>
 						</div>
@@ -289,6 +289,14 @@
 									<span class="fab fa-youtube"></span>
 								</a>
 							</div>
+							<br/>
+							<form action="{%url 'news_letter' %}" method="POST">
+									{% csrf_token %}
+								<input class="bo-1-rad-3 bocl13 size-a-19 f1-s-13 cl5 plh6 p-rl-18 m-b-20" type="txt" name="txt" placeholder="Email*">
+								<button type="submit" class="size-a-20 bg6 borad-3 f1-s-12 cl0 hov-btn1 trans-03 p-rl-15 m-t-20">
+									Send
+								</button>
+							</form>
 						</div>
 					</div>
 
