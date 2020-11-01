@@ -7,6 +7,8 @@ from subcat.models import SubCat
 from cat.models import Cat
 from trending.models import Trending
 from django.contrib.auth.models import User,Group,Permission
+from comment.models import Comment
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 # Create your views here.
 
 def news_detail(request,pk):
@@ -21,7 +23,10 @@ def news_detail(request,pk):
     tagname = News.objects.get(pk=pk).tag
     trending=Trending.objects.all().order_by('-pk')[:5]
     tag = tagname.split(',')
-
+    code=News.objects.get(pk=pk).pk
+    comment=Comment.objects.filter(news_id=code,status=1).order_by('-pk')
+    cmcount=Comment.objects.filter(news_id=code,status=1).count()
+    print(cmcount)
     try:
 
         mynews = News.objects.get(pk=pk)
@@ -31,7 +36,7 @@ def news_detail(request,pk):
     except:
 
         print("Can't Add Show")
-    return render(request,'front/news_detail.html',{'site':site,'trending':trending,'news':news,'cat':cat,'subcat':subcat,'lastnews':lastnews,'shownews':shownews,'popnews':popnews,'popnews2':popnews2,'tag':tag})
+    return render(request,'front/news_detail.html',{'comment':comment,'cmcount':cmcount,'code':code,'site':site,'trending':trending,'news':news,'cat':cat,'subcat':subcat,'lastnews':lastnews,'shownews':shownews,'popnews':popnews,'popnews2':popnews2,'tag':tag})
 def news_list(request):
       # login check start
     if not request.user.is_authenticated :
@@ -41,7 +46,15 @@ def news_list(request):
     for i in request.user.groups.all():
         if i.name=='masteruser':perm=1
     if perm==1 :
-        news=News.objects.all()
+        newss=News.objects.all()
+        paginator=Paginator(newss,2)
+        page=request.GET.get('page')
+        try:
+            news=paginator.page(page)
+        except EmptyPage:
+            news=paginator.page(paginator.num_page)
+        except PageNotAnInteger:
+            news=paginator.page(1)
     else:
         news=News.objects.filter(writer=request.user)
     return render(request,'back/news_list.html',{'news':news})
@@ -162,10 +175,15 @@ def news_edit(request,pk):
         error = "News Not Found"
         return render(request, 'back/error.html' , {'error':error})
 
-    b=News.objects.get(pk=pk).writer
-    if request.user != b :
-        error = "Access Diend"
-        return render(request, 'back/error.html' , {'error':error})
+    perm = 0
+    for i in request.user.groups.all():
+        if i.name == "masteruser" : perm = 1
+
+    if perm == 0 :
+        b=News.objects.get(pk=pk).writer
+        if request.user != b :
+            error = "Access Diend"
+            return render(request, 'back/error.html' , {'error':error})
 
 
 

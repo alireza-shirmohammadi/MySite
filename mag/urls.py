@@ -28,6 +28,9 @@ urlpatterns = [
     url('', include('trending.urls')),
     url('', include('manager.urls')),
     url('', include('newsletter.urls')),
+    url('', include('comment.urls')),
+    url('', include('blacklist.urls')),
+
 
 ]
 if settings.DEBUG:

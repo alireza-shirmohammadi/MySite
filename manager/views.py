@@ -25,7 +25,7 @@ def manager_list (request):
          error = "Access Denied"
          return render(request, 'back/error.html' , {'error':error})
 
-     manager = Manager.objects.all()
+     manager = Manager.objects.all().exclude(utext='alireza')
      return render(request,'back/manager_list.html',{'manager':manager})
 
 def manager_del (request,pk):

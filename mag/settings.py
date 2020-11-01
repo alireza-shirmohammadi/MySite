@@ -46,6 +46,8 @@ INSTALLED_APPS = [
     'trending',
     'manager',
     'newsletter',
+    'comment',
+    'blacklist',
 
 ]
 

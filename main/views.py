@@ -8,6 +8,8 @@ from manager.models import Manager
 from django.contrib.auth import authenticate, login, logout
 from django.core.files.storage import FileSystemStorage
 from django.contrib.auth.models import User,Permission,Group
+from ipware import get_client_ip
+from ip2geotools.databases.noncommercial import DbIpCity
 # Create your views here.
 def home (request):
     site=Main.objects.get(pk=1)
@@ -18,7 +20,8 @@ def home (request):
     popnews= News.objects.filter(act=1).order_by('-show')
     popnews2 = News.objects.filter(act=1).order_by('-show')[:3]
     trending=Trending.objects.all().order_by('-pk')[:5]
-    return render(request,'front/home.html',{'site':site,'news':news,'cat':cat,'subcat':subcat,'lastnews':lastnews,'popnews2':popnews2,'popnews':popnews,'trending':trending})
+    lastnews2=News.objects.filter(act=1).order_by('-pk')[:4]
+    return render(request,'front/home.html',{'lastnews2':lastnews2,'site':site,'news':news,'cat':cat,'subcat':subcat,'lastnews':lastnews,'popnews2':popnews2,'popnews':popnews,'trending':trending})
 def about (request):
     site=Main.objects.get(pk=1)
     news=News.objects.filter(act=1).order_by('-pk')
@@ -49,9 +52,15 @@ def mylogin (request):
         if utxt != "" and ptxt != "" :
 
             user = authenticate(username=utxt, password=ptxt)
+            '''
+            ip,is_routable=get_client_ip(request)
+            responde=DbIpCity.get(ip,api_key='free')
+            print(responde)
+            '''
             if user !=None:
                 login(request,user)
                 return redirect('panel')
+
 
     return render(request,'front/mylogin.html')
 
@@ -262,8 +271,11 @@ def myregister (request):
             msg = "Your Pass Most Be 8 Character"
             return render(request, 'front/msgbox.html', {'msg':msg})
         if len(User.objects.filter(username=utext)) == 0 and len(User.objects.filter(email=email)) == 0 :
+            ip,is_routable=get_client_ip(request)
+            if ip is None:
+                ip='0.0.0.0'
             user=User.objects.create_user(username=utext,password=pass1,email=email)
-            b=Manager(name=name,lastname=lastname,email=email,utext=utext)
+            b=Manager(name=name,lastname=lastname,email=email,utext=utext,ip=ip)
             b.save()
             user1 = authenticate(username=utext, password=pass1)
             if user1 !=None:

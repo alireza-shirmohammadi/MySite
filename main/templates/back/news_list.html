@@ -81,7 +81,7 @@
 
         </table>
         Page {{news.number}} From {{news.paginator.num_pages}}
-        <br/><br/>
+        <div class="pull-right">
         {% if news.has_previous %}
         <a href="?page={{news.previous_page_number}}"  data-toggle="tooltip" title="Previous" class="btn btn-xs btn-default"> Previous</a>
         {% endif %}
@@ -97,6 +97,7 @@
             {% if news.has_next %}
         <a href="?page={{news.next_page_number}}" data-toggle="tooltip" title="Next" class="btn btn-xs btn-default"> Next</a>
         {% endif %}
+        </div>
     </div>
 </div>
 <!-- END Datatables Content -->

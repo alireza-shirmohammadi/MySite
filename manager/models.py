@@ -10,6 +10,7 @@ class Manager(models.Model):
     lastname = models.CharField(max_length=50)
     utext = models.TextField()
     email = models.TextField(default="")
+    ip= models.TextField(default="")
 
 
     def __str__(self):
