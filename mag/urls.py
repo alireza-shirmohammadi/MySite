@@ -30,6 +30,7 @@ urlpatterns = [
     url('', include('newsletter.urls')),
     url('', include('comment.urls')),
     url('', include('blacklist.urls')),
+    
 
 
 ]

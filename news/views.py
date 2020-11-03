@@ -9,6 +9,9 @@ from trending.models import Trending
 from django.contrib.auth.models import User,Group,Permission
 from comment.models import Comment
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+from django.http import HttpResponse
+import csv
+
 # Create your views here.
 
 def news_detail(request,pk):
@@ -26,6 +29,7 @@ def news_detail(request,pk):
     code=News.objects.get(pk=pk).pk
     comment=Comment.objects.filter(news_id=code,status=1).order_by('-pk')
     cmcount=Comment.objects.filter(news_id=code,status=1).count()
+    link="/news/" + str(News.objects.get(pk=pk).pk)
     print(cmcount)
     try:
 
@@ -36,7 +40,7 @@ def news_detail(request,pk):
     except:
 
         print("Can't Add Show")
-    return render(request,'front/news_detail.html',{'comment':comment,'cmcount':cmcount,'code':code,'site':site,'trending':trending,'news':news,'cat':cat,'subcat':subcat,'lastnews':lastnews,'shownews':shownews,'popnews':popnews,'popnews2':popnews2,'tag':tag})
+    return render(request,'front/news_detail.html',{'link':link,'comment':comment,'cmcount':cmcount,'code':code,'site':site,'trending':trending,'news':news,'cat':cat,'subcat':subcat,'lastnews':lastnews,'shownews':shownews,'popnews':popnews,'popnews2':popnews2,'tag':tag})
 def news_list(request):
       # login check start
     if not request.user.is_authenticated :
@@ -284,4 +288,34 @@ def news_unpublish (request,pk):
     b=News.objects.get(pk=pk)
     b.act=0
     b.save()
+    return redirect('news_list')
+
+def export_news_csv(request):
+    responde=HttpResponse(content_type='text/csv')
+    responde['Content_Disposition']='atachment;filename="newslist_cat"'
+    writer=csv.writer(responde)
+    writer.writerow(['title','writer'])
+    for i in News.objects.all():
+        writer.writerow([i.name,i.writer])
+    return responde
+
+def import_news_csv(request):
+    if request.method=='POST':
+        file=request.FILES['csv_file']
+        if not file.name.endwith('csv'):
+            error = "Please Input Csv File"
+            return render(request, 'back/error.html' , {'error':error})
+        if file.multiple_chunks():
+            error = "File Too Large"
+            return render(request, 'back/error.html' , {'error':error})
+        file_data=file.read().decode('utf-8')
+        lines=file_data.split('\n')
+        for line in lines:
+            field=line.split(',')
+            try:
+                if len(News.objects.filter(name=field[0])) and field[0] != 'title' and field[0] != "":
+                    b=News(name=field[0])
+                    b.save()
+            except:
+                print('finish')
     return redirect('news_list')

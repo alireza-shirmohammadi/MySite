@@ -1,6 +1,7 @@
 {% extends 'front/base.html' %}
 
 {% load staticfiles %}
+{% load qr_code %}
 
 
 
@@ -264,8 +265,8 @@
 
 							</div>
 						</div>
-
-
+						</br>
+ 					<!-- qrcode -->
 						<div>
 							<div class="how2 how2-cl4 flex-s-c m-b-30">
 								<h3 class="f1-m-2 cl3 tab01-title">
@@ -276,7 +277,7 @@
 							<div class="flex-wr-s-s m-rl--5">
 
 
-
+								{% qr_from_text link size=20 border=6 %}
 
 
 
