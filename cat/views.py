@@ -31,8 +31,8 @@ def cat_add (request):
     return render(request,'back/cat_add.html')
 
 def export_cat_csv(request):
-    responde=HttpResponse(content_type="text/xlsx")
-    responde['Content_Disposition']='atachment:filename=cat_csv'
+    responde=HttpResponse(content_type="text/csv")
+    responde['Content_Disposition']='attachment; filename="cat.csv"'
     writer=csv.writer(responde)
     writer.writerow(['title','counter'])
     for i in Cat.objects.all():
@@ -47,7 +47,7 @@ def import_cat_csv(request):
             return render(request, 'back/error.html' , {'error':error})
         if file.multiple_chunks():
             error = "File Too Large"
-            return render(request, 'back/error.html' , {'error':error})    
+            return render(request, 'back/error.html' , {'error':error})
         file_data=file.read().decode('utf-8')
         lines=file_data.split("\n")
         for line in lines :

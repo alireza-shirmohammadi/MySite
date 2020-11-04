@@ -292,7 +292,7 @@ def news_unpublish (request,pk):
 
 def export_news_csv(request):
     responde=HttpResponse(content_type='text/csv')
-    responde['Content_Disposition']='atachment;filename="newslist_cat"'
+    responde['Content_Disposition']='attachment;filename="newslist.csv"'
     writer=csv.writer(responde)
     writer.writerow(['title','writer'])
     for i in News.objects.all():
@@ -319,3 +319,17 @@ def import_news_csv(request):
             except:
                 print('finish')
     return redirect('news_list')
+
+def news_all_show(request,word):
+    site=Main.objects.get(pk=1)
+    news=News.objects.filter(act=1).order_by('-pk')
+    cat=Cat.objects.all()
+    subcat=SubCat.objects.all()
+    lastnews=News.objects.filter(act=1).order_by('-pk')[:3]
+    popnews= News.objects.filter(act=1).order_by('-show')
+    popnews2 = News.objects.filter(act=1).order_by('-show')[:3]
+    trending=Trending.objects.all().order_by('-pk')[:5]
+    lastnews2=News.objects.filter(act=1).order_by('-pk')[:4]
+    cat1=Cat.objects.get(name=word).pk
+    allnews=News.objects.filter(catid=cat1)
+    return render(request,'front/all_news.html',{'allnews':allnews,'lastnews2':lastnews2,'site':site,'news':news,'cat':cat,'subcat':subcat,'lastnews':lastnews,'popnews2':popnews2,'popnews':popnews,'trending':trending})

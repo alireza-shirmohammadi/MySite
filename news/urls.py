@@ -12,5 +12,6 @@ urlpatterns = [
     url(r'^panel/news/unpublish/(?P<pk>\d+)/$', views.news_unpublish, name='news_unpublish'),
     url(r'^export/news/csv/$', views.export_news_csv, name='export_news_csv'),
     url(r'^import/news/csv/$', views.import_news_csv, name='import_news_csv'),
-    
+    url('^all/news/(?P<word>.*)/$',views.news_all_show,name='news_all_show'),
+
 ]

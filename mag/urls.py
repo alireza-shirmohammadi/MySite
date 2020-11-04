@@ -17,9 +17,13 @@ from django.contrib import admin
 from django.conf.urls import url,include
 from django.conf import settings
 from django.conf.urls.static import static
+from django.views.static import serve
+
 
 urlpatterns = [
     url('admin/', admin.site.urls),
+    url(r'^media/(?P<path>.*)$',serve, {'document_root':settings.MEDIA_ROOT}),
+    url(r'^static/(?P<path>.*)$',serve,{'document_root':settings.STATIC_ROOT}),
     url('', include('main.urls')),
     url('', include('news.urls')),
     url('', include('cat.urls')),
@@ -30,7 +34,7 @@ urlpatterns = [
     url('', include('newsletter.urls')),
     url('', include('comment.urls')),
     url('', include('blacklist.urls')),
-    
+
 
 
 ]
