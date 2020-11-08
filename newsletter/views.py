@@ -8,7 +8,9 @@ from manager.models import Manager
 from django.contrib.auth import authenticate, login, logout
 from django.core.files.storage import FileSystemStorage
 from django.contrib.auth.models import User,Permission,Group
-
+from contactform.models import ContactForm
+from django.conf import settings
+from django.core.mail import send_mail
 def news_letter (request):
 
      # login check start
@@ -74,3 +76,17 @@ def news_txt_del(request,pk):
     b=Newsletter.objects.filter(pk=pk)
     b.delete()
     return redirect('news_email')
+def news_letter_ans(request):
+    if request.method=='POST':
+        txt=request.POST.get('txt')
+        a=[]
+        for i in Newsletter.objects.all():
+            a.append(Newsletter.objects.get(pk=i.pk).txt)
+
+        subject='answer'
+        message=txt
+        email_from=settings.EMAIL_HOST_USER
+        emails=a
+        send_mail(subject,message,email_from,emails)
+
+        return redirect('news_email')

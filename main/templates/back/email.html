@@ -6,6 +6,7 @@
 {% block mainblock %}
 
    <!-- Datatables Header -->
+
    <div class="content-header">
     <div class="header-section">
         <h1>
@@ -19,6 +20,42 @@
 </ul>
 <!-- END Datatables Header -->
 
+<div class="row">
+        <div class="col-md-12">
+            <!-- Basic Form Elements Block -->
+            <div class="block">
+                <!-- Basic Form Elements Title -->
+                <div class="block-title">
+
+                    <h2><strong>Contact</strong>Answer</h2>
+                </div>
+                <!-- END Form Elements Title -->
+
+                <!-- Basic Form Elements Content -->
+                <form action="{%url 'news_letter_ans' %}" method="post" enctype="multipart/form-data" class="form-horizontal form-bordered" >
+                    {% csrf_token %}
+                    <div class="form-group">
+                            <div class="col-md-12">
+                                <textarea type="text" id="txt"  rows=5 name="txt" class="form-control" placeholder="Ip" required> </textarea>
+                            </div>
+                            <div class="col-md-6">
+                                    </br></br>
+                                    <button type="Send" class="btn btn-sm btn-primary"><i class="fa fa-angle-right"></i> Submit</button>
+
+                            </div>
+                        </div>
+
+
+
+
+
+                </form>
+                <!-- END Basic Form Elements Content -->
+            </div>
+            <!-- END Basic Form Elements Block -->
+        </div>
+
+    </div>
 
 
   <!-- Datatables Content -->

@@ -140,3 +140,9 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 CRONJOBS= [
     ('*/1 * * * *' , 'main.cron.my_job')
 ]
+EMAIL_BAKCEND='django.core.mail.backends.smtp.EmailBackend'
+EMAIL_USE_TLS=True
+EMAIL_HOST='smtp.gmail.com'
+EMAIL_HOST_USER='owner.magnews@gmail.com'
+EMAIL_HOST_PASSWORD='unevqmyjxrgtmavy'
+EMAIL_PORT= 587

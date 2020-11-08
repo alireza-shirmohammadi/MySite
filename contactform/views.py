@@ -6,6 +6,8 @@ from cat.models import Cat
 from django.contrib.auth import authenticate, login, logout
 from django.core.files.storage import FileSystemStorage
 import datetime
+from django.conf import settings
+from django.core.mail import send_mail
 
 def contact_add(request):
 
@@ -55,3 +57,17 @@ def contact_del (request,pk):
     b=ContactForm.objects.filter(pk=pk)
     b.delete()
     return redirect ('contact_show')
+
+def contact_ans(request,pk):
+    if request.method=='POST':
+        txt=request.POST.get('txt')
+        email_to=ContactForm.objects.get(pk=pk).email
+        subject='answer'
+        message=txt
+        email_from=settings.EMAIL_HOST_USER
+        emails=[email_to]
+        send_mail(subject,message,email_from,emails)
+        return redirect('contact_show')
+
+
+    return render(request,'back/contact_ans.html',{'pk':pk})
