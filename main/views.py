@@ -10,6 +10,10 @@ from django.core.files.storage import FileSystemStorage
 from django.contrib.auth.models import User,Permission,Group
 from ipware import get_client_ip
 from ip2geotools.databases.noncommercial import DbIpCity
+import random
+from tokenapp.models import Token
+from django.conf import settings
+from django.core.mail import send_mail
 # Create your views here.
 def home (request):
     site=Main.objects.get(pk=1)
@@ -237,14 +241,18 @@ def change_pass(request):
 
     return render(request, 'back/changepass.html')
 
-def myregister (request):
+def myregister(request,email,pk):
     if request.method == 'POST':
         name=request.POST.get('name')
         lastname=request.POST.get('lastname')
-        email=request.POST.get('email')
+        tokenn=request.POST.get('tokenn')
         utext=request.POST.get('utext')
         pass1=request.POST.get('pass1')
         pass2=request.POST.get('pass2')
+        a=Token.objects.get(pk=pk).token
+        if not str(tokenn)== str(a):
+            msg = "Your input token is invalid"
+            return render(request, 'front/msgbox.html', {'msg':msg})
         if pass1 != pass2 :
             msg = "Your Pass Didn't Match"
             return render(request, 'front/msgbox.html', {'msg':msg})
@@ -274,14 +282,19 @@ def myregister (request):
             ip,is_routable=get_client_ip(request)
             if ip is None:
                 ip='0.0.0.0'
+
+
             user=User.objects.create_user(username=utext,password=pass1,email=email)
             b=Manager(name=name,lastname=lastname,email=email,utext=utext,ip=ip)
             b.save()
+
             user1 = authenticate(username=utext, password=pass1)
             if user1 !=None:
                 login(request,user1)
                 return redirect('home')
+
         else :
             msg = "this username or email is already exist"
             return render(request, 'front/msgbox.html', {'msg':msg})
-    return render (request,'front/mylogin.html')
+
+    return render(request,'front/myregister.html',{'pk':pk,'email':email})

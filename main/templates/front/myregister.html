@@ -63,85 +63,74 @@
             <!-- Login Block -->
             <div class="block push-bit">
                 <!-- Login Form -->
-                <form action="{%url 'mylogin' %}" method="post" id="form-login" class="form-horizontal form-bordered form-control-borderless">
+                <form action="{%url 'myregister'  email=email pk=pk %}" method="post" id="form-register" class="form-horizontal form-bordered form-control-borderless">
                   {%csrf_token%}
-                    <div class="form-group">
-                        <div class="col-xs-12">
-                            <div class="input-group">
-                                <span class="input-group-addon"><i class="gi gi-envelope"></i></span>
-                                <input type="text" id="username" name="username" class="form-control input-lg" placeholder="Username">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <div class="col-xs-12">
-                            <div class="input-group">
-                                <span class="input-group-addon"><i class="gi gi-asterisk"></i></span>
-                                <input type="password" id="password" name="password" class="form-control input-lg" placeholder="Password">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="form-group form-actions">
 
-                        <div class="col-xs-8 text-right">
-                            <button type="submit" class="btn btn-sm btn-primary"><i class="fa fa-angle-right"></i> Login to Dashboard</button>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <div class="col-xs-12 text-center">
-                            <a href="javascript:void(0)" id="link-reminder-login"><small>Forgot password?</small></a> -
-                            <a href="javascript:void(0)" id="link-register-login"><small>Create a new account</small></a>
-                        </div>
-                    </div>
-                </form>
-                <!-- END Login Form -->
+                                    <div class="form-group">
+                                        <div class="col-xs-6">
+                                            <div class="input-group">
+                                                <span class="input-group-addon"><i class="gi gi-user"></i></span>
+                                                <input type="text" id="name" name="name" class="form-control input-lg" placeholder="Firstname" required>
+                                            </div>
+                                        </div>
+                                        <div class="col-xs-6">
 
-                <!-- Reminder Form -->
-                <form action="login.html#reminder" method="post" id="form-reminder" class="form-horizontal form-bordered form-control-borderless display-none">
-                    <div class="form-group">
-                        <div class="col-xs-12">
-                            <div class="input-group">
-                                <span class="input-group-addon"><i class="gi gi-envelope"></i></span>
-                                <input type="text" id="reminder-email" name="reminder-email" class="form-control input-lg" placeholder="Email">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="form-group form-actions">
-                        <div class="col-xs-12 text-right">
-                            <button type="submit" class="btn btn-sm btn-primary"><i class="fa fa-angle-right"></i> Reset Password</button>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <div class="col-xs-12 text-center">
-                            <small>Did you remember your password?</small> <a href="javascript:void(0)" id="link-reminder"><small>Login</small></a>
-                        </div>
-                    </div>
-                </form>
-                <!-- END Reminder Form -->
+                                            <input type="text" id="lastname" name="lastname" class="form-control input-lg" placeholder="Lastname" required>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="col-xs-12">
+                                            <div class="input-group">
+                                                <span class="input-group-addon"><i class="gi gi-envelope"></i></span>
+                                                <input type="text" id="tokenn" name="tokenn" class="form-control input-lg" placeholder="token that we had send to your email" required>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="col-xs-12">
+                                            <div class="input-group">
+                                                <span class="input-group-addon"><i class="gi gi-user"></i></span>
+                                                <input type="text" id="utext" name="utext" class="form-control input-lg" placeholder="username" required>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="col-xs-12">
+                                            <div class="input-group">
+                                                <span class="input-group-addon"><i class="gi gi-asterisk"></i></span>
+                                                <input type="password" id="pass1" name="pass1" class="form-control input-lg" placeholder="Password" required>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="col-xs-12">
+                                            <div class="input-group">
+                                                <span class="input-group-addon"><i class="gi gi-asterisk"></i></span>
+                                                <input type="password" id="pass2" name="pass2" class="form-control input-lg" placeholder="Verify Password" required>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group form-actions">
+                                        <div class="col-xs-6">
+                                            <a href="#modal-terms" data-toggle="modal" class="register-terms">Terms</a>
+                                            <label class="switch switch-primary" data-toggle="tooltip" title="Agree to the terms">
+                                                <input type="checkbox" id="terms" name="terms" required>
+                                                <span></span>
+                                            </label>
+                                        </div>
+                                        <div class="col-xs-6 text-right">
+                                            <button type="submit" class="btn btn-sm btn-success"><i class="fa fa-plus"></i> Register Account</button>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="col-xs-12 text-center">
+                                            <small>Do you have an account?</small> <a href="javascript:void(0)" id="link-register"><small>Login</small></a>
+                                        </div>
+                                    </div>
+                                </form>
+                                <!-- END Register Form -->
 
-                <!-- Register Form -->
-                <form action="{% url 'token' %}" method="post" id="form-register" class="form-horizontal form-bordered form-control-borderless display-none">
-                  {%csrf_token%}
-                  <div class="form-group">
-                      <div class="col-xs-12">
-                          <div class="input-group">
-                              <span class="input-group-addon"><i class="gi gi-envelope"></i></span>
-                              <input type="text" id="email" name="email" class="form-control input-lg" placeholder="Email" required>
-                          </div>
-                      </div>
-                  </div>
-                  <div class="form-group form-actions">
-                      <div class="col-xs-12 text-right">
-                          <button type="submit" class="btn btn-sm btn-primary"><i class="fa fa-angle-right"></i> Continue</button>
-                      </div>
-                  </div>
-                  <div class="form-group">
-                      <div class="col-xs-12 text-center">
-                          <small>Do u have an Account?</small> <a href="javascript:void(0)" id="link-reminder"><small>Login</small></a>
-                      </div>
-                  </div>
-              </form>
-                <!-- END Register Form -->
+
             </div>
             <!-- END Login Block -->
 

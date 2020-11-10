@@ -49,8 +49,8 @@ INSTALLED_APPS = [
     'comment',
     'blacklist',
     'qr_code',
-    'django_crontab'
-
+    'django_crontab',
+    'tokenapp',
 ]
 
 MIDDLEWARE = [
