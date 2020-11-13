@@ -14,6 +14,7 @@ import random
 from tokenapp.models import Token
 from django.conf import settings
 from django.core.mail import send_mail
+import requests
 # Create your views here.
 def home (request):
     site=Main.objects.get(pk=1)
@@ -25,7 +26,27 @@ def home (request):
     popnews2 = News.objects.filter(act=1).order_by('-show')[:3]
     trending=Trending.objects.all().order_by('-pk')[:5]
     lastnews2=News.objects.filter(act=1).order_by('-pk')[:4]
-    return render(request,'front/home.html',{'lastnews2':lastnews2,'site':site,'news':news,'cat':cat,'subcat':subcat,'lastnews':lastnews,'popnews2':popnews2,'popnews':popnews,'trending':trending})
+
+    ip ,is_routable=get_client_ip(request)
+    print(ip)
+    location=DbIpCity.get(ip,api_key='free')
+    city=location.city
+
+
+
+    url= 'http://api.weatherstack.com/current'
+    payload={"access_key":"8d2878548759a6a34d8c33a299ccbc38","query":city}
+    result=requests.get(url,params=payload)
+    result=result.json()
+    weather={
+    "city":result['location']['name'],
+    'temperature':result['current']['temperature'],
+    "icon":(result['current']['weather_icons'][0]),
+    }
+    weather_data=[]
+    weather_data.append(weather)
+
+    return render(request,'front/home.html',{'weather_data':weather_data,'lastnews2':lastnews2,'site':site,'news':news,'cat':cat,'subcat':subcat,'lastnews':lastnews,'popnews2':popnews2,'popnews':popnews,'trending':trending})
 def about (request):
     site=Main.objects.get(pk=1)
     news=News.objects.filter(act=1).order_by('-pk')
@@ -44,7 +65,6 @@ def panel (request):
     perm=0
     for i in (Permission.objects.filter(user=request.user)):
         if i.codename=='master_user':perm=1
-
     return render (request,'back/home.html')
 
 def mylogin (request):

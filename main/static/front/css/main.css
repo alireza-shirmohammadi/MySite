@@ -1,7 +1,7 @@
 /*------------------------------------------------------------------
 Project:  MagNews
-Version:  
-Last change:  
+Version:
+Last change:
 Assigned to:  Le Xuan Bach
 Primary use:  Company
 -------------------------------------------------------------------*/
@@ -19,10 +19,10 @@ Primary use:  Company
 /*------------------------------------------------------------------
 [COLOR CODES]
 
-# Text Color      :  
-# Primary Color 01:  
-# Primary Color 02:   
-# Primary Color 03:  
+# Text Color      :
+# Primary Color 01:
+# Primary Color 02:
+# Primary Color 03:
 
 ------------------------------------------------------------------*/
 /*------------------------------------------------------------------
@@ -43,29 +43,29 @@ Input, textarea : 14px/1.6 '', Arial, sans-serif;
 [ 1 ]*/
 @font-face {
   font-family: Roboto-Regular;
-  src: url('../fonts/Roboto/Roboto-Regular.ttf'); 
+  src: url('../fonts/Roboto/Roboto-Regular.ttf');
 }
 
 @font-face {
   font-family: Roboto-Medium;
-  src: url('../fonts/Roboto/Roboto-Medium.ttf'); 
+  src: url('../fonts/Roboto/Roboto-Medium.ttf');
 }
 
 @font-face {
   font-family: Roboto-Bold;
-  src: url('../fonts/Roboto/Roboto-Bold.ttf'); 
+  src: url('../fonts/Roboto/Roboto-Bold.ttf');
 }
 
 @font-face {
   font-family: Roboto-Black;
-  src: url('../fonts/Roboto/Roboto-Black.ttf'); 
+  src: url('../fonts/Roboto/Roboto-Black.ttf');
 }
 
 /*------------------------------------------------------------------
 [ 2 ]*/
 @font-face {
   font-family: Lato-Regular;
-  src: url('../fonts/Lato/Lato-Regular.ttf'); 
+  src: url('../fonts/Lato/Lato-Regular.ttf');
 }
 
 
@@ -109,7 +109,7 @@ Input, textarea : 14px/1.6 '', Arial, sans-serif;
     opacity: 1; }
   100% {
     transform: scale(1);
-    opacity: 0; } 
+    opacity: 0; }
 }
 
 
@@ -401,7 +401,7 @@ a.left-topbar-item:hover {
   font-size: 16px;
   line-height: 1.5;
   color: #222;
-  
+
   position: relative;
   display: -webkit-box;
   display: -webkit-flex;
@@ -496,8 +496,8 @@ li.main-menu-active > a::before {
   -moz-transition: all 0.3s;
 
   visibility: hidden;
-  opacity: 0; 
-  
+  opacity: 0;
+
   border: 1px solid #f2f2f2;
   box-shadow: 0 5px 10px 0px rgba(0,0,0,0.2);
   -moz-box-shadow: 0 5px 10px 0px rgba(0,0,0,0.2);
@@ -535,7 +535,7 @@ li.respon-sub-menu > .sub-menu .sub-menu {
   color: #222;
 
   display: block;
-  padding: 8px 30px; 
+  padding: 8px 30px;
   width: 100%;
 
   transition: all 0.3s;
@@ -573,7 +573,7 @@ li.respon-sub-menu > .sub-menu .sub-menu {
 .sub-menu li:hover > .sub-menu {
   visibility: visible;
   opacity: 1;
-} 
+}
 
 .sub-menu li:hover {
   background-color: transparent;
@@ -599,7 +599,7 @@ li.respon-sub-menu > .sub-menu .sub-menu {
   background-color: #fff;
   width: 100%;
   display: none;
-  
+
   border: 1px solid #f2f2f2;
   box-shadow: 0 5px 10px 0px rgba(0,0,0,0.2);
   -moz-box-shadow: 0 5px 10px 0px rgba(0,0,0,0.2);
@@ -636,7 +636,7 @@ li.respon-sub-menu > .sub-menu .sub-menu {
   padding: 8px 20px 8px 33px;
 }
 
-.sub-mega-menu .nav-pills .nav-link.active, 
+.sub-mega-menu .nav-pills .nav-link.active,
 .sub-mega-menu .show>.nav-pills .nav-link {
   color: #fff;
   background-color: #17b978;
@@ -721,8 +721,8 @@ li.respon-sub-menu > .sub-menu .sub-menu {
   max-width: calc(100% - 35px);
   max-height: 60%;
   position:absolute;
-  top: 0; 
-  left: 0; 
+  top: 0;
+  left: 0;
   bottom: 0;
   margin: auto;
 }
@@ -744,8 +744,8 @@ li.respon-sub-menu > .sub-menu .sub-menu {
   transform: scale(0.6);
 }
 
-.hamburger-inner, 
-.hamburger-inner:after, 
+.hamburger-inner,
+.hamburger-inner:after,
 .hamburger-inner:before {
   border-radius: 0;
 }
@@ -861,7 +861,7 @@ li.respon-sub-menu > .sub-menu .sub-menu {
     height: auto;
   }
 
-  .banner-header {  
+  .banner-header {
     width: 100%;
     justify-content: center;
   }
@@ -901,7 +901,7 @@ li.respon-sub-menu > .sub-menu .sub-menu {
   font-size: 14px;
   color: #555;
   line-height: 1.7;
-  
+
   display: -webkit-box;
   display: -webkit-flex;
   display: -moz-box;
@@ -931,7 +931,7 @@ li.respon-sub-menu > .sub-menu .sub-menu {
   border-bottom: 1px solid #d5d5d5;
   left: calc(50% - 5px);
   bottom: -5px;
-  
+
   -webkit-transform: rotate(-45deg);
   -moz-transform: rotate(-45deg);
   -ms-transform: rotate(-45deg);
@@ -980,6 +980,10 @@ li.respon-sub-menu > .sub-menu .sub-menu {
 
 /*//////////////////////////////////////////////////////////////////
 [ Modal video 01 ]*/
+div .pullright {
+    position: absolute;
+    margin: -30px 0 0 400px;
+}
 body {padding-right: 0px !important;}
 .modal {
   padding: 0px !important;
@@ -997,7 +1001,7 @@ body {padding-right: 0px !important;}
 #modal-video-01 {
   background-color: rgba(0,0,0,0.8);
   z-index: 1250;
-  
+
 }
 
 #modal-video-01 .modal-dialog {
@@ -1117,7 +1121,7 @@ a.breadcrumb-item:hover {
 
 
 /*==================================================================
-   COLOR COLOR COLOR COLOR COLOR COLOR COLOR COLOR COLOR COLOR COLOR 
+   COLOR COLOR COLOR COLOR COLOR COLOR COLOR COLOR COLOR COLOR COLOR
 ==================================================================*/
 .bocl0 {border-color: #fff;}
 .bocl1 {border-color: #111;}
@@ -1327,7 +1331,7 @@ a.breadcrumb-item:hover {
 
 
 /*==================================================================
-    SIZE SIZE SIZE SIZE SIZE SIZE SIZE SIZE SIZE SIZE SIZE SIZE SIZE 
+    SIZE SIZE SIZE SIZE SIZE SIZE SIZE SIZE SIZE SIZE SIZE SIZE SIZE
 ==================================================================*/
 /*//////////////////////////////////////////////////////////////////
 [ Size ]*/
@@ -1526,7 +1530,7 @@ a.breadcrumb-item:hover {
 
 
 /*==================================================================
-   BACKGROUND BACKGROUND BACKGROUND BACKGROUND BACKGROUND BACKGROUND 
+   BACKGROUND BACKGROUND BACKGROUND BACKGROUND BACKGROUND BACKGROUND
 ==================================================================*/
 .bg-none {background-color: transparent;}
 .bg0 {background-color: #fff;}
@@ -1569,7 +1573,7 @@ a.breadcrumb-item:hover {
 
 
 /*==================================================================
- HOW HOW HOW HOW HOW HOW HOW HOW HOW HOW HOW HOW HOW HOW HOW HOW HOW 
+ HOW HOW HOW HOW HOW HOW HOW HOW HOW HOW HOW HOW HOW HOW HOW HOW HOW
 ==================================================================*/
 
 /*---------------------------------------------*/
@@ -1634,6 +1638,7 @@ a.breadcrumb-item:hover {
   position: relative;
   z-index: 1;
 }
+
 
 .how-overlay1::before {
   content: "";
@@ -1783,10 +1788,13 @@ a.breadcrumb-item:hover {
   opacity: 0.8;
 }
 
+.content-float .pull-right {
+    margin: 0 0 20px 20px;
+}
 
 
 /*==================================================================
-   OTHER OTHER OTHER OTHER OTHER OTHER OTHER OTHER OTHER OTHER OTHER 
+   OTHER OTHER OTHER OTHER OTHER OTHER OTHER OTHER OTHER OTHER OTHER
 ==================================================================*/
 /*------------------------------------------------------------------
 [ Input ]*/
@@ -1846,7 +1854,7 @@ a.breadcrumb-item:hover {
 ==================================================================*/
 
 @media (max-width: 1199px) {
-  
+
 }
 
 
@@ -1861,10 +1869,10 @@ a.breadcrumb-item:hover {
 
 
 @media (max-width: 575px) {
-  
+
 }
 
 
 @media (max-width: 480px) {
-  
+
 }

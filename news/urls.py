@@ -13,5 +13,6 @@ urlpatterns = [
     url(r'^export/news/csv/$', views.export_news_csv, name='export_news_csv'),
     url(r'^import/news/csv/$', views.import_news_csv, name='import_news_csv'),
     url('^all/news/(?P<word>.*)/$',views.news_all_show,name='news_all_show'),
-
+    url('^all/news/$', views.allnews, name='allnews'),
+    url('^search/news/$', views.search, name='search'),
 ]

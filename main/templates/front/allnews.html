@@ -61,27 +61,28 @@
 			</div>
 			{% endfor %}
 
+      </div>
+
+      Page {{allnews.number}} From {{allnews.paginator.num_pages}}
+			<div class="pullright">
+      {% if allnews.has_previous %}
+      <a href="?page={{allnews.previous_page_number}}"  data-toggle="tooltip" title="Previous" class="btn btn-xs btn-default"> Previous</a>
+      {% endif %}
+
+      {% for i in allnews.paginator.page_range %}
+          {% if allnews.number == i %}
+              <a href="#" onclick="return false;" data-toggle="tooltip" title="{{Disables}}" class="btn btn-xs btn-default"> {{i}}</a>
+          {% else %}
+              <a href="?page={{i}}" data-toggle="tooltip" title="{{i}}" class="btn btn-xs btn-default"> {{i}}</a>
+          {% endif %}
+      {% endfor %}
+
+          {% if allnews.has_next %}
+      <a href="?page={{allnews.next_page_number}}" data-toggle="tooltip" title="Next" class="btn btn-xs btn-default"> Next</a>
+      {% endif %}
+
 		</div>
 
-		Page {{allnews.number}} From {{allnews.paginator.num_pages}}
-		<div class="pullright">
-		{% if allnews.has_previous %}
-		<a href="?page={{allnews.previous_page_number}}"  data-toggle="tooltip" title="Previous" class="btn btn-xs btn-default"> Previous</a>
-		{% endif %}
-
-		{% for i in allnews.paginator.page_range %}
-				{% if allnews.number == i %}
-						<a href="#" onclick="return false;" data-toggle="tooltip" title="{{Disables}}" class="btn btn-xs btn-default"> {{i}}</a>
-				{% else %}
-						<a href="?page={{i}}" data-toggle="tooltip" title="{{i}}" class="btn btn-xs btn-default"> {{i}}</a>
-				{% endif %}
-		{% endfor %}
-
-				{% if allnews.has_next %}
-		<a href="?page={{allnews.next_page_number}}" data-toggle="tooltip" title="Next" class="btn btn-xs btn-default"> Next</a>
-		{% endif %}
-
-		</div>
 
 	</div>
 </section>

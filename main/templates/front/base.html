@@ -56,8 +56,20 @@
 
 					<div class="flex-wr-e-c">
 						<div class="left-topbar">
+							{%for weather in weather_data%}
+							<a href="#" class="left-topbar-item">
+								<i class="fa fa-map"></i>
+								city : {{weather.city}}
+							</a>
+							<a href="#" class="left-topbar-item">
 
+								temperature : {{weather.temperature}}&degc
 
+							</a>
+							<a href="#" class="left-topbar-item">
+								<img style="display: inline-block; width:50px; height:50px;" src="{{weather.icon}}" alt="LOGO">
+							</a>
+							{%endfor%}
 							<a href="{%url 'about' %}" class="left-topbar-item">
 								About
 							</a>
@@ -122,10 +134,11 @@
 								<a href="/">Home</a>
 							</li>
 
+
 							{% for gg in cat %}
 							{% if gg.count != 0 %}
 							<li class="mega-menu-item">
-								<a href="category-01.html">{{gg.name}}</a>
+								<a href="{%url 'news_all_show' word=gg.name %}">{{gg.name}}</a>
 
 								<div class="sub-mega-menu">
 									<div class="nav flex-column nav-pills" role="tablist">
@@ -238,13 +251,45 @@
 							</li>
 							{% endif %}
 							{% endfor %}
-
+							<ul class="main-menu justify-content-center">
+								<li class="main-menu-active">
+									<a href="/all/news">All News</a>
+								</li>
 
 						</ul>
 					</nav>
 				</div>
 			</div>
 		</div>
+		<!-- Headline -->
+	<div class="container">
+		<div class="bg0 flex-wr-sb-c p-rl-20 p-tb-8">
+			<div class="f2-s-1 p-r-30 size-w-0 m-tb-6 flex-wr-s-c">
+				<a href="/" class="fs-12 m-l-5 fa fa-caret-right">
+					Home
+				</a>
+
+				<a href="/all/news" class="fs-12 m-l-5 fa fa-caret-right">
+					News
+				</a>
+
+				<span class="fs-12 m-l-5 fa fa-caret-right">
+					{{i.name}}
+				</span>
+			</div>
+
+			<form action="{%url 'search' %}" method="post" enctype="multipart/form-data" class="form-horizontal form-bordered" >
+					{% csrf_token %}
+			<div class="pos-relative size-a-2 bo-1-rad-22 of-hidden bocl11 m-tb-6">
+				<input class="f1-s-1 cl6 plh9 s-full p-l-25 p-r-45" type="text" name="search" placeholder="Search">
+				<button type="submit" class="flex-c-c size-a-1 ab-t-r fs-20 cl2 hov-cl10 trans-03">
+					<i class="zmdi zmdi-search"></i>
+				</button>
+			</div>
+		</form>
+
+		</div>
+	</div>
 	</header>
 
 

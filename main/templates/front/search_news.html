@@ -5,7 +5,7 @@
 
 
 {% block headblock %}
-<title>{{site.name}} | All</title>
+<title>{{site.name}} | Search</title>
 {% endblock %}
 
 
@@ -25,7 +25,7 @@
 
 		<div class="row p-t-35">
 
-			{% for i in allnews %}
+			{% for i in searchnews %}
 			<div class="col-sm-6 col-md-4">
 				<!-- Item latest -->
 				<div class="m-b-45">
@@ -61,27 +61,28 @@
 			</div>
 			{% endfor %}
 
-		</div>
-
-		Page {{allnews.number}} From {{allnews.paginator.num_pages}}
-		<div class="pullright">
-		{% if allnews.has_previous %}
-		<a href="?page={{allnews.previous_page_number}}"  data-toggle="tooltip" title="Previous" class="btn btn-xs btn-default"> Previous</a>
-		{% endif %}
-
-		{% for i in allnews.paginator.page_range %}
-				{% if allnews.number == i %}
-						<a href="#" onclick="return false;" data-toggle="tooltip" title="{{Disables}}" class="btn btn-xs btn-default"> {{i}}</a>
-				{% else %}
-						<a href="?page={{i}}" data-toggle="tooltip" title="{{i}}" class="btn btn-xs btn-default"> {{i}}</a>
-				{% endif %}
-		{% endfor %}
-
-				{% if allnews.has_next %}
-		<a href="?page={{allnews.next_page_number}}" data-toggle="tooltip" title="Next" class="btn btn-xs btn-default"> Next</a>
-		{% endif %}
 
 		</div>
+
+    Page {{searchnews.number}} From {{searchnews.paginator.num_pages}}
+    <div class="pullright">
+    {% if searchnews.has_previous %}
+    <a href="?page={{searchnews.previous_page_number}}"  data-toggle="tooltip" title="Previous" class="btn btn-xs btn-default"> Previous</a>
+    {% endif %}
+
+    {% for i in searchnews.paginator.page_range %}
+        {% if searchnews.number == i %}
+            <a href="#" onclick="return false;" data-toggle="tooltip" title="{{Disables}}" class="btn btn-xs btn-default"> {{i}}</a>
+        {% else %}
+            <a href="?page={{i}}" data-toggle="tooltip" title="{{i}}" class="btn btn-xs btn-default"> {{i}}</a>
+        {% endif %}
+    {% endfor %}
+
+        {% if searchnews.has_next %}
+    <a href="?page={{searchnews.next_page_number}}" data-toggle="tooltip" title="Next" class="btn btn-xs btn-default"> Next</a>
+    {% endif %}
+
+  </div>
 
 	</div>
 </section>

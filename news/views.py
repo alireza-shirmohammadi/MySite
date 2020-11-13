@@ -11,6 +11,8 @@ from comment.models import Comment
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.http import HttpResponse
 import csv
+from itertools import chain
+
 
 # Create your views here.
 
@@ -331,5 +333,86 @@ def news_all_show(request,word):
     trending=Trending.objects.all().order_by('-pk')[:5]
     lastnews2=News.objects.filter(act=1).order_by('-pk')[:4]
     cat1=Cat.objects.get(name=word).pk
-    allnews=News.objects.filter(catid=cat1)
+    allnewss=News.objects.filter(catid=cat1)
+
+
+    paginator=Paginator(allnewss,2)
+    page=request.GET.get('page')
+    try:
+        allnews=paginator.page(page)
+    except EmptyPage:
+        allnews=paginator.page(paginator.num_page)
+    except PageNotAnInteger:
+        allnews=paginator.page(1)
+
     return render(request,'front/all_news.html',{'allnews':allnews,'lastnews2':lastnews2,'site':site,'news':news,'cat':cat,'subcat':subcat,'lastnews':lastnews,'popnews2':popnews2,'popnews':popnews,'trending':trending})
+
+def allnews (request):
+    site=Main.objects.get(pk=1)
+    news=News.objects.filter(act=1).order_by('-pk')
+    cat=Cat.objects.all()
+    subcat=SubCat.objects.all()
+    lastnews=News.objects.filter(act=1).order_by('-pk')[:3]
+    popnews= News.objects.filter(act=1).order_by('-show')
+    popnews2 = News.objects.filter(act=1).order_by('-show')[:3]
+    trending=Trending.objects.all().order_by('-pk')[:5]
+    lastnews2=News.objects.filter(act=1).order_by('-pk')[:4]
+    allnewss=News.objects.all()
+
+
+    paginator=Paginator(allnewss,2)
+    page=request.GET.get('page')
+    try:
+        allnews=paginator.page(page)
+    except EmptyPage:
+        allnews=paginator.page(paginator.num_page)
+    except PageNotAnInteger:
+        allnews=paginator.page(1)
+
+    return render(request,'front/allnews.html',{'allnews':allnews,'lastnews2':lastnews2,'site':site,
+    'news':news,'cat':cat,'subcat':subcat,'lastnews':lastnews,'popnews2':popnews2,'popnews':popnews,'trending':trending})
+
+def search(request):
+    mysearch=''
+    if request.method=='POST':
+        search=request.POST.get('search')
+        mysearch=search
+        a=News.objects.filter(name__contains=search)
+        b=News.objects.filter(short_txt__contains=search)
+        c=News.objects.filter(body_txt__contains=search)
+        searchnewss=list(chain(a,b,c))
+        searchnewss=list(dict.fromkeys(searchnewss))
+    else:
+        print(mysearch)
+        a=News.objects.filter(name__contains=mysearch)
+        b=News.objects.filter(short_txt__contains=mysearch)
+        c=News.objects.filter(body_txt__contains=mysearch)
+        searchnewss=list(chain(a,b,c))
+        searchnewss=list(dict.fromkeys(searchnewss))
+
+    site=Main.objects.get(pk=1)
+    news=News.objects.filter(act=1).order_by('-pk')
+    cat=Cat.objects.all()
+    subcat=SubCat.objects.all()
+    lastnews=News.objects.filter(act=1).order_by('-pk')[:3]
+    popnews= News.objects.filter(act=1).order_by('-show')
+    popnews2 = News.objects.filter(act=1).order_by('-show')[:3]
+    trending=Trending.objects.all().order_by('-pk')[:5]
+    lastnews2=News.objects.filter(act=1).order_by('-pk')[:4]
+    allnews=News.objects.all()
+
+
+
+
+    paginator=Paginator(searchnewss,2)
+    page=request.GET.get('page')
+    try:
+        searchnews=paginator.page(page)
+    except EmptyPage:
+        searchnews=paginator.page(paginator.num_page)
+    except PageNotAnInteger:
+        searchnews=paginator.page(1)
+
+
+    return render(request,'front/search_news.html',{'searchnews':searchnews,'lastnews2':lastnews2,'site':site,
+    'news':news,'cat':cat,'subcat':subcat,'lastnews':lastnews,'popnews2':popnews2,'popnews':popnews,'trending':trending})
