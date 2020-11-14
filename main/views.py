@@ -15,6 +15,7 @@ from tokenapp.models import Token
 from django.conf import settings
 from django.core.mail import send_mail
 import requests
+import ipinfo
 # Create your views here.
 def home (request):
     site=Main.objects.get(pk=1)
@@ -27,12 +28,55 @@ def home (request):
     trending=Trending.objects.all().order_by('-pk')[:5]
     lastnews2=News.objects.filter(act=1).order_by('-pk')[:4]
 
-    ip ,is_routable=get_client_ip(request)
-    print(ip)
-    location=DbIpCity.get(ip,api_key='free')
+#currency api
+    url='https://api.tgju.online/v1/data/sana/json'
+    response=requests.get(url)
+    r=response.json()
+
+    dollar={
+    'name':'dollar',
+    'dollar':r['sana']['data'][0]['p'],
+    'dollar_t':r['sana']['data'][0]['updated_at'],}
+    euro={
+    'name':'euro',
+    'euro':r['sana']['data'][1]['p'],
+    'euro_t':r['sana']['data'][1]['updated_at'],}
+    emarat={
+    'name':'United Arab Emirates dirham',
+    'emarat':r['sana']['data'][2]['p'],
+    'emarat_t':r['sana']['data'][2]['updated_at'],}
+    turkey={
+    'name':'lira',
+    'turkey':r['sana']['data'][4]['p'],
+    'turkey_t':r['sana']['data'][4]['updated_at'],}
+    china={
+    'name':'yuan',
+    'china':r['sana']['data'][6]['p'],
+    'china_t':r['sana']['data'][6]['updated_at'],}
+    england={
+    'name':'Pound',
+    'england':r['sana']['data'][11]['p'],
+    'england_t':r['sana']['data'][11]['updated_at'],}
+
+    currency_price=[]
+    currency_price.append(dollar)
+    currency_price.append(euro)
+    currency_price.append(emarat)
+    currency_price.append(turkey)
+    currency_price.append(china)
+    currency_price.append(england)
+
+
+    #ip ,is_routable=get_client_ip(request)
+    ip =request.META.get('HTTP_X_REAL_IP')
+
+    #location=DbIpCity.get(ip,api_key='free')
+    #city=location.city
+
+    access_token='87948149e06374'
+    handler = ipinfo.getHandler(access_token)
+    location = handler.getDetails(ip)
     city=location.city
-
-
 
     url= 'http://api.weatherstack.com/current'
     payload={"access_key":"8d2878548759a6a34d8c33a299ccbc38","query":city}
@@ -46,7 +90,8 @@ def home (request):
     weather_data=[]
     weather_data.append(weather)
 
-    return render(request,'front/home.html',{'weather_data':weather_data,'lastnews2':lastnews2,'site':site,'news':news,'cat':cat,'subcat':subcat,'lastnews':lastnews,'popnews2':popnews2,'popnews':popnews,'trending':trending})
+
+    return render(request,'front/home.html',{'currency_price':currency_price,'weather_data':weather_data,'lastnews2':lastnews2,'site':site,'news':news,'cat':cat,'subcat':subcat,'lastnews':lastnews,'popnews2':popnews2,'popnews':popnews,'trending':trending})
 def about (request):
     site=Main.objects.get(pk=1)
     news=News.objects.filter(act=1).order_by('-pk')

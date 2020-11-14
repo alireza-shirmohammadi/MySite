@@ -27,6 +27,11 @@
 <!--===============================================================================================-->
 	<link rel="stylesheet" type="text/css" href="{%static 'front/css/main.css' %}">
 <!--===============================================================================================-->
+<link rel="stylesheet" type="text/css" href="{%static 'front/css/util.min.css' %}">
+<!--===============================================================================================-->
+<link rel="stylesheet" type="text/css" href="{%static 'front/flag-icon/css/flag-icon.css' %}">
+<!--===============================================================================================-->
+
 </head>
 <body class="animsition">
 
@@ -304,6 +309,7 @@
 	<footer>
 		<div class="bg2 p-t-40 p-b-25">
 			<div class="container">
+			<div class="row justify-content-center">
 				<div class="row">
 					<div class="col-lg-4 p-b-20">
 						<div class="size-h-3 flex-s-c">
@@ -396,6 +402,27 @@
 						{%endif%}
 						{%endfor%}
 					</div>
+
+					<div class="col-sm-6 col-lg-4 p-b-20">
+						<div class="size-h-3 flex-s-c">
+							<h5 class="f1-m-7 cl0">
+								test
+							</h5>
+						</div>
+						{%for cat in cat%}
+						{% if cat.count != 0 %}
+						<ul class="m-t--12">
+							<li class="how-bor1 p-rl-5 p-tb-10">
+								<a href="{%url 'news_all_show' word=cat.name %}" class="f1-s-5 cl11 hov-cl10 trans-03 p-tb-8">
+								{{cat.name}}({{cat.count}})
+								</a>
+							</li>
+
+						</ul>
+						{%endif%}
+						{%endfor%}
+					</div>
+
 				</div>
 			</div>
 		</div>
@@ -430,6 +457,7 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 				</div>
 			</div>
 		</div>
+	</div>
 	</div>
 
 <!--===============================================================================================-->

@@ -44,7 +44,6 @@
 
 <br/><br/>
 
-
 <!-- Feature post -->
 <section class="bg0">
 		<div class="container">
@@ -168,118 +167,269 @@
 	</section>
 
 
+</br></br>
 
+	<section class="bg0 p-b-140 p-t-10">
+		<div class="container">
+			<div class="row justify-content-center">
+				<div class="col-md-10 col-lg-8 p-b-30">
+					<div class="p-r-10 p-r-0-sr991">
+						<!-- Blog Detail -->
+						<div class="col-md-12 col-lg-12">
+					<div class="p-r-10 p-rl-0-sr991 p-b-20">
 
-<section class="post bg0 p-t-85">
-	<div class="container">
-		<div class="row justify-content-center">
-			<div class="col-md-12 col-lg-12">
-				<div class="p-r-10 p-rl-0-sr991 p-b-20">
+							{% for newscat in cat %}
+							{% if newscat.count != 0 %}
 
-						{% for newscat in cat %}
-						{% if newscat.count != 0 %}
+						<!-- Life Style  -->
+						<div class="p-b-25 m-r--10 m-r-0-sr991">
+							<div class="how2 how2-cl5 flex-s-c m-r-10 m-r-0-sr991">
+								<h3 class="f1-m-2 cl17 tab01-title">
+									{{newscat.name}}
+								</h3>
+							</div>
 
-					<!-- Life Style  -->
-					<div class="p-b-25 m-r--10 m-r-0-sr991">
-						<div class="how2 how2-cl5 flex-s-c m-r-10 m-r-0-sr991">
-							<h3 class="f1-m-2 cl17 tab01-title">
-								{{newscat.name}}
-							</h3>
-						</div>
+							<div class="row p-t-35">
+								<div class="col-sm-6 p-r-25 p-r-15-sr991">
+									<!-- Item post -->
 
-						<div class="row p-t-35">
-							<div class="col-sm-6 p-r-25 p-r-15-sr991">
-								<!-- Item post -->
+									{% for ab in news %}
+									{% if newscat.pk == ab.ocatid %}
+									<div class="flex-wr-sb-s m-b-30">
+										<a href="{%url 'news_detail' ab.pk %}" class="size-w-1 wrap-pic-w hov1 trans-03">
+											<img src="{{ab.picurl}}" alt="IMG">
+										</a>
 
-								{% for ab in news %}
-								{% if newscat.pk == ab.ocatid %}
-								<div class="flex-wr-sb-s m-b-30">
-									<a href="{%url 'news_detail' ab.pk %}" class="size-w-1 wrap-pic-w hov1 trans-03">
-										<img src="{{ab.picurl}}" alt="IMG">
-									</a>
+										<div class="size-w-2">
+											<h5 class="p-b-5">
+												<a href="{%url 'news_detail' ab.pk %}" class="f1-s-5 cl3 hov-cl10 trans-03">
+													{{ab.name}}
+												</a>
+											</h5>
 
-									<div class="size-w-2">
-										<h5 class="p-b-5">
-											<a href="{%url 'news_detail' ab.pk %}" class="f1-s-5 cl3 hov-cl10 trans-03">
-												{{ab.name}}
-											</a>
-										</h5>
+											<span class="cl8">
+												<a href="#" class="f1-s-6 cl8 hov-cl10 trans-03">
+													{{ab.catname}}
+												</a>
 
-										<span class="cl8">
-											<a href="#" class="f1-s-6 cl8 hov-cl10 trans-03">
-												{{ab.catname}}
-											</a>
+												<span class="f1-s-3 m-rl-3">
+													-
+												</span>
 
-											<span class="f1-s-3 m-rl-3">
-												-
+												<span class="f1-s-3">
+													{{ab.date}} | {{ab.time}}
+												</span>
 											</span>
-
-											<span class="f1-s-3">
-												{{ab.date}} | {{ab.time}}
-											</span>
-										</span>
+										</div>
 									</div>
+									{% endif %}
+									{% endfor %}
+
+
 								</div>
-								{% endif %}
-								{% endfor %}
+								<div class="col-sm-6 p-r-25 p-r-15-sr991">
+																<!-- Item post -->
+
+																{%for pop in popnews%}
+																{%if pop.show != 0 %}
+																{%if newscat.pk == pop.ocatid %}
+																<div class="flex-wr-sb-s m-b-30">
+																	<a href="{%url 'news_detail' pop.pk %}" class="size-w-1 wrap-pic-w hov1 trans-03">
+																		<img src="{{pop.picurl}}" alt="IMG">
+																	</a>
+
+																	<div class="size-w-2">
+																		<h5 class="p-b-5">
+																			<a href="{%url 'news_detail' pop.pk %}" class="f1-s-5 cl3 hov-cl10 trans-03">
+																				{{pop.name}}
+																			</a>
+																		</h5>
+
+																		<span class="cl8">
+																			<a href="#" class="f1-s-6 cl8 hov-cl10 trans-03">
+																				{{pop.catname}}
+																			</a>
+
+																			<span class="f1-s-3 m-rl-3">
+																				-
+																			</span>
+
+																			<span class="f1-s-3">
+																				{{pop.date}} | {{pop.time}}
+																			</span>
+																		</span>
+																	</div>
+																</div>
+																{%endif%}
+																{%endif%}
+																{%endfor%}
 
 
 
+															</div>
+														</div>
+													</div>
+													{% endif %}
+													{% endfor %}
+												</div>
+											</div>
+											</div>
+											</div>
+
+				<!-- Sidebar -->
+				<div class="col-md-10 col-lg-4">
+					<div class="p-l-10 p-rl-0-sr991 p-b-20">
+						<!-- Category -->
+						<div class="p-b-60">
+							<div class="how2 how2-cl4 flex-s-c">
+								<h3 class="f1-m-2 cl3 tab01-title">
+									Currency Exchange Price
+								</h3>
 
 							</div>
 
-							<div class="col-sm-6 p-r-25 p-r-15-sr991">
-								<!-- Item post -->
+							<!-- Category-->
+							{% for i in currency_price %}
+							{% if forloop.counter == 1 %}
+							<ul class="p-t-35">
+							<li class="flex-wr-sb-c p-b-20">
+								<a href="#" >
+									<span class="flag-icon flag-icon-us"></span>
+								</a>
 
-								{%for pop in popnews%}
-								{%if pop.show != 0 %}
-								{%if newscat.pk == pop.ocatid %}
-								<div class="flex-wr-sb-s m-b-30">
-									<a href="{%url 'news_detail' pop.pk %}" class="size-w-1 wrap-pic-w hov1 trans-03">
-										<img src="{{pop.picurl}}" alt="IMG">
+								<div class="size-w-3 flex-wr-sb-c">
+									<span class="f1-s-8 cl3 p-r-20">
+										{{i.name}} - {{i.dollar}} Rial
+									</span>
+
+									<a href="#" class="tab01-link f1-s-1 cl9 hov-cl10 trans-03">
+										Updated at : {{i.dollar_t}}
 									</a>
-
-									<div class="size-w-2">
-										<h5 class="p-b-5">
-											<a href="{%url 'news_detail' pop.pk %}" class="f1-s-5 cl3 hov-cl10 trans-03">
-												{{pop.name}}
-											</a>
-										</h5>
-
-										<span class="cl8">
-											<a href="#" class="f1-s-6 cl8 hov-cl10 trans-03">
-												{{pop.catname}}
-											</a>
-
-											<span class="f1-s-3 m-rl-3">
-												-
-											</span>
-
-											<span class="f1-s-3">
-												{{pop.date}} | {{pop.time}}
-											</span>
-										</span>
-									</div>
 								</div>
-								{%endif%}
-								{%endif%}
-								{%endfor%}
+							</li>
 
 
+						</ul>
+						{%endif%}
 
+						{% if forloop.counter == 2 %}
+						<ul class="p-t-35">
+						<li class="flex-wr-sb-c p-b-20">
+							<a href="#" >
+								<span class="flag-icon flag-icon-eu"></span>
+							</a>
+
+							<div class="size-w-3 flex-wr-sb-c">
+								<span class="f1-s-8 cl3 p-r-20">
+									{{i.name}} - {{i.euro}} Rial
+								</span>
+
+								<a href="#" class="tab01-link f1-s-1 cl9 hov-cl10 trans-03">
+									Updated at : {{i.euro_t}}
+								</a>
 							</div>
+						</li>
+
+
+					</ul>
+						{%endif%}
+
+						{% if forloop.counter == 3 %}
+						<ul class="p-t-35">
+						<li class="flex-wr-sb-c p-b-20">
+							<a href="#" >
+								<span class="flag-icon flag-icon-ae"></span>
+							</a>
+
+							<div class="size-w-3 flex-wr-sb-c">
+								<span class="f1-s-8 cl3 p-r-20">
+									{{i.name}} - {{i.emarat}} Rial
+								</span>
+
+								<a href="#" class="tab01-link f1-s-1 cl9 hov-cl10 trans-03">
+									Updated at : {{i.emarat_t}}
+								</a>
+							</div>
+						</li>
+
+
+					</ul>
+						{%endif%}
+
+						{% if forloop.counter == 4 %}
+						<ul class="p-t-35">
+						<li class="flex-wr-sb-c p-b-20">
+							<a href="#" >
+								<span class="flag-icon flag-icon-tr"></span>
+							</a>
+
+							<div class="size-w-3 flex-wr-sb-c">
+								<span class="f1-s-8 cl3 p-r-20">
+									{{i.name}} - {{i.turkey}} Rial
+								</span>
+
+								<a href="#" class="tab01-link f1-s-1 cl9 hov-cl10 trans-03">
+									Updated at : {{i.turkey_t}}
+								</a>
+							</div>
+						</li>
+
+
+					</ul>
+						{%endif%}
+
+						{% if forloop.counter == 5 %}
+						<ul class="p-t-35">
+						<li class="flex-wr-sb-c p-b-20">
+							<a href="#" >
+								<span class="flag-icon flag-icon-cn"></span>
+							</a>
+
+							<div class="size-w-3 flex-wr-sb-c">
+								<span class="f1-s-8 cl3 p-r-20">
+									{{i.name}} - {{i.china}} Rial
+								</span>
+
+								<a href="#" class="tab01-link f1-s-1 cl9 hov-cl10 trans-03">
+									Updated at : {{i.china_t}}
+								</a>
+							</div>
+						</li>
+
+
+					</ul>
+						{%endif%}
+
+						{% if forloop.counter == 6 %}
+						<ul class="p-t-35">
+						<li class="flex-wr-sb-c p-b-20">
+							<a href="#" >
+								<span class="flag-icon flag-icon-gb"></span>
+							</a>
+
+							<div class="size-w-3 flex-wr-sb-c">
+								<span class="f1-s-8 cl3 p-r-20">
+									{{i.name}} - {{i.england}} Rial
+								</span>
+
+								<a href="#" class="tab01-link f1-s-1 cl9 hov-cl10 trans-03">
+									Updated at : {{i.england_t}}
+								</a>
+							</div>
+						</li>
+
+
+					</ul>
+						{%endif%}
+						{%endfor%}
+
 						</div>
+
+
 					</div>
-					{% endif %}
-					{% endfor %}
-
 				</div>
 			</div>
-
-
 		</div>
-	</div>
-</section>
-
+	</section>
 
 {%endblock%}
