@@ -8,8 +8,6 @@ from manager.models import Manager
 from django.contrib.auth import authenticate, login, logout
 from django.core.files.storage import FileSystemStorage
 from django.contrib.auth.models import User,Permission,Group
-from ipware import get_client_ip
-from ip2geotools.databases.noncommercial import DbIpCity
 import random
 from django.conf import settings
 from django.core.mail import send_mail

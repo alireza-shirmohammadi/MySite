@@ -8,14 +8,16 @@ from manager.models import Manager
 from django.contrib.auth import authenticate, login, logout
 from django.core.files.storage import FileSystemStorage
 from django.contrib.auth.models import User,Permission,Group
-from ipware import get_client_ip
-from ip2geotools.databases.noncommercial import DbIpCity
+#from ipware import get_client_ip
+#from ip2geotools.databases.noncommercial import DbIpCity
 import random
 from tokenapp.models import Token
 from django.conf import settings
 from django.core.mail import send_mail
 import requests
 import ipinfo
+from rest_framework import viewsets
+from .serializer import NewsSerializer
 # Create your views here.
 def home (request):
     site=Main.objects.get(pk=1)
@@ -165,6 +167,8 @@ def site_setting(request):
         yt = request.POST.get('yt')
         link = request.POST.get('link')
         txt = request.POST.get('txt')
+        seo_txt = request.POST.get('seo_txt')
+        seo_keywords = request.POST.get('seo_keywords')
 
         if fb == "" : fb = "#"
         if tw == "" : tw = "#"
@@ -217,6 +221,8 @@ def site_setting(request):
         b.yt = yt
         b.link = link
         b.about = txt
+        b.seo_txt=seo_txt
+        b.seo_keywords=seo_keywords
 
         if picurl != "-" : b.picurl = picurl
         if picname != "-" : b.picname = picname
@@ -375,3 +381,6 @@ def myregister(request,email,pk):
             return render(request, 'front/msgbox.html', {'msg':msg})
 
     return render(request,'front/myregister.html',{'pk':pk,'email':email})
+class NewsViewSet(viewsets.ModelViewSet):
+    queryset=News.objects.all()
+    serializer_class=NewsSerializer

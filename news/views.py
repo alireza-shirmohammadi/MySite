@@ -416,3 +416,11 @@ def search(request):
 
     return render(request,'front/search_news.html',{'searchnews':searchnews,'lastnews2':lastnews2,'site':site,
     'news':news,'cat':cat,'subcat':subcat,'lastnews':lastnews,'popnews2':popnews2,'popnews':popnews,'trending':trending})
+
+def news_checkbox(request):
+    if request.method=='POST':
+        checks=request.POST.getlist('checks[]')
+        for i in checks:
+            b=News.objects.filter(pk=i)
+            b.delete()
+    return redirect('news_list')

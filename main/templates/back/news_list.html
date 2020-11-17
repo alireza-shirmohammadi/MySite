@@ -5,6 +5,7 @@
 
 {% block mainblock %}
 
+
 <!-- Datatables Content -->
  <div class="block full">
    <div class="block-title">
@@ -55,11 +56,14 @@
     <div class="block-title">
         <h2><strong>News</strong> List</h2>
     </div>
-
+    <form action="{%url 'news_checkbox' %}" method="post" enctype="multipart/form-data" class="form-horizontal form-bordered" >
+        {% csrf_token %}
     <div class="table-responsive">
         <table id="" class="table table-vcenter table-condensed table-bordered">
             <thead>
                 <tr>
+                    <th><input id="selectAll" type="checkbox"><label for='selectAll'></label></td>
+                    <th>&nbsp</th>
                     <th class="text-center">ID</th>
                     <th class="text-center">Image</th>
                     <th>Title</th>
@@ -75,6 +79,8 @@
 
                 {% for cc in news %}
                 <tr>
+
+                    <td><input type='checkbox' name='checks[]' value='{{cc.pk}}' ></td>
                     <td class="text-center">{{cc.pk}}</td>
                     <td class="text-center"><img style="display: inline-block; width:50px; height:50px;" src="{{cc.picurl}}" alt="avatar" class="img-circle"></td>
                     <td>{{cc.name}}</td>
@@ -109,6 +115,13 @@
             </tbody>
 
         </table>
+        <div class="form-group">
+                <div class="col-md-6">
+                        <button type="submit" class="btn btn-sm btn-danger"><i class="fa fa-angle-right"></i> Delete Selected</button>
+                    </div>
+
+            </div>
+        </form>
         Page {{news.number}} From {{news.paginator.num_pages}}
         <div class="pull-right">
         {% if news.has_previous %}

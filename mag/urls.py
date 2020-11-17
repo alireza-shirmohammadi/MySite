@@ -18,10 +18,15 @@ from django.conf.urls import url,include
 from django.conf import settings
 from django.conf.urls.static import static
 from django.views.static import serve
+from rest_framework import routers
+from main import views
 
-
+router=routers.DefaultRouter()
+router.register(r'^magnews',views.NewsViewSet)
 urlpatterns = [
     url('admin/', admin.site.urls),
+    url(r'rest/',include(router.urls)),
+    url(r'api-auth/',include('rest_framework.urls',namespace='rest_framework')),
     url(r'^media/(?P<path>.*)$',serve, {'document_root':settings.MEDIA_ROOT}),
     url(r'^static/(?P<path>.*)$',serve,{'document_root':settings.STATIC_ROOT}),
     url('', include('main.urls')),

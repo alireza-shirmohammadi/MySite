@@ -14,6 +14,8 @@ class Main(models.Model):
     yt = models.CharField(default="-",max_length=30)
     tell = models.CharField(default="-",max_length=30)
     link = models.CharField(default="-",max_length=30)
+    seo_txt = models.CharField(default="-",max_length=160)
+    seo_keywords = models.TextField(default="-")
 
     set_name = models.CharField(default="-",max_length=30)
 
@@ -26,4 +28,3 @@ class Main(models.Model):
 
     def __str__(self):
         return self.set_name + " | " + str(self.pk)
-    

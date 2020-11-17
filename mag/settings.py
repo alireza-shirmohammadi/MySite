@@ -51,6 +51,7 @@ INSTALLED_APPS = [
     'qr_code',
     'django_crontab',
     'tokenapp',
+    'rest_framework'
 ]
 
 MIDDLEWARE = [
