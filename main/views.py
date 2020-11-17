@@ -29,34 +29,46 @@ def home (request):
     lastnews2=News.objects.filter(act=1).order_by('-pk')[:4]
 
 #currency api
-    url='https://api.tgju.online/v1/data/sana/json'
+    url='https://currency.jafari.li/json'
     response=requests.get(url)
     r=response.json()
 
     dollar={
-    'name':'dollar',
-    'dollar':r['sana']['data'][0]['p'],
-    'dollar_t':r['sana']['data'][0]['updated_at'],}
+    'name':r['Currency'][0]['Currency'],
+    'dollar_sell':r['Currency'][0]['Sell'],
+    'dollar_buy':r['Currency'][0]['Buy'],
+    'dollar_t':r['LastModified'],
+    }
     euro={
-    'name':'euro',
-    'euro':r['sana']['data'][1]['p'],
-    'euro_t':r['sana']['data'][1]['updated_at'],}
+    'name':r['Currency'][1]['Currency'],
+    'euro_sell':r['Currency'][1]['Sell'],
+    'euro_buy':r['Currency'][1]['Buy'],
+    'euro_t':r['LastModified'],
+    }
     emarat={
-    'name':'United Arab Emirates dirham',
-    'emarat':r['sana']['data'][2]['p'],
-    'emarat_t':r['sana']['data'][2]['updated_at'],}
+    'name':r['Currency'][15]['Currency'],
+    'emarat_sell':r['Currency'][15]['Sell'],
+    'emarat_buy':r['Currency'][15]['Buy'],
+    'emarat_t':r['LastModified'],
+    }
     turkey={
-    'name':'lira',
-    'turkey':r['sana']['data'][4]['p'],
-    'turkey_t':r['sana']['data'][4]['updated_at'],}
+    'name':r['Currency'][17]['Currency'],
+    'turkey_sell':r['Currency'][17]['Sell'],
+    'turkey_buy':r['Currency'][17]['Buy'],
+    'turkey_t':r['LastModified'],
+    }
     china={
-    'name':'yuan',
-    'china':r['sana']['data'][6]['p'],
-    'china_t':r['sana']['data'][6]['updated_at'],}
+    'name':r['Currency'][18]['Currency'],
+    'china_sell':r['Currency'][18]['Sell'],
+    'china_buy':r['Currency'][18]['Buy'],
+    'china_t':r['LastModified'],
+    }
     england={
-    'name':'Pound',
-    'england':r['sana']['data'][11]['p'],
-    'england_t':r['sana']['data'][11]['updated_at'],}
+    'name':r['Currency'][2]['Currency'],
+    'england_sell':r['Currency'][2]['Sell'],
+    'england_buy':r['Currency'][2]['Buy'],
+    'england_t':r['LastModified'],
+    }
 
     currency_price=[]
     currency_price.append(dollar)
