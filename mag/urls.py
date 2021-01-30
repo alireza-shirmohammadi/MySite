@@ -40,6 +40,7 @@ urlpatterns = [
     url('', include('comment.urls')),
     url('', include('blacklist.urls')),
     url('', include('tokenapp.urls')),
+    url('', include('search.urls')),
 
 
 

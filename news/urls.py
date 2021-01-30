@@ -14,6 +14,6 @@ urlpatterns = [
     url(r'^import/news/csv/$', views.import_news_csv, name='import_news_csv'),
     url('^all/news/(?P<word>.*)/$',views.news_all_show,name='news_all_show'),
     url('^all/news/$', views.allnews, name='allnews'),
-    url('^search/news/$', views.search, name='search'),
+
     url('^checkbox/news/$', views.news_checkbox, name='news_checkbox'),
 ]

@@ -1,0 +1,7 @@
+Requirement already satisfied: django-elasticsearch-dsl in ./venvMySite/lib/python3.6/site-packages (7.1.4)
+Requirement already satisfied: elasticsearch-dsl>=7.0.0<8.0.0 in ./venvMySite/lib/python3.6/site-packages (from django-elasticsearch-dsl) (7.3.0)
+Requirement already satisfied: six in ./venvMySite/lib/python3.6/site-packages (from django-elasticsearch-dsl) (1.15.0)
+Requirement already satisfied: elasticsearch<8.0.0,>=7.0.0 in ./venvMySite/lib/python3.6/site-packages (from elasticsearch-dsl>=7.0.0<8.0.0->django-elasticsearch-dsl) (7.10.1)
+Requirement already satisfied: python-dateutil in ./venvMySite/lib/python3.6/site-packages (from elasticsearch-dsl>=7.0.0<8.0.0->django-elasticsearch-dsl) (2.6.1)
+Requirement already satisfied: urllib3<2,>=1.21.1 in ./venvMySite/lib/python3.6/site-packages (from elasticsearch<8.0.0,>=7.0.0->elasticsearch-dsl>=7.0.0<8.0.0->django-elasticsearch-dsl) (1.26.2)
+Requirement already satisfied: certifi in ./venvMySite/lib/python3.6/site-packages (from elasticsearch<8.0.0,>=7.0.0->elasticsearch-dsl>=7.0.0<8.0.0->django-elasticsearch-dsl) (2020.11.8)

@@ -18,6 +18,7 @@ import requests
 import ipinfo
 from rest_framework import viewsets
 from .serializer import NewsSerializer
+from django.http import JsonResponse
 # Create your views here.
 def home (request):
     site=Main.objects.get(pk=1)
@@ -29,8 +30,8 @@ def home (request):
     popnews2 = News.objects.filter(act=1).order_by('-show')[:3]
     trending=Trending.objects.all().order_by('-pk')[:5]
     lastnews2=News.objects.filter(act=1).order_by('-pk')[:4]
-
-#currency api
+    ''''
+    #currency api
     url='https://currency.jafari.li/json'
     response=requests.get(url)
     r=response.json()
@@ -71,6 +72,7 @@ def home (request):
     'england_buy':r['Currency'][2]['Buy'],
     'england_t':r['LastModified'],
     }
+    
 
     currency_price=[]
     currency_price.append(dollar)
@@ -80,29 +82,36 @@ def home (request):
     currency_price.append(china)
     currency_price.append(england)
 
-
+    '''
+    currency_price=[]
     #ip ,is_routable=get_client_ip(request)
     ip =request.META.get('HTTP_X_REAL_IP')
 
     #location=DbIpCity.get(ip,api_key='free')
     #city=location.city
+    try:
+        access_token='7dc5d069dccacd'
+        handler = ipinfo.getHandler(access_token)
+        location = handler.getDetails(ip)
 
-    access_token='87948149e06374'
-    handler = ipinfo.getHandler(access_token)
-    location = handler.getDetails(ip)
-    city=location.city
-
-    url= 'http://api.weatherstack.com/current'
-    payload={"access_key":"8d2878548759a6a34d8c33a299ccbc38","query":city}
-    result=requests.get(url,params=payload)
-    result=result.json()
-    weather={
-    "city":result['location']['name'],
-    'temperature':result['current']['temperature'],
-    "icon":(result['current']['weather_icons'][0]),
-    }
-    weather_data=[]
-    weather_data.append(weather)
+        city=location.city
+    except :
+        city = 'Tehran'
+    try:
+        url= 'http://api.weatherstack.com/current'
+        payload={"access_key":"f6265b2da0a8adc32a036379c75d9ca3","query":city}
+        result=requests.get(url,params=payload)
+        result=result.json()
+        print(result)
+        weather={
+        "city":result['location']['name'],
+        'temperature':result['current']['temperature'],
+        "icon":(result['current']['weather_icons'][0]),
+        }
+        weather_data=[]
+        weather_data.append(weather)
+    except :
+        weather_data = []
 
 
     return render(request,'front/home.html',{'currency_price':currency_price,'weather_data':weather_data,'lastnews2':lastnews2,'site':site,'news':news,'cat':cat,'subcat':subcat,'lastnews':lastnews,'popnews2':popnews2,'popnews':popnews,'trending':trending})
@@ -384,3 +393,7 @@ def myregister(request,email,pk):
 class NewsViewSet(viewsets.ModelViewSet):
     queryset=News.objects.all()
     serializer_class=NewsSerializer
+
+def show_data (request):
+    data={'status':'1'}
+    return JsonResponse(data)

@@ -51,7 +51,9 @@ INSTALLED_APPS = [
     'qr_code',
     'django_crontab',
     'tokenapp',
-    'rest_framework'
+    'rest_framework',
+    'search',
+    'django_elasticsearch_dsl'
 ]
 
 MIDDLEWARE = [
@@ -147,6 +149,15 @@ EMAIL_HOST='smtp.gmail.com'
 EMAIL_HOST_USER='owner.magnews@gmail.com'
 EMAIL_HOST_PASSWORD='unevqmyjxrgtmavy'
 EMAIL_PORT= 587
+
+
+ELASTICSEARCH_DSL={
+    'default': {
+        'hosts': 'localhost:9200'
+    },
+}
+
+
 
 #ssl security setting:
 '''

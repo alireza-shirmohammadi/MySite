@@ -1,0 +1,211 @@
+"""
+Main API client asynchronous handler for fetching data from the IPinfo service.
+"""
+
+from ipaddress import IPv4Address, IPv6Address
+import json
+import os
+import sys
+
+import aiohttp
+
+from .cache.default import DefaultCache
+from .details import Details
+from .exceptions import RequestQuotaExceededError
+
+
+class AsyncHandler:
+    """
+    Allows client to request data for specified IP address asynchronously.
+    Instantiates and maintains access to cache.
+    """
+
+    API_URL = "https://ipinfo.io"
+    CACHE_MAXSIZE = 4096
+    CACHE_TTL = 60 * 60 * 24
+    COUNTRY_FILE_DEFAULT = "countries.json"
+    REQUEST_TIMEOUT_DEFAULT = 2
+
+    def __init__(self, access_token=None, **kwargs):
+        """
+        Initialize the Handler object with country name list and the
+        cache initialized.
+        """
+        self.access_token = access_token
+
+        # load countries file
+        self.countries = self._read_country_names(kwargs.get("countries_file"))
+
+        # setup req opts
+        self.request_options = kwargs.get("request_options", {})
+        if "timeout" not in self.request_options:
+            self.request_options["timeout"] = self.REQUEST_TIMEOUT_DEFAULT
+
+        # setup aiohttp
+        self.httpsess = None
+
+        # setup cache
+        if "cache" in kwargs:
+            self.cache = kwargs["cache"]
+        else:
+            cache_options = kwargs.get("cache_options", {})
+            if "maxsize" not in cache_options:
+                cache_options["maxsize"] = self.CACHE_MAXSIZE
+            if "ttl" not in cache_options:
+                cache_options["ttl"] = self.CACHE_TTL
+            self.cache = DefaultCache(**cache_options)
+
+    async def init(self):
+        """
+        Initializes internal aiohttp connection pool.
+
+        This isn't _required_, as the pool is initialized lazily when needed.
+        But in case you require non-lazy initialization, you may await this.
+
+        This is idempotent.
+        """
+        await self._ensure_aiohttp_ready()
+
+    async def deinit(self):
+        """
+        Deinitialize the async handler.
+
+        This is required in case you need to let go of the memory/state
+        associated with the async handler in a long-running process.
+
+        This is idempotent.
+        """
+        if self.httpsess:
+            await self.httpsess.close()
+            self.httpsess = None
+
+    async def getDetails(self, ip_address=None):
+        """Get details for specified IP address as a Details object."""
+        self._ensure_aiohttp_ready()
+
+        # If the supplied IP address uses the objects defined in the built-in
+        # module ipaddress, extract the appropriate string notation before
+        # formatting the URL.
+        if isinstance(ip_address, IPv4Address) or isinstance(
+            ip_address, IPv6Address
+        ):
+            ip_address = ip_address.exploded
+
+        if ip_address in self.cache:
+            return Details(self.cache[ip_address])
+
+        # not in cache; do http req
+        url = self.API_URL
+        if ip_address:
+            url += "/" + ip_address
+        headers = self._get_headers()
+        async with self.httpsess.get(url, headers=headers) as resp:
+            if resp.status == 429:
+                raise RequestQuotaExceededError()
+            resp.raise_for_status()
+            raw_details = await resp.json()
+
+        # format & cache
+        self._format_details(raw_details)
+        self.cache[ip_address] = raw_details
+
+        return Details(raw_details)
+
+    async def getBatchDetails(self, ip_addresses):
+        """Get details for a batch of IP addresses at once."""
+        self._ensure_aiohttp_ready()
+
+        result = {}
+
+        # Pre-populate with anything we've got in the cache, and keep around
+        # the IPs not in the cache.
+        lookup_addresses = []
+        for ip_address in ip_addresses:
+            # If the supplied IP address uses the objects defined in the
+            # built-in module ipaddress extract the appropriate string notation
+            # before formatting the URL.
+            if isinstance(ip_address, IPv4Address) or isinstance(
+                ip_address, IPv6Address
+            ):
+                ip_address = ip_address.exploded
+
+            if ip_address in self.cache:
+                result[ip_address] = self.cache[ip_address]
+            else:
+                lookup_addresses.append(ip_address)
+
+        # all in cache - return early.
+        if len(lookup_addresses) == 0:
+            return result
+
+        # do http req
+        url = self.API_URL + "/batch"
+        headers = self._get_headers()
+        headers["content-type"] = "application/json"
+        async with self.httpsess.post(
+            url, data=json.dumps(lookup_addresses), headers=headers
+        ) as resp:
+            if resp.status == 429:
+                raise RequestQuotaExceededError()
+            resp.raise_for_status()
+            json_resp = await resp.json()
+
+        # format & fill up cache
+        for ip_address, details in json_resp.items():
+            if isinstance(details, dict):
+                self._format_details(details)
+                self.cache[ip_address] = details
+
+        # merge cached results with new lookup
+        result.update(json_resp)
+
+        return result
+
+    def _ensure_aiohttp_ready(self):
+        """Ensures aiohttp internal state is initialized."""
+        if self.httpsess:
+            return
+
+        timeout = aiohttp.ClientTimeout(total=self.request_options["timeout"])
+        self.httpsess = aiohttp.ClientSession(timeout=timeout)
+
+    def _get_headers(self):
+        """Built headers for request to IPinfo API."""
+        headers = {
+            "user-agent": "IPinfoClient/Python{version}/4.0.0".format(
+                version=sys.version_info[0]
+            ),
+            "accept": "application/json",
+        }
+
+        if self.access_token:
+            headers["authorization"] = "Bearer {}".format(self.access_token)
+
+        return headers
+
+    def _format_details(self, details):
+        details["country_name"] = self.countries.get(details.get("country"))
+        details["latitude"], details["longitude"] = self._read_coords(
+            details.get("loc")
+        )
+
+    def _read_coords(self, location):
+        lat, lon = None, None
+        coords = tuple(location.split(",")) if location else ""
+        if len(coords) == 2 and coords[0] and coords[1]:
+            lat, lon = coords[0], coords[1]
+        return lat, lon
+
+    def _read_country_names(self, countries_file=None):
+        """
+        Read list of countries from specified country file or
+        default file.
+        """
+        if not countries_file:
+            countries_file = os.path.join(
+                os.path.dirname(__file__), self.COUNTRY_FILE_DEFAULT
+            )
+        with open(countries_file) as f:
+            countries_json = f.read()
+
+        return json.loads(countries_json)
