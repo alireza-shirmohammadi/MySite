@@ -10,7 +10,9 @@ from django.contrib.auth.models import User,Group,Permission
 from comment.models import Comment
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.http import HttpResponse
+from .crawler import Crawler
 import csv
+
 from itertools import chain
 
 
@@ -381,3 +383,15 @@ def news_checkbox(request):
             b=News.objects.filter(pk=i)
             b.delete()
     return redirect('news_list')
+
+
+# def News_Crawler():
+#     list=Crawler()
+#     for i in range(len(list)):
+#         title=list[i]['title']
+#         date=list[i]['date']
+#         short_txt=list[i]['short_txt']
+#         img=list[i]['img']
+#         add=News.objects.create(name=title,short_txt=short_txt,body_txt=short_txt,date=date,picurl=img,writer='alireza')
+#         add.save()
+#

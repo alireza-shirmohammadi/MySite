@@ -26,7 +26,7 @@ def search(request):
         q=request.POST.get('search')
         mysearch=q
         if q:
-            searchnewss= NewsDocument.search().filter('term',name=q)
+            searchnewss= NewsDocument.search().filter('prefix',name=q)
             response = searchnewss.execute()
 
         else:

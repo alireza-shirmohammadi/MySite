@@ -53,7 +53,7 @@ INSTALLED_APPS = [
     'tokenapp',
     'rest_framework',
     'search',
-    'django_elasticsearch_dsl'
+    'django_elasticsearch_dsl',
 ]
 
 MIDDLEWARE = [
@@ -141,7 +141,9 @@ MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 CRONJOBS= [
-    ('*/1 * * * *' , 'main.cron.my_job')
+    ('*/1 * * * *' , 'main.cron.my_job'),
+    ('* * * * *' , 'main.cron.my_job'),
+
 ]
 EMAIL_BAKCEND='django.core.mail.backends.smtp.EmailBackend'
 EMAIL_USE_TLS=True
