@@ -55,17 +55,17 @@ def news_list(request):
         if i.name=='masteruser':perm=1
     if perm==1 :
         newss=News.objects.all()
-        paginator=Paginator(newss,2)
-        page=request.GET.get('page')
-        try:
-            news=paginator.page(page)
-        except EmptyPage:
-            news=paginator.page(paginator.num_page)
-        except PageNotAnInteger:
-            news=paginator.page(1)
+        # paginator=Paginator(newss,2)
+        # page=request.GET.get('page')
+        # try:
+        #     news=paginator.page(page)
+        # except EmptyPage:
+        #     news=paginator.page(paginator.num_page)
+        # except PageNotAnInteger:
+        #     news=paginator.page(1)
     else:
-        news=News.objects.filter(writer=request.user)
-    return render(request,'back/news_list.html',{'news':news})
+        newss=News.objects.filter(writer=request.user)
+    return render(request,'back/news_list.html',{'news':newss})
 def news_add(request):
       # login check start
     if not request.user.is_authenticated :

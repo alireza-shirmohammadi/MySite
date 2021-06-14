@@ -10,7 +10,7 @@ soup = BeautifulSoup(page.content, 'html.parser')
 
 
 
-news=soup.find_all('article',attrs={"class":"item has-image has-audio"})
+news=soup.find_all('article',attrs={"class":"item has-image"})
 
 def Crawler():
     i = 0

@@ -141,7 +141,7 @@ MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 CRONJOBS= [
-    ('*/1 * * * *' , 'main.cron.my_job'),
+    #('*/10 * * * *' , 'news.cron.News_Crawler'),
     ('* * * * *' , 'main.cron.my_job'),
 
 ]

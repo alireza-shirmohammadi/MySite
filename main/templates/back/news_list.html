@@ -59,11 +59,11 @@
     <form action="{%url 'news_checkbox' %}" method="post" enctype="multipart/form-data" class="form-horizontal form-bordered" >
         {% csrf_token %}
     <div class="table-responsive">
-        <table id="" class="table table-vcenter table-condensed table-bordered">
+        <table id="example-datatable" class="table table-vcenter table-condensed table-bordered">
             <thead>
                 <tr>
-                    <th><input id="selectAll" type="checkbox"><label for='selectAll'></label></td>
-                    <th>&nbsp</th>
+                    <th><input id="selectAll" type="checkbox"><label for='selectAll'></label></th>
+{#                    <th>&nbsp</th>#}
                     <th class="text-center">ID</th>
                     <th class="text-center">Image</th>
                     <th>Title</th>
@@ -80,7 +80,7 @@
                 {% for cc in news %}
                 <tr>
 
-                    <td><input type='checkbox' name='checks[]' value='{{cc.pk}}' ></td>
+                    <td class="text-center"><input type='checkbox' name='checks[]' value='{{cc.pk}}' ></td>
                     <td class="text-center">{{cc.pk}}</td>
                     <td class="text-center"><img style="display: inline-block; width:50px; height:50px;" src="{{cc.picurl}}" alt="avatar" class="img-circle"></td>
                     <td>{{cc.name}}</td>
@@ -122,23 +122,24 @@
 
             </div>
         </form>
-        Page {{news.number}} From {{news.paginator.num_pages}}
-        <div class="pull-right">
-        {% if news.has_previous %}
-        <a href="?page={{news.previous_page_number}}"  data-toggle="tooltip" title="Previous" class="btn btn-xs btn-default"> Previous</a>
-        {% endif %}
 
-        {% for i in news.paginator.page_range %}
-            {% if news.number == i %}
-                <a href="#" onclick="return false;" data-toggle="tooltip" title="{{Disables}}" class="btn btn-xs btn-default"> {{i}}</a>
-            {% else %}
-                <a href="?page={{i}}" data-toggle="tooltip" title="{{i}}" class="btn btn-xs btn-default"> {{i}}</a>
-            {% endif %}
-        {% endfor %}
-
-            {% if news.has_next %}
-        <a href="?page={{news.next_page_number}}" data-toggle="tooltip" title="Next" class="btn btn-xs btn-default"> Next</a>
-        {% endif %}
+{#        Page {{news.number}} From {{news.paginator.num_pages}}#}
+{#        <div class="pull-right">#}
+{#        {% if news.has_previous %}#}
+{#        <a href="?page={{news.previous_page_number}}"  data-toggle="tooltip" title="Previous" class="btn btn-xs btn-default"> Previous</a>#}
+{#        {% endif %}#}
+{##}
+{#        {% for i in news.paginator.page_range %}#}
+{#            {% if news.number == i %}#}
+{#                <a href="#" onclick="return false;" data-toggle="tooltip" title="{{Disables}}" class="btn btn-xs btn-default"> {{i}}</a>#}
+{#            {% else %}#}
+{#                <a href="?page={{i}}" data-toggle="tooltip" title="{{i}}" class="btn btn-xs btn-default"> {{i}}</a>#}
+{#            {% endif %}#}
+{#        {% endfor %}#}
+{##}
+{#            {% if news.has_next %}#}
+{#        <a href="?page={{news.next_page_number}}" data-toggle="tooltip" title="Next" class="btn btn-xs btn-default"> Next</a>#}
+{#        {% endif %}#}
         </div>
     </div>
 </div>
