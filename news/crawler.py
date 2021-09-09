@@ -35,8 +35,8 @@ def Crawler():
         crawl[i]['date'] = new.find('time')['datetime']
 
         i+=1
-    print (crawl[2]['img'])
-    print(i)
+    # print (crawl[2]['img'])
+    # print(i)
     return crawl
 
 b=Crawler()

@@ -9,5 +9,6 @@ def News_Crawler():
         date=list[i]['date']
         short_txt=list[i]['short_txt']
         img=list[i]['img']
-        add=News.objects.create(name=title,short_txt=short_txt,body_txt=short_txt,date=date,picurl=img,writer='alireza')
-        add.save()
+        if not News.objects.filter(name=title).exists():
+            add=News.objects.create(name=title,short_txt=short_txt,body_txt=short_txt,date=date,picurl=img,writer='alireza')
+            add.save()

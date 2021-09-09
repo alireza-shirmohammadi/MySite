@@ -1,0 +1,57 @@
+version: '2'
+services:
+    MySite:
+            image: mysite:1.0
+            #restart: always
+            build: .
+            command: >
+                sh -c "python manage.py collectstatic --noinput &&
+                       python manage.py makemigrations &&
+                       python manage.py crontab add &&
+                       yes Y |./manage.py  search_index  --rebuild &&
+                       python manage.py migrate &&
+                       python manage.py runserver 0.0.0.0:5050"
+
+            container_name: MySite
+            env_file:
+              - ./.env
+            volumes:
+                    - .:/MySite
+            network_mode: host
+            ports:
+                - "0.0.0.0:5050:5050"
+
+#            environment:
+#                kavan_main_db_ip: 159.69.68.242
+#                kavan_main_db_port: 3306
+#                kavan_main_db_name: kavan_main_0.1.0
+#                kavan_main_db_pass: MReUn6bxZnuVp72VutrZKyYFi4XuGhMSu
+#                kavan_main_user: root
+#                kavan_publisher_db_ip: 138.201.84.41
+#                kavan_publisher_db_port: 3306
+#                kavan_publisher_db_name: kavan_publisher_1_0_0
+#                kavan_publishern_db_pass: V4bxd%XGd/3Cr3MTb.KH
+#                kavan_publisher_user: root
+#
+#
+#    celery:
+#      image: kavan_dajngo_resource
+#      build: .
+#      #restart: always
+#      container_name: kavan_django_resource_celery
+#      command: bash -c "celery -A kavan_resource worker --loglevel=info"
+#      volumes:
+#        - .:/kavan_django_resource
+#      network_mode: host
+#      environment:
+#        kavan_main_db_ip: 159.69.68.242
+#        kavan_main_db_port: 3306
+#        kavan_main_db_name: kavan_main_0.1.0
+#        kavan_main_db_pass: MReUn6bxZnuVp72VutrZKyYFi4XuGhMSu
+#        kavan_main_user: root
+#        kavan_publisher_db_ip: 138.201.84.41
+#        kavan_publisher_db_port: 3306
+#        kavan_publisher_db_name: kavan_publisher_1_0_0
+#        kavan_publishern_db_pass: V4bxd%XGd/3Cr3MTb.KH
+#        kavan_publisher_user: root
+#

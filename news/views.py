@@ -45,6 +45,7 @@ def news_detail(request,pk):
 
         print("Can't Add Show")
     return render(request,'front/news_detail.html',{'link':link,'comment':comment,'cmcount':cmcount,'code':code,'site':site,'trending':trending,'news':news,'cat':cat,'subcat':subcat,'lastnews':lastnews,'shownews':shownews,'popnews':popnews,'popnews2':popnews2,'tag':tag})
+
 def news_list(request):
       # login check start
     if not request.user.is_authenticated :
@@ -338,7 +339,7 @@ def news_all_show(request,word):
     allnewss=News.objects.filter(catid=cat1)
 
 
-    paginator=Paginator(allnewss,2)
+    paginator=Paginator(allnewss,9)
     page=request.GET.get('page')
     try:
         allnews=paginator.page(page)
@@ -362,7 +363,7 @@ def allnews (request):
     allnewss=News.objects.all()
 
 
-    paginator=Paginator(allnewss,2)
+    paginator=Paginator(allnewss,9)
     page=request.GET.get('page')
     try:
         allnews=paginator.page(page)

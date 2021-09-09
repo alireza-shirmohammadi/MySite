@@ -269,28 +269,31 @@
 		<!-- Headline -->
 	<div class="container">
 		<div class="bg0 flex-wr-sb-c p-rl-20 p-tb-8">
-			<div class="f2-s-1 p-r-30 size-w-0 m-tb-6 flex-wr-s-c">
+			<div class="f2-s-1 p-r-30 size-w-0 m-tb-6 flex-wr-s-c" style="visibility: hidden">
 				<a href="/" class="fs-12 m-l-5 fa fa-caret-right">
 					Home
 				</a>
 
-				<a href="/all/news" class="fs-12 m-l-5 fa fa-caret-right">
-					News
-				</a>
-
-				<span class="fs-12 m-l-5 fa fa-caret-right">
-					{{i.name}}
-				</span>
+{#				<a href="/all/news" class="fs-12 m-l-5 fa fa-caret-right">#}
+{#					News#}
+{#				</a>#}
+{##}
+{#				<span class="fs-12 m-l-5 fa fa-caret-right">#}
+{#					{{i.name}}#}
+{#				</span>#}
 			</div>
 
 			<form action="{%url 'search' %}" method="post" enctype="multipart/form-data" class="form-horizontal form-bordered" >
 					{% csrf_token %}
-			<div class="pos-relative size-a-2 bo-1-rad-22 of-hidden bocl11 m-tb-6">
-				<input class="f1-s-1 cl6 plh9 s-full p-l-25 p-r-45" type="text" name="search" placeholder="Search">
+			<div class="pos-relative size-a-2 bo-1-rad-22 of-hidden bocl11 m-tb-6 ">
+				<input class="f1-s-1 cl6 plh9 s-full p-l-25 p-r-45" type="text" id="search" name="search" placeholder="Search" >
 				<button type="submit" class="flex-c-c size-a-1 ab-t-r fs-20 cl2 hov-cl10 trans-03">
 					<i class="zmdi zmdi-search"></i>
 				</button>
 			</div>
+            <div id="results-box" class="results-card" style="visibility:hidden; ">
+                test<br>
+            </div>
 		</form>
 
 		</div>
@@ -448,6 +451,16 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 	<script src="{%static 'front/vendor/bootstrap/js/bootstrap.min.js' %}"></script>
 <!--===============================================================================================-->
 	<script src="{%static 'front/js/main.js' %}"></script>
+<!--===============================================================================================-->
+	<script src="{%static 'front/js/search_box.js' %}"></script>
+
 
 </body>
+
+
+
+
+
+
+
 </html>

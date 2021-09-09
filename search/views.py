@@ -7,6 +7,10 @@ from cat.models import Cat
 from trending.models import Trending
 from elasticsearch_dsl.query import MoreLikeThis
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+from django.http import JsonResponse
+
+mysearch=None
+
 
 def search(request):
     site = Main.objects.get(pk=1)
@@ -19,15 +23,17 @@ def search(request):
     trending = Trending.objects.all().order_by('-pk')[:5]
     lastnews2 = News.objects.filter(act=1).order_by('-pk')[:4]
     allnews = News.objects.all()
-    mysearch = '5651841545512125545151515151'
+    global mysearch
 
     if request.method=='POST':
 
         q=request.POST.get('search')
         mysearch=q
+        #print(mysearch)
         if q:
             searchnewss= NewsDocument.search().filter('prefix',name=q)
             response = searchnewss.execute()
+           # print(response[0].name)
 
         else:
             searchnewss= ''
@@ -35,15 +41,16 @@ def search(request):
     else:
 
         if mysearch:
-            print(mysearch)
-            searchnewss= NewsDocument.search().exclude("match", name = mysearch)
+            #print(mysearch)
+            searchnewss= NewsDocument.search().filter('prefix',name=mysearch)
             response = searchnewss.execute()
+            #print(mysearch)
         else:
-            print(mysearch)
+           # print(mysearch)
             searchnewss= ''
             response = ''
 
-    paginator = Paginator(response, 2)
+    paginator = Paginator(response, 9)
     page = request.GET.get('page')
     try:
         searchnews = paginator.page(page)
@@ -103,3 +110,28 @@ def search(request):
     
     
 '''
+
+def search_api(request):
+    if request.is_ajax():
+        res = None
+        search_text=request.POST.get('search_text')
+        query=NewsDocument.search().filter('prefix',name=search_text)
+        response = query.execute()
+
+        if len(response)>0 and len(search_text) > 0 :
+            data=[]
+            for item in response:
+                dic={
+                    'id':item.id,
+                    'name':item.name,
+                    'img':item.picurl,
+                    'date':item.date
+                }
+                data.append(dic)
+            res=data
+        else:
+            res='No reasult found!!!'
+
+        return JsonResponse({"data": res})
+    else:
+        return JsonResponse({})

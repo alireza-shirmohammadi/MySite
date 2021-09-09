@@ -23,9 +23,9 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = 'a0hj24&e$4cv%&5fkwv#qhcsgfvp+bu87^xedyn*b-e#&%da!v'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = int(os.environ.get("DEBUG", default=0))
 
-ALLOWED_HOSTS = ['127.0.0.1']
+ALLOWED_HOSTS = ['0.0.0.0','http://0.0.0.0','https://0.0.0.0']
 
 
 # Application definition
@@ -141,8 +141,8 @@ MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 CRONJOBS= [
-    #('*/10 * * * *' , 'news.cron.News_Crawler'),
-    ('* * * * *' , 'main.cron.my_job'),
+    #('*/1 * * * *' , 'news.cron.News_Crawler'),
+    #('* * * * *' , 'main.cron.my_job'),
 
 ]
 EMAIL_BAKCEND='django.core.mail.backends.smtp.EmailBackend'
