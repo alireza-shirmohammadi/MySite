@@ -25,7 +25,7 @@ SECRET_KEY = 'a0hj24&e$4cv%&5fkwv#qhcsgfvp+bu87^xedyn*b-e#&%da!v'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = int(os.environ.get("DEBUG", default=0))
 
-ALLOWED_HOSTS = ['0.0.0.0','http://0.0.0.0','https://0.0.0.0']
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -141,7 +141,7 @@ MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 CRONJOBS= [
-    #('*/1 * * * *' , 'news.cron.News_Crawler'),
+    ('* * * * *' , 'news.cron.News_Crawler'),
     #('* * * * *' , 'main.cron.my_job'),
 
 ]

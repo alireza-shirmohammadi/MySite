@@ -3,7 +3,8 @@ from .crawler import Crawler
 
 
 def News_Crawler():
-    list=Crawler()
+    print('start')
+    list=Crawler().crawl()
     for i in range(len(list)):
         title=list[i]['title']
         date=list[i]['date']

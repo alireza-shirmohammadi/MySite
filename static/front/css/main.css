@@ -980,6 +980,10 @@ li.respon-sub-menu > .sub-menu .sub-menu {
 
 /*//////////////////////////////////////////////////////////////////
 [ Modal video 01 ]*/
+div .pullright {
+    position: absolute;
+    margin: -30px 0 0 400px;
+}
 body {padding-right: 0px !important;}
 .modal {
   padding: 0px !important;
@@ -1205,11 +1209,6 @@ a.breadcrumb-item:hover {
 }
 
 .f1-s-8 {
-  font-family: Roboto-Medium;
-  font-size: 14px;
-  line-height: 1.5;
-}
-.f1-s-14 {
   font-family: Roboto-Medium;
   font-size: 14px;
   line-height: 1.5;
@@ -1640,6 +1639,7 @@ a.breadcrumb-item:hover {
   z-index: 1;
 }
 
+
 .how-overlay1::before {
   content: "";
   display: block;
@@ -1656,7 +1656,26 @@ a.breadcrumb-item:hover {
   background: -moz-linear-gradient(bottom, rgba(0,0,0,1), rgba(0,0,0,0));
   background: linear-gradient(bottom, rgba(0,0,0,1), rgba(0,0,0,0));
 }
+.results-card {
+  width: 19%;
+  box-shadow: 0 16px 16px 0 rgba(0,0,0,0.25);
+  transition: 0.5s;
+  border-radius: 7px;
+  padding: 15px 15px;
+  background: white;
+  margin: 0 auto;
+  z-index: 99999999999999;
+  position: absolute;
+  /*position: fixed;*/
+}
+/*---------------------------------------------*/
 
+.results-img {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+
+}
 /*---------------------------------------------*/
 .how1 {
   position: relative;
@@ -1788,6 +1807,11 @@ a.breadcrumb-item:hover {
   opacity: 0.8;
 }
 
+.content-float .pull-right {
+    margin: 0 0 20px 20px;
+}
+
+/*--------------------------------------------------*/
 
 .flag-icon-background {
   background-size: contain;
@@ -1815,7 +1839,6 @@ a.breadcrumb-item:hover {
 .flag-icon-am {
   background-image: url(../flags/4x3/am.svg);
 }
-
 /*==================================================================
    OTHER OTHER OTHER OTHER OTHER OTHER OTHER OTHER OTHER OTHER OTHER
 ==================================================================*/
