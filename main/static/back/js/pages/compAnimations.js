@@ -4,16 +4,16 @@
  *  Description: Custom javascript code used in Animations page
  */
 
-var CompAnimations = function() {
+var CompAnimations = function () {
 
     return {
-        init: function() {
+        init: function () {
             var animPageButtons = $('.animation-page-buttons .btn');
-            var animButtons     = $('.animation-buttons .btn');
-            var animClass       = '';
+            var animButtons = $('.animation-buttons .btn');
+            var animClass = '';
 
             /* Add/Remove Animation for page */
-            animPageButtons.click(function() {
+            animPageButtons.click(function () {
                 animPageButtons.removeClass('active');
                 $(this).addClass('active');
                 animClass = $(this).data('animation');
@@ -23,7 +23,7 @@ var CompAnimations = function() {
             });
 
             /* Add/Remove Animation for element */
-            animButtons.click(function() {
+            animButtons.click(function () {
                 animButtons.removeClass('active');
                 $(this).addClass('active');
                 animClass = $(this).data('animation');

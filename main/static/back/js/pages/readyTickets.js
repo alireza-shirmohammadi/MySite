@@ -4,9 +4,9 @@
  *  Description: Custom javascript code used in Tickets page
  */
 
-var ReadyTickets = function() {
+var ReadyTickets = function () {
     return {
-        init: function() {
+        init: function () {
             // If a hash is added to the url page and belongs to a tab, show the tab
             var activeTab = $('[href="' + location.hash + '"]');
             activeTab && activeTab.tab('show');

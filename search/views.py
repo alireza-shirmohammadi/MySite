@@ -1,61 +1,40 @@
-from django.shortcuts import render
-from news.models import News
-from main.models import Main
-from subcat.models import SubCat
-from cat.models import Cat
-from trending.models import Trending
-from elasticsearch_dsl.query import MoreLikeThis
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.http import JsonResponse
+from django.shortcuts import render
 
-mysearch=None
+from cat.models import Cat
+from main.models import Main
+from news.models import News
+from subcat.models import SubCat
+from trending.models import Trending
+
+mysearch = None
+
 
 def search_db(search_text):
-    return News.objects.filter(name__icontains=search_text).order_by('-show')[:5]
+    return News.objects.filter(name__icontains=search_text).order_by("-show")[:5]
+
+
 def search(request):
     site = Main.objects.get(pk=1)
-    news = News.objects.filter(act=1).order_by('-pk')
+    news = News.objects.filter(act=1).order_by("-pk")
     cat = Cat.objects.all()
     subcat = SubCat.objects.all()
-    lastnews = News.objects.filter(act=1).order_by('-pk')[:3]
-    popnews = News.objects.filter(act=1).order_by('-show')
-    popnews2 = News.objects.filter(act=1).order_by('-show')[:3]
-    trending = Trending.objects.all().order_by('-pk')[:5]
-    lastnews2 = News.objects.filter(act=1).order_by('-pk')[:4]
-    allnews = News.objects.all()
+    lastnews = News.objects.filter(act=1).order_by("-pk")[:3]
+    popnews = News.objects.filter(act=1).order_by("-show")
+    popnews2 = News.objects.filter(act=1).order_by("-show")[:3]
+    trending = Trending.objects.all().order_by("-pk")[:5]
+    lastnews2 = News.objects.filter(act=1).order_by("-pk")[:4]
     global mysearch
 
-    if request.method=='POST':
-
-        q=request.POST.get('search')
-        mysearch=q
-        #print(mysearch)
-        if q:
-            response = search_db(q)
-            print(response)
-            # searchnewss= NewsDocument.search().filter('prefix',name=q)
-            # response = searchnewss.execute()
-           # print(response[0].name)
-
-        else:
-            searchnewss= ''
-            response = ''
+    if request.method == "POST":
+        q = request.POST.get("search")
+        mysearch = q
+        response = search_db(q) if q else ""
     else:
-
-        if mysearch:
-            #print(mysearch)
-            response = search_db(mysearch)
-            print(response)
-            # searchnewss= NewsDocument.search().filter('prefix',name=mysearch)
-            # response = searchnewss.execute()
-            #print(mysearch)
-        else:
-           # print(mysearch)
-            searchnewss= ''
-            response = ''
-
+        response = search_db(mysearch) if mysearch else ""
     paginator = Paginator(response, 9)
-    page = request.GET.get('page')
+    page = request.GET.get("page")
     try:
         searchnews = paginator.page(page)
     except EmptyPage:
@@ -63,81 +42,39 @@ def search(request):
     except PageNotAnInteger:
         searchnews = paginator.page(1)
 
-    return render(request , 'front/search_news.html' ,{'searchnews':searchnews,'lastnews2':lastnews2,'site':site,
-    'news':news,'cat':cat,'subcat':subcat,'lastnews':lastnews,'popnews2':popnews2,'popnews':popnews,'trending':trending})
-
-
-
-
-'''   
-        search=request.POST.get('search')
-        mysearch=search
-        a=News.objects.filter(name__contains=search)
-        b=News.objects.filter(short_txt__contains=search)
-        c=News.objects.filter(body_txt__contains=search)
-        searchnewss=list(chain(a,b,c))
-        searchnewss=list(dict.fromkeys(searchnewss))
-    else:
-        print(mysearch)
-        a=News.objects.filter(name__contains=mysearch)
-        b=News.objects.filter(short_txt__contains=mysearch)
-        c=News.objects.filter(body_txt__contains=mysearch)
-        searchnewss=list(chain(a,b,c))
-        searchnewss=list(dict.fromkeys(searchnewss))
-
-    site=Main.objects.get(pk=1)
-    news=News.objects.filter(act=1).order_by('-pk')
-    cat=Cat.objects.all()
-    subcat=SubCat.objects.all()
-    lastnews=News.objects.filter(act=1).order_by('-pk')[:3]
-    popnews= News.objects.filter(act=1).order_by('-show')
-    popnews2 = News.objects.filter(act=1).order_by('-show')[:3]
-    trending=Trending.objects.all().order_by('-pk')[:5]
-    lastnews2=News.objects.filter(act=1).order_by('-pk')[:4]
-    allnews=News.objects.all()
-
-
-
-
-    paginator=Paginator(searchnewss,2)
-    page=request.GET.get('page')
-    try:
-        searchnews=paginator.page(page)
-    except EmptyPage:
-        searchnews=paginator.page(paginator.num_page)
-    except PageNotAnInteger:
-        searchnews=paginator.page(1)
-
-
-    return render(request,'front/search_news.html',{'searchnews':searchnews,'lastnews2':lastnews2,'site':site,
-    'news':news,'cat':cat,'subcat':subcat,'lastnews':lastnews,'popnews2':popnews2,'popnews':popnews,'trending':trending})
-    
-    
-'''
-
+    return render(
+        request,
+        "front/search_news.html",
+        {
+            "searchnews": searchnews,
+            "lastnews2": lastnews2,
+            "site": site,
+            "news": news,
+            "cat": cat,
+            "subcat": subcat,
+            "lastnews": lastnews,
+            "popnews2": popnews2,
+            "popnews": popnews,
+            "trending": trending,
+        },
+    )
 def search_api(request):
-    if request.is_ajax():
-        res = None
-        search_text=request.POST.get('search_text')
-        response = search_db(search_text)
-        print(response)
-        # query=NewsDocument.search().filter('prefix',name=search_text)
-        # response = query.execute()
-
-        if len(response)>0 and len(search_text) > 0 :
-            data=[]
-            for item in response:
-                dic={
-                    'id':item.id,
-                    'name':item.name,
-                    'img':item.picurl,
-                    'date':item.date
-                }
-                data.append(dic)
-            res=data
-        else:
-            res='No reasult found!!!'
-
-        return JsonResponse({"data": res})
-    else:
+    if not request.is_ajax():
         return JsonResponse({})
+    search_text = request.POST.get("search_text")
+    response = search_db(search_text)
+    if len(response) > 0 and len(search_text) > 0:
+        data = []
+        for item in response:
+            dic = {
+                "id": item.id,
+                "name": item.name,
+                "img": item.picurl,
+                "date": item.date,
+            }
+            data.append(dic)
+        res = data
+    else:
+        res = "No reasult found!!!"
+
+    return JsonResponse({"data": res})

@@ -4,24 +4,30 @@ from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
-
     initial = True
 
-    dependencies = [
-    ]
+    dependencies = []
 
     operations = [
         migrations.CreateModel(
-            name='Comment',
+            name="Comment",
             fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('name', models.CharField(max_length=50)),
-                ('email', models.CharField(max_length=50)),
-                ('cm', models.TextField()),
-                ('news_id', models.IntegerField()),
-                ('date', models.CharField(max_length=12)),
-                ('time', models.CharField(max_length=10)),
-                ('status', models.IntegerField(default=0)),
+                (
+                    "id",
+                    models.AutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("name", models.CharField(max_length=50)),
+                ("email", models.CharField(max_length=50)),
+                ("cm", models.TextField()),
+                ("news_id", models.IntegerField()),
+                ("date", models.CharField(max_length=12)),
+                ("time", models.CharField(max_length=10)),
+                ("status", models.IntegerField(default=0)),
             ],
         ),
     ]

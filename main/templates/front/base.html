@@ -2,465 +2,477 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	{% block headblock%}
+    {% block headblock %}
 
-	{% endblock%}
+    {% endblock %}
 
 
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-<!--===============================================================================================-->
-	<link rel="icon" type="image/png" href="{%static 'front/images/icons/favicon.png' %}"/>
-<!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="{%static 'front/vendor/bootstrap/css/bootstrap.min.css' %}">
-<!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="{%static 'front/fonts/fontawesome-5.0.8/css/fontawesome-all.min.css' %}">
-<!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="{%static 'front/fonts/iconic/css/material-design-iconic-font.min.css' %}">
-<!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="{%static 'front/vendor/animate/animate.css' %}">
-<!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="{%static 'front/vendor/css-hamburgers/hamburgers.min.css' %}">
-<!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="{%static 'front/vendor/animsition/css/animsition.min.css' %}">
-<!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="{%static 'front/css/util.min.css' %}">
-<!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="{%static 'front/css/main.css' %}">
-<!--===============================================================================================-->
-<link rel="stylesheet" type="text/css" href="{%static 'front/css/util.min.css' %}">
-<!--===============================================================================================-->
-<link rel="stylesheet" type="text/css" href="{%static 'front/flag-icon/css/flag-icon.css' %}">
-<!--===============================================================================================-->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!--===============================================================================================-->
+    <link rel="icon" type="image/png" href="{% static 'front/images/icons/favicon.png' %}"/>
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="{% static 'front/vendor/bootstrap/css/bootstrap.min.css' %}">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css"
+          href="{% static 'front/fonts/fontawesome-5.0.8/css/fontawesome-all.min.css' %}">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css"
+          href="{% static 'front/fonts/iconic/css/material-design-iconic-font.min.css' %}">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="{% static 'front/vendor/animate/animate.css' %}">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="{% static 'front/vendor/css-hamburgers/hamburgers.min.css' %}">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="{% static 'front/vendor/animsition/css/animsition.min.css' %}">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="{% static 'front/css/util.min.css' %}">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="{% static 'front/css/main.css' %}">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="{% static 'front/css/util.min.css' %}">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="{% static 'front/flag-icon/css/flag-icon.css' %}">
+    <!--===============================================================================================-->
 
 </head>
 <body class="animsition">
 
-	<!-- Header -->
-	<header>
-		<!-- Header desktop -->
-		<div class="container-menu-desktop">
-			<div class="topbar">
-				<div class="content-topbar h-100 p-rl-30">
-					<div class="align-self-stretch size-w-0 pos-relative m-r-30">
-						<div class="f2-s-1 flex-wr-s-c s-full ab-t-l p-b-2">
+<!-- Header -->
+<header>
+    <!-- Header desktop -->
+    <div class="container-menu-desktop">
+        <div class="topbar">
+            <div class="content-topbar h-100 p-rl-30">
+                <div class="align-self-stretch size-w-0 pos-relative m-r-30">
+                    <div class="f2-s-1 flex-wr-s-c s-full ab-t-l p-b-2">
 							<span class="text-uppercase cl0 p-r-8">
 								Trending Now:
 							</span>
 
-							<span class="dis-inline-block cl16 slide100-txt pos-relative size-w-0" data-in="fadeInDown" data-out="fadeOutDown">
-								{%for i in trending%}
-								<span class="dis-inline-block slide100-txt-item animated visible-false">
-									{{i.txt}}
+                        <span class="dis-inline-block cl16 slide100-txt pos-relative size-w-0" data-in="fadeInDown"
+                              data-out="fadeOutDown">
+								{% for i in trending %}
+                                    <span class="dis-inline-block slide100-txt-item animated visible-false">
+									{{ i.txt }}
 								</span>
-								{%endfor%}
+                                {% endfor %}
 
 							</span>
-						</div>
-					</div>
+                    </div>
+                </div>
 
 
-					<div class="flex-wr-e-c">
-						<div class="left-topbar">
-							{%for weather in weather_data%}
-							<a href="#" class="left-topbar-item">
-								<i class="fa fa-map"></i>
-								city : {{weather.city}}
-							</a>
-							<a href="#" class="left-topbar-item">
+                <div class="flex-wr-e-c">
+                    <div class="left-topbar">
+                        {% for weather in weather_data %}
+                            <a href="#" class="left-topbar-item">
+                                <i class="fa fa-map"></i>
+                                city : {{ weather.city }}
+                            </a>
+                            <a href="#" class="left-topbar-item">
 
-								temperature : {{weather.temperature}}&degc
+                                temperature : {{ weather.temperature }}&degc
 
-							</a>
-{#							<a href="#" class="left-topbar-item">#}
-{#								<img style="display: inline-block; width:50px; height:50px;" src="{{weather.icon}}" alt="LOGO">#}
-{#							</a>#}
-							{%endfor%}
-							<a href="{%url 'about' %}" class="left-topbar-item">
-								About
-							</a>
+                            </a>
+                            {#							<a href="#" class="left-topbar-item">#}
+                            {#								<img style="display: inline-block; width:50px; height:50px;" src="{{weather.icon}}" alt="LOGO">#}
+                            {#							</a>#}
+                        {% endfor %}
+                        <a href="{% url 'about' %}" class="left-topbar-item">
+                            About
+                        </a>
 
-							<a href="{%url 'contact' %}" class="left-topbar-item">
-								Contact
-							</a>
-							{% if user.is_authenticated %}
-							<a href="{%url 'panel'%}" class="left-topbar-item">
-								Hi , {{request.user}}
-							</a>
-							{%else%}
-							<a href="{%url 'mylogin'%}" class="left-topbar-item">
-								Sign up/log in
-							</a>
-							{%endif%}
-
-
-							<a href="#" class="left-topbar-item"></a>
-						</div>
-
-						<div class="right-topbar p-l-18">
-							<a href="{{site.fb}}">
-								<span class="fab fa-facebook-f"></span>
-							</a>
-
-							<a href="{{site.tw}}">
-								<span class="fab fa-twitter"></span>
-							</a>
+                        <a href="{% url 'contact' %}" class="left-topbar-item">
+                            Contact
+                        </a>
+                        {% if user.is_authenticated %}
+                            <a href="{% url 'panel' %}" class="left-topbar-item">
+                                Hi , {{ request.user }}
+                            </a>
+                        {% else %}
+                            <a href="{% url 'mylogin' %}" class="left-topbar-item">
+                                Sign up/log in
+                            </a>
+                        {% endif %}
 
 
+                        <a href="#" class="left-topbar-item"></a>
+                    </div>
 
-							<a href="{{site.yt}}">
-								<span class="fab fa-youtube"></span>
-							</a>
-						</div>
-					</div>
-				</div>
-			</div>
+                    <div class="right-topbar p-l-18">
+                        <a href="{{ site.fb }}">
+                            <span class="fab fa-facebook-f"></span>
+                        </a>
 
-
-
-			<!--  -->
-			<div class="wrap-logo no-banner container">
-				<!-- Logo desktop -->
-				<div class="logo">
-					<a href="/"><img src="{{site.picurl}}" alt="LOGO"></a>
-				</div>
-			</div>
-
-			<!--  -->
-			<div class="wrap-main-nav">
-				<div class="main-nav">
-					<!-- Menu desktop -->
-					<nav class="menu-desktop">
-						<a class="logo-stick" href="/">
-							<img src="{{site.picurl}}" alt="LOGO">
-						</a>
-
-						<ul class="main-menu justify-content-center">
-							<li class="main-menu-active">
-								<a href="/">Home</a>
-							</li>
+                        <a href="{{ site.tw }}">
+                            <span class="fab fa-twitter"></span>
+                        </a>
 
 
-							{% for gg in cat %}
-							{% if gg.count != 0 %}
-							<li class="mega-menu-item">
-								<a href="{%url 'news_all_show' word=gg.name %}">{{gg.name}}</a>
-
-								<div class="sub-mega-menu">
-									<div class="nav flex-column nav-pills" role="tablist">
-										<a class="nav-link active" data-toggle="pill" href="#news-0" role="tab">All</a>
-
-										{% for subcat in subcat %}
-										{% if subcat.catid == gg.pk %}
-										<a class="nav-link" data-toggle="pill" href="#{{subcat.pk}}" role="tab">{{subcat.name}}</a>
-										{% endif %}
-										{% endfor %}
-
-									</div>
-
-									<div class="tab-content">
-
-										<div class="tab-pane show active" id="news-0" role="tabpanel">
-											<div class="row">
-
-
-												{% for hh in news %}
-												{% if hh.ocatid == gg.pk %}
-												<div class="col-3">
-													<!-- Item post -->
-													<div>
-														<a href="{%url 'news_detail' hh.pk %}" class="wrap-pic-w hov1 trans-03">
-															<img style="display: inline-block; width:180px; height:120px;" src="{{hh.picurl}}" alt="IMG">
-														</a>
-
-														<div class="p-t-10">
-															<h5 class="p-b-5">
-																<a href="#" class="f1-s-5 cl3 hov-cl10 trans-03">
-																	{{hh.name}}
-																</a>
-															</h5>
-
-															<span class="cl8">
-																<a href="{%url 'news_detail' hh.pk %}" class="f1-s-6 cl8 hov-cl10 trans-03">
-																	{{hh.catname}}
-																</a>
-
-																<span class="f1-s-3 m-rl-3">
-																	-
-																</span>
-
-																<span class="f1-s-3">
-																	{{hh.date}}
-																</span>
-															</span>
-														</div>
-													</div>
-												</div>
-												{% endif %}
-												{% endfor %}
-
-
-											</div>
-										</div>
-
-
-										{% for subcat2 in subcat %}
-										<div class="tab-pane" id="{{subcat2.pk}}" role="tabpanel">
-											<div class="row">
-
-
-
-												{% for hh in news %}
-												{% if hh.catid == subcat2.pk %}
-												<div class="col-3">
-													<!-- Item post -->
-													<div>
-														<a href="{%url 'news_detail' hh.pk %}"" class="wrap-pic-w hov1 trans-03">
-															<img style="display: inline-block; width:180px; height:120px;" src="{{hh.picurl}}" alt="IMG">
-														</a>
-
-														<div class="p-t-10">
-															<h5 class="p-b-5">
-																<a href="#" class="f1-s-5 cl3 hov-cl10 trans-03">
-																	{{hh.name}}
-																</a>
-															</h5>
-
-															<span class="cl8">
-																<a href="{%url 'news_detail' hh.pk %}" class="f1-s-6 cl8 hov-cl10 trans-03">
-																	{{hh.catname}}
-																</a>
-
-																<span class="f1-s-3 m-rl-3">
-																	-
-																</span>
-
-																<span class="f1-s-3">
-																	{{hh.date}}
-																</span>
-															</span>
-														</div>
-													</div>
-												</div>
-												{% endif %}
-												{% endfor %}
-
-
-											</div>
-										</div>
-										{% endfor %}
-
-
-
-									</div>
-								</div>
-							</li>
-							{% endif %}
-							{% endfor %}
-							<ul class="main-menu justify-content-center">
-								<li class="main-menu-active">
-									<a href="/all/news">All News</a>
-								</li>
-
-						</ul>
-					</nav>
-				</div>
-			</div>
-		</div>
-		<!-- Headline -->
-	<div class="container">
-		<div class="bg0 flex-wr-sb-c p-rl-20 p-tb-8">
-			<div class="f2-s-1 p-r-30 size-w-0 m-tb-6 flex-wr-s-c" style="visibility: hidden">
-				<a href="/" class="fs-12 m-l-5 fa fa-caret-right">
-					Home
-				</a>
-
-{#				<a href="/all/news" class="fs-12 m-l-5 fa fa-caret-right">#}
-{#					News#}
-{#				</a>#}
-{##}
-{#				<span class="fs-12 m-l-5 fa fa-caret-right">#}
-{#					{{i.name}}#}
-{#				</span>#}
-			</div>
-
-			<form action="{%url 'search' %}" method="post" enctype="multipart/form-data" class="form-horizontal form-bordered" >
-					{% csrf_token %}
-			<div class="pos-relative size-a-2 bo-1-rad-22 of-hidden bocl11 m-tb-6 ">
-				<input class="f1-s-1 cl6 plh9 s-full p-l-25 p-r-45" type="text" id="search" name="search" placeholder="Search" >
-				<button type="submit" class="flex-c-c size-a-1 ab-t-r fs-20 cl2 hov-cl10 trans-03">
-					<i class="zmdi zmdi-search"></i>
-				</button>
-			</div>
-            <div id="results-box" class="results-card" style="visibility:hidden; ">
-                test<br>
+                        <a href="{{ site.yt }}">
+                            <span class="fab fa-youtube"></span>
+                        </a>
+                    </div>
+                </div>
             </div>
-		</form>
+        </div>
 
-		</div>
-	</div>
-	</header>
+
+        <!--  -->
+        <div class="wrap-logo no-banner container">
+            <!-- Logo desktop -->
+            <div class="logo">
+                <a href="/"><img src="{{ site.picurl }}" alt="LOGO"></a>
+            </div>
+        </div>
+
+        <!--  -->
+        <div class="wrap-main-nav">
+            <div class="main-nav">
+                <!-- Menu desktop -->
+                <nav class="menu-desktop">
+                    <a class="logo-stick" href="/">
+                        <img src="{{ site.picurl }}" alt="LOGO">
+                    </a>
+
+                    <ul class="main-menu justify-content-center">
+                        <li class="main-menu-active">
+                            <a href="/">Home</a>
+                        </li>
+
+
+                        {% for gg in cat %}
+                            {% if gg.count != 0 %}
+                                <li class="mega-menu-item">
+                                    <a href="{% url 'news_all_show' word=gg.name %}">{{ gg.name }}</a>
+
+                                    <div class="sub-mega-menu">
+                                        <div class="nav flex-column nav-pills" role="tablist">
+                                            <a class="nav-link active" data-toggle="pill" href="#news-0"
+                                               role="tab">All</a>
+
+                                            {% for subcat in subcat %}
+                                                {% if subcat.catid == gg.pk %}
+                                                    <a class="nav-link" data-toggle="pill" href="#{{ subcat.pk }}"
+                                                       role="tab">{{ subcat.name }}</a>
+                                                {% endif %}
+                                            {% endfor %}
+
+                                        </div>
+
+                                        <div class="tab-content">
+
+                                            <div class="tab-pane show active" id="news-0" role="tabpanel">
+                                                <div class="row">
+
+
+                                                    {% for hh in news %}
+                                                        {% if hh.ocatid == gg.pk %}
+                                                            <div class="col-3">
+                                                                <!-- Item post -->
+                                                                <div>
+                                                                    <a href="{% url 'news_detail' hh.pk %}"
+                                                                       class="wrap-pic-w hov1 trans-03">
+                                                                        <img style="display: inline-block; width:180px; height:120px;"
+                                                                             src="{{ hh.picurl }}" alt="IMG">
+                                                                    </a>
+
+                                                                    <div class="p-t-10">
+                                                                        <h5 class="p-b-5">
+                                                                            <a href="#"
+                                                                               class="f1-s-5 cl3 hov-cl10 trans-03">
+                                                                                {{ hh.name }}
+                                                                            </a>
+                                                                        </h5>
+
+                                                                        <span class="cl8">
+																<a href="{% url 'news_detail' hh.pk %}"
+                                                                   class="f1-s-6 cl8 hov-cl10 trans-03">
+																	{{ hh.catname }}
+																</a>
+
+																<span class="f1-s-3 m-rl-3">
+																	-
+																</span>
+
+																<span class="f1-s-3">
+																	{{ hh.date }}
+																</span>
+															</span>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        {% endif %}
+                                                    {% endfor %}
+
+
+                                                </div>
+                                            </div>
+
+
+                                            {% for subcat2 in subcat %}
+                                                <div class="tab-pane" id="{{ subcat2.pk }}" role="tabpanel">
+                                                    <div class="row">
+
+
+                                                        {% for hh in news %}
+                                                            {% if hh.catid == subcat2.pk %}
+                                                                <div class="col-3">
+                                                                    <!-- Item post -->
+                                                                    <div>
+                                                                        <a href="{% url 'news_detail' hh.pk %}""
+                                                                        class="wrap-pic-w hov1 trans-03">
+                                                                        <img style="display: inline-block; width:180px; height:120px;"
+                                                                             src="{{ hh.picurl }}" alt="IMG">
+                                                                        </a>
+
+                                                                        <div class="p-t-10">
+                                                                            <h5 class="p-b-5">
+                                                                                <a href="#"
+                                                                                   class="f1-s-5 cl3 hov-cl10 trans-03">
+                                                                                    {{ hh.name }}
+                                                                                </a>
+                                                                            </h5>
+
+                                                                            <span class="cl8">
+																<a href="{% url 'news_detail' hh.pk %}"
+                                                                   class="f1-s-6 cl8 hov-cl10 trans-03">
+																	{{ hh.catname }}
+																</a>
+
+																<span class="f1-s-3 m-rl-3">
+																	-
+																</span>
+
+																<span class="f1-s-3">
+																	{{ hh.date }}
+																</span>
+															</span>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            {% endif %}
+                                                        {% endfor %}
+
+
+                                                    </div>
+                                                </div>
+                                            {% endfor %}
+
+
+                                        </div>
+                                    </div>
+                                </li>
+                            {% endif %}
+                        {% endfor %}
+                        <ul class="main-menu justify-content-center">
+                            <li class="main-menu-active">
+                                <a href="/all/news">All News</a>
+                            </li>
+
+                        </ul>
+                </nav>
+            </div>
+        </div>
+    </div>
+    <!-- Headline -->
+    <div class="container">
+        <div class="bg0 flex-wr-sb-c p-rl-20 p-tb-8">
+            <div class="f2-s-1 p-r-30 size-w-0 m-tb-6 flex-wr-s-c" style="visibility: hidden">
+                <a href="/" class="fs-12 m-l-5 fa fa-caret-right">
+                    Home
+                </a>
+
+                {#				<a href="/all/news" class="fs-12 m-l-5 fa fa-caret-right">#}
+                {#					News#}
+                {#				</a>#}
+                {##}
+                {#				<span class="fs-12 m-l-5 fa fa-caret-right">#}
+                {#					{{i.name}}#}
+                {#				</span>#}
+            </div>
+
+            <form action="{% url 'search' %}" method="post" enctype="multipart/form-data"
+                  class="form-horizontal form-bordered">
+                {% csrf_token %}
+                <div class="pos-relative size-a-2 bo-1-rad-22 of-hidden bocl11 m-tb-6 ">
+                    <input class="f1-s-1 cl6 plh9 s-full p-l-25 p-r-45" type="text" id="search" name="search"
+                           placeholder="Search">
+                    <button type="submit" class="flex-c-c size-a-1 ab-t-r fs-20 cl2 hov-cl10 trans-03">
+                        <i class="zmdi zmdi-search"></i>
+                    </button>
+                </div>
+                <div id="results-box" class="results-card" style="visibility:hidden; ">
+                    test<br>
+                </div>
+            </form>
+
+        </div>
+    </div>
+</header>
 
 
 {% block mainblock %}
 
 
 
-{%endblock%}
+{% endblock %}
 
 
-	<!-- Footer -->
-	<footer>
-		<div class="bg2 p-t-40 p-b-25">
-			<div class="container">
-			<div class="row justify-content-center">
-				<div class="row">
-					<div class="col-lg-4 p-b-20">
-						<div class="size-h-3 flex-s-c">
-							<a href="/">
-								<img class="max-s-full" src="{{site.picurl2}}" alt="LOGO">
-							</a>
-						</div>
+<!-- Footer -->
+<footer>
+    <div class="bg2 p-t-40 p-b-25">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="row">
+                    <div class="col-lg-4 p-b-20">
+                        <div class="size-h-3 flex-s-c">
+                            <a href="/">
+                                <img class="max-s-full" src="{{ site.picurl2 }}" alt="LOGO">
+                            </a>
+                        </div>
 
-						<div>
-							<p class="f1-s-1 cl11 p-b-16">
-								{{site.about|safe}}
+                        <div>
+                            <p class="f1-s-1 cl11 p-b-16">
+                                {{ site.about|safe }}
 
-							<p class="f1-s-1 cl11 p-b-16">
-								tell : {{site.tell}}
-							</p>
+                            <p class="f1-s-1 cl11 p-b-16">
+                                tell : {{ site.tell }}
+                            </p>
 
-							<div class="p-t-15">
-								<a href="{{site.fb}}" class="fs-18 cl11 hov-cl10 trans-03 m-r-8">
-									<span class="fab fa-facebook-f"></span>
-								</a>
+                            <div class="p-t-15">
+                                <a href="{{ site.fb }}" class="fs-18 cl11 hov-cl10 trans-03 m-r-8">
+                                    <span class="fab fa-facebook-f"></span>
+                                </a>
 
-								<a href="{{site.tw}}" class="fs-18 cl11 hov-cl10 trans-03 m-r-8">
-									<span class="fab fa-twitter"></span>
-								</a>
+                                <a href="{{ site.tw }}" class="fs-18 cl11 hov-cl10 trans-03 m-r-8">
+                                    <span class="fab fa-twitter"></span>
+                                </a>
 
 
-								<a href="{{site.yt}}" class="fs-18 cl11 hov-cl10 trans-03 m-r-8">
-									<span class="fab fa-youtube"></span>
-								</a>
-							</div>
-							<br/>
-							<form action="{%url 'news_letter' %}" method="POST">
-									{% csrf_token %}
-								<input class="bo-1-rad-3 bocl13 size-a-19 f1-s-13 cl5 plh6 p-rl-18 m-b-20" type="txt" name="txt" placeholder="Email*">
-								<button type="submit" class="size-a-20 bg6 borad-3 f1-s-12 cl0 hov-btn1 trans-03 p-rl-15 m-t-20">
-									Send
-								</button>
-							</form>
-						</div>
-					</div>
+                                <a href="{{ site.yt }}" class="fs-18 cl11 hov-cl10 trans-03 m-r-8">
+                                    <span class="fab fa-youtube"></span>
+                                </a>
+                            </div>
+                            <br/>
+                            <form action="{% url 'news_letter' %}" method="POST">
+                                {% csrf_token %}
+                                <input class="bo-1-rad-3 bocl13 size-a-19 f1-s-13 cl5 plh6 p-rl-18 m-b-20" type="txt"
+                                       name="txt" placeholder="Email*">
+                                <button type="submit"
+                                        class="size-a-20 bg6 borad-3 f1-s-12 cl0 hov-btn1 trans-03 p-rl-15 m-t-20">
+                                    Send
+                                </button>
+                            </form>
+                        </div>
+                    </div>
 
-					<div class="col-sm-6 col-lg-4 p-b-20">
-						<div class="size-h-3 flex-s-c">
-							<h5 class="f1-m-7 cl0">
-								Popular Posts
-							</h5>
-						</div>
+                    <div class="col-sm-6 col-lg-4 p-b-20">
+                        <div class="size-h-3 flex-s-c">
+                            <h5 class="f1-m-7 cl0">
+                                Popular Posts
+                            </h5>
+                        </div>
 
-						<ul>
-							{% for pop in popnews2 %}
-							{%if pop.show != 0 %}
-							<li class="flex-wr-sb-s p-b-20">
-								<a href="{%url 'news_detail' pop.pk %}" class="size-w-4 wrap-pic-w hov1 trans-03">
-									<img style="display: inline-block; width:80px; height:50px;" src="{{pop.picurl}}" alt="IMG">
-								</a>
+                        <ul>
+                            {% for pop in popnews2 %}
+                                {% if pop.show != 0 %}
+                                    <li class="flex-wr-sb-s p-b-20">
+                                        <a href="{% url 'news_detail' pop.pk %}"
+                                           class="size-w-4 wrap-pic-w hov1 trans-03">
+                                            <img style="display: inline-block; width:80px; height:50px;"
+                                                 src="{{ pop.picurl }}" alt="IMG">
+                                        </a>
 
-								<div class="size-w-5">
-									<h6 class="p-b-5">
-										<a href="{%url 'news_detail' pop.pk %}" class="f1-s-5 cl11 hov-cl10 trans-03">
-											{{pop.name}}
-										</a>
-									</h6>
+                                        <div class="size-w-5">
+                                            <h6 class="p-b-5">
+                                                <a href="{% url 'news_detail' pop.pk %}"
+                                                   class="f1-s-5 cl11 hov-cl10 trans-03">
+                                                    {{ pop.name }}
+                                                </a>
+                                            </h6>
 
-									<span class="f1-s-3 cl6">
-										{{pop.date}}|{{pop.time}}
+                                            <span class="f1-s-3 cl6">
+										{{ pop.date }}|{{ pop.time }}
 									</span>
-								</div>
-							</li>
-							{%endif%}
-							{%endfor%}
-						</ul>
-					</div>
+                                        </div>
+                                    </li>
+                                {% endif %}
+                            {% endfor %}
+                        </ul>
+                    </div>
 
-					<div class="col-sm-6 col-lg-4 p-b-20">
-						<div class="size-h-3 flex-s-c">
-							<h5 class="f1-m-7 cl0">
-								Category
-							</h5>
-						</div>
-						{%for cat in cat%}
-						{% if cat.count != 0 %}
-						<ul class="m-t--12">
-							<li class="how-bor1 p-rl-5 p-tb-10">
-								<a href="{%url 'news_all_show' word=cat.name %}" class="f1-s-5 cl11 hov-cl10 trans-03 p-tb-8">
-								{{cat.name}}({{cat.count}})
-								</a>
-							</li>
+                    <div class="col-sm-6 col-lg-4 p-b-20">
+                        <div class="size-h-3 flex-s-c">
+                            <h5 class="f1-m-7 cl0">
+                                Category
+                            </h5>
+                        </div>
+                        {% for cat in cat %}
+                            {% if cat.count != 0 %}
+                                <ul class="m-t--12">
+                                    <li class="how-bor1 p-rl-5 p-tb-10">
+                                        <a href="{% url 'news_all_show' word=cat.name %}"
+                                           class="f1-s-5 cl11 hov-cl10 trans-03 p-tb-8">
+                                            {{ cat.name }}({{ cat.count }})
+                                        </a>
+                                    </li>
 
-						</ul>
-						{%endif%}
-						{%endfor%}
-					</div>
+                                </ul>
+                            {% endif %}
+                        {% endfor %}
+                    </div>
 
-			</div>
-		</div>
+                </div>
+            </div>
 
-		<div class="bg11">
-			<div class="container size-h-4 flex-c-c p-tb-15 ">
+            <div class="bg11">
+                <div class="container size-h-4 flex-c-c p-tb-15 ">
 				<span class="f1-s-1 cl0 txt-center">
 
-					<a href="{{site.link}}" class="f1-s-1 cl10 hov-link1">
+					<a href="{{ site.link }}" class="f1-s-1 cl10 hov-link1">
 Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This site is made by Alireza Shirmohammadi</a>
 
 				</span>
-			</div>
-		</div>
-	</footer>
+                </div>
+            </div>
+</footer>
 
-	<!-- Back to top -->
-	<div class="btn-back-to-top" id="myBtn">
+<!-- Back to top -->
+<div class="btn-back-to-top" id="myBtn">
 		<span class="symbol-btn-back-to-top">
 			<span class="fas fa-angle-up"></span>
 		</span>
-	</div>
+</div>
 
-	<!-- Modal Video 01-->
-	<div class="modal fade" id="modal-video-01" tabindex="-1" role="dialog" aria-hidden="true">
-		<div class="modal-dialog" role="document" data-dismiss="modal">
-			<div class="close-mo-video-01 trans-0-4" data-dismiss="modal" aria-label="Close">&times;</div>
+<!-- Modal Video 01-->
+<div class="modal fade" id="modal-video-01" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog" role="document" data-dismiss="modal">
+        <div class="close-mo-video-01 trans-0-4" data-dismiss="modal" aria-label="Close">&times;</div>
 
-			<div class="wrap-video-mo-01">
-				<div class="video-mo-01">
+        <div class="wrap-video-mo-01">
+            <div class="video-mo-01">
 
-				</div>
-			</div>
-		</div>
-	</div>
-	</div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
 
 <!--===============================================================================================-->
-	<script src="{%static 'front/vendor/jquery/jquery-3.2.1.min.js' %}"></script>
+<script src="{% static 'front/vendor/jquery/jquery-3.2.1.min.js' %}"></script>
 <!--===============================================================================================-->
-	<script src="{%static 'front/vendor/animsition/js/animsition.min.js' %}"></script>
+<script src="{% static 'front/vendor/animsition/js/animsition.min.js' %}"></script>
 <!--===============================================================================================-->
-	<script src="{%static 'front/vendor/bootstrap/js/popper.js' %}"></script>
-	<script src="{%static 'front/vendor/bootstrap/js/bootstrap.min.js' %}"></script>
+<script src="{% static 'front/vendor/bootstrap/js/popper.js' %}"></script>
+<script src="{% static 'front/vendor/bootstrap/js/bootstrap.min.js' %}"></script>
 <!--===============================================================================================-->
-	<script src="{%static 'front/js/main.js' %}"></script>
+<script src="{% static 'front/js/main.js' %}"></script>
 <!--===============================================================================================-->
-	<script src="{%static 'front/js/search_box.js' %}"></script>
+<script src="{% static 'front/js/search_box.js' %}"></script>
 
 
 </body>
-
-
-
-
-
 
 
 </html>

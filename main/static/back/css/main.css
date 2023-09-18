@@ -867,7 +867,7 @@ a.sidebar-title:focus {
 }
 
 .content-header small
-.content-header small{
+.content-header small {
     font-size: 17px;
 }
 
@@ -1140,12 +1140,12 @@ a.sidebar-title:focus {
 
 .widget-simple:before,
 .widget-simple:after {
-    content:" ";
-    display:table;
+    content: " ";
+    display: table;
 }
 
-.widget-simple:after{
-    clear:both;
+.widget-simple:after {
+    clear: both;
 }
 
 .widget-simple .widget-image,
@@ -1434,14 +1434,14 @@ img.full-bg {
     margin-left: -150px;
     z-index: 1000;
     background-color: #333333;
-    background-color: rgba(0,0,0,.5);
+    background-color: rgba(0, 0, 0, .5);
 }
 
 .full-page-section {
     padding: 25px 0;
     margin: 25px -10px;
     background-color: #000000;
-    background-color: rgba(0,0,0,.15);
+    background-color: rgba(0, 0, 0, .15);
 }
 
 /* Countdown */
@@ -1582,10 +1582,10 @@ a[data-toggle="lightbox-image"]:hover img {
 }
 
 .chart-pie-label {
-     font-size: 12px;
-     text-align: center;
-     padding: 8px 12px;
-     color: #ffffff;
+    font-size: 12px;
+    text-align: center;
+    padding: 8px 12px;
+    color: #ffffff;
 }
 
 .mini-chart-tooltip {
@@ -2586,8 +2586,8 @@ a.list-group-item.active > .badge {
     padding: 0;
     font-size: 13px;
     border-color: #dbe1e8;
-    -webkit-box-shadow: 0 3px 6px rgba(0,0,0,0.1);
-    box-shadow: 0 3px 6px rgba(0,0,0,0.1);
+    -webkit-box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
 }
 
 .dropdown-menu > li > a {
@@ -2674,7 +2674,7 @@ li.dropdown-header {
 }
 
 .pagination > li > a,
-.pagination > li > span  {
+.pagination > li > span {
     color: #1bbae1;
     margin-left: 5px;
     margin-right: 5px;
@@ -3730,7 +3730,7 @@ p, .table, .alert, .carousel {
 }
 
 .themed-background-muted-light {
-    background-color: #f9f9f9!important;
+    background-color: #f9f9f9 !important;
 }
 
 /*
@@ -4122,10 +4122,7 @@ p, .table, .alert, .carousel {
 =================================================================
 */
 
-@media only screen and (-webkit-min-device-pixel-ratio: 1.5),
-only screen and (-moz-min-device-pixel-ratio: 1.5),
-only screen and (-o-min-device-pixel-ratio: 3/2),
-only screen and (min-device-pixel-ratio: 1.5) {
+@media only screen and (-webkit-min-device-pixel-ratio: 1.5), only screen and (-moz-min-device-pixel-ratio: 1.5), only screen and (-o-min-device-pixel-ratio: 3/2), only screen and (min-device-pixel-ratio: 1.5) {
     /* If you did use a CSS image background, you can put your high resolution image here */
 
 }
@@ -4137,9 +4134,26 @@ only screen and (min-device-pixel-ratio: 1.5) {
 */
 
 @media print {
-    #sidebar, #sidebar-alt, .content-header, .breadcrumb-top, .block-title .block-options, #page-content + footer, #to-top {display: none !important;}
-    #page-content {min-height: 0 !important; height: auto !important; padding: 0 !important;}
-    #main-container {margin: 0 !important;}
-    .block, .block.full {border: none !important; padding: 0 !important;}
-    .block-title {margin: 0 0 20px !important;}
+    #sidebar, #sidebar-alt, .content-header, .breadcrumb-top, .block-title .block-options, #page-content + footer, #to-top {
+        display: none !important;
+    }
+
+    #page-content {
+        min-height: 0 !important;
+        height: auto !important;
+        padding: 0 !important;
+    }
+
+    #main-container {
+        margin: 0 !important;
+    }
+
+    .block, .block.full {
+        border: none !important;
+        padding: 0 !important;
+    }
+
+    .block-title {
+        margin: 0 0 20px !important;
+    }
 }

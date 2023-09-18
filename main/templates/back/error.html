@@ -1,28 +1,27 @@
-
 {% extends 'back/master.html' %}
 {% load staticfiles %}
 
 {% block headblock %}
-<script> function goback(){
-  window.history.back()
-}
-</script>
+    <script> function goback() {
+        window.history.back()
+    }
+    </script>
 {% endblock %}
 
 {% block mainblock %}
 
-   <!-- Datatables Header -->
-   <div class="content-header">
-    <div class="header-section">
-        <h1>
-            <i class="fa fa-table"></i>Error<br><small>{{error}}</small>
-        </h1>
-        </br>
-          <button class="error__button error__button--active" onclick="goback()">BACK</button>
+    <!-- Datatables Header -->
+    <div class="content-header">
+        <div class="header-section">
+            <h1>
+                <i class="fa fa-table"></i>Error<br><small>{{ error }}</small>
+            </h1>
+            </br>
+            <button class="error__button error__button--active" onclick="goback()">BACK</button>
+        </div>
     </div>
-</div>
 
-<!-- END Datatables Header -->
+    <!-- END Datatables Header -->
 
 
 
@@ -35,7 +34,9 @@
 
 {% block footerblock %}
 
-   <!-- Load and execute javascript code used only in this page -->
-   <script src="{%static 'back/js/pages/tablesDatatables.js' %}"></script>
-   <script>$(function(){ TablesDatatables.init(); });</script>
-        {% endblock %}
+    <!-- Load and execute javascript code used only in this page -->
+    <script src="{% static 'back/js/pages/tablesDatatables.js' %}"></script>
+    <script>$(function () {
+        TablesDatatables.init();
+    });</script>
+{% endblock %}

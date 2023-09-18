@@ -1,22 +1,22 @@
 {% extends "front/base.html" %}
-{%load staticfiles %}
+{% load staticfiles %}
 
 
 {% block headblock %}
-<title>{{site.name}} | Home </title>
-<meta charset="UTF-8">
-<meta name="description" content="{{site.seo_txt}}">
-<meta name="keywords" content="{{site.seo_keywords}}">
-<meta name="og:{{site.name}}" property="og:{{site.name}}" content="{{site.seo_txt}}">
+    <title>{{ site.name }} | Home </title>
+    <meta charset="UTF-8">
+    <meta name="description" content="{{ site.seo_txt }}">
+    <meta name="keywords" content="{{ site.seo_keywords }}">
+    <meta name="og:{{ site.name }}" property="og:{{ site.name }}" content="{{ site.seo_txt }}">
 {% endblock %}
 
 
 
 
-{%block  mainblock %}
-	<!-- Feature post -->
+{% block  mainblock %}
+    <!-- Feature post -->
 
-	<!-- slider 1 
+    <!-- slider 1
 	</br></br>
 	<section class="bg0">
 		<div class="row m-rl-0 justify-content-center">
@@ -49,30 +49,33 @@
 <br/><br/>
 
 <!-- Feature post -->
-<section class="bg0">
-		<div class="container">
-			<div class="row m-rl--1">
+    <section class="bg0">
+        <div class="container">
+            <div class="row m-rl--1">
 
-				{% for ln in lastnews2 %}
-				{% if forloop.counter == 1 %}
-				<div class="col-md-6 p-rl-1 p-b-2">
-					<div class="bg-img1 size-a-3 how1 pos-relative" style="background-image: url({{ln.picurl}});">
-						<a href="{%url 'news_detail' ln.pk %}" class="dis-block how1-child1 trans-03"></a>
+                {% for ln in lastnews2 %}
+                    {% if forloop.counter == 1 %}
+                        <div class="col-md-6 p-rl-1 p-b-2">
+                            <div class="bg-img1 size-a-3 how1 pos-relative"
+                                 style="background-image: url({{ ln.picurl }});">
+                                <a href="{% url 'news_detail' ln.pk %}" class="dis-block how1-child1 trans-03"></a>
 
-						<div class="flex-col-e-s s-full p-rl-25 p-tb-20">
-							<a href="#" class="dis-block how1-child2 f1-s-2 cl0 bo-all-1 bocl0 hov-btn1 trans-03 p-rl-5 p-t-2">
-								{{ln.catname}}
-							</a>
+                                <div class="flex-col-e-s s-full p-rl-25 p-tb-20">
+                                    <a href="#"
+                                       class="dis-block how1-child2 f1-s-2 cl0 bo-all-1 bocl0 hov-btn1 trans-03 p-rl-5 p-t-2">
+                                        {{ ln.catname }}
+                                    </a>
 
-							<h3 class="how1-child2 m-t-14 m-b-10">
-								<a href="{%url 'news_detail' ln.pk %}" class="how-txt1 size-a-6 f1-l-1 cl0 hov-cl10 trans-03">
-									{{ln.name}}
-								</a>
-							</h3>
+                                    <h3 class="how1-child2 m-t-14 m-b-10">
+                                        <a href="{% url 'news_detail' ln.pk %}"
+                                           class="how-txt1 size-a-6 f1-l-1 cl0 hov-cl10 trans-03">
+                                            {{ ln.name }}
+                                        </a>
+                                    </h3>
 
-							<span class="how1-child2">
+                                    <span class="how1-child2">
 								<span class="f1-s-4 cl11">
-									{{ln.writer}}
+									{{ ln.writer }}
 								</span>
 
 								<span class="f1-s-3 cl11 m-rl-3">
@@ -80,140 +83,154 @@
 								</span>
 
 								<span class="f1-s-3 cl11">
-									{{ln.date}} | {{ln.time}}
+									{{ ln.date }} | {{ ln.time }}
 								</span>
 							</span>
-						</div>
-					</div>
-				</div>
-				{% endif %}
+                                </div>
+                            </div>
+                        </div>
+                    {% endif %}
 
-				{% endfor %}
+                {% endfor %}
 
-				<div class="col-md-6 p-rl-1">
+                <div class="col-md-6 p-rl-1">
 
-					<div class="row m-rl--1">
+                    <div class="row m-rl--1">
 
-							{% for ln in lastnews2 %}
-							{% if forloop.counter == 2 %}
-						<div class="col-12 p-rl-1 p-b-2">
-							<div class="bg-img1 size-a-4 how1 pos-relative" style="background-image: url({{ln.picurl}});">
-								<a href="{%url 'news_detail' ln.pk %}" class="dis-block how1-child1 trans-03"></a>
+                        {% for ln in lastnews2 %}
+                            {% if forloop.counter == 2 %}
+                                <div class="col-12 p-rl-1 p-b-2">
+                                    <div class="bg-img1 size-a-4 how1 pos-relative"
+                                         style="background-image: url({{ ln.picurl }});">
+                                        <a href="{% url 'news_detail' ln.pk %}"
+                                           class="dis-block how1-child1 trans-03"></a>
 
-								<div class="flex-col-e-s s-full p-rl-25 p-tb-24">
-									<a href="#" class="dis-block how1-child2 f1-s-2 cl0 bo-all-1 bocl0 hov-btn1 trans-03 p-rl-5 p-t-2">
-											{{ln.catname}}
-									</a>
+                                        <div class="flex-col-e-s s-full p-rl-25 p-tb-24">
+                                            <a href="#"
+                                               class="dis-block how1-child2 f1-s-2 cl0 bo-all-1 bocl0 hov-btn1 trans-03 p-rl-5 p-t-2">
+                                                {{ ln.catname }}
+                                            </a>
 
-									<h3 class="how1-child2 m-t-14">
-										<a href="{%url 'news_detail' ln.pk %}" class="how-txt1 size-a-7 f1-l-2 cl0 hov-cl10 trans-03">
-												{{ln.name}}
-										</a>
-									</h3>
-								</div>
-							</div>
-						</div>
+                                            <h3 class="how1-child2 m-t-14">
+                                                <a href="{% url 'news_detail' ln.pk %}"
+                                                   class="how-txt1 size-a-7 f1-l-2 cl0 hov-cl10 trans-03">
+                                                    {{ ln.name }}
+                                                </a>
+                                            </h3>
+                                        </div>
+                                    </div>
+                                </div>
 
-						{% endif %}
+                            {% endif %}
 
-						{% endfor %}
+                        {% endfor %}
 
-						{% for ln in lastnews2 %}
-							{% if forloop.counter == 3 %}
+                        {% for ln in lastnews2 %}
+                            {% if forloop.counter == 3 %}
 
-						<div class="col-sm-6 p-rl-1 p-b-2">
-							<div class="bg-img1 size-a-5 how1 pos-relative" style="background-image: url({{ln.picurl}});">
-								<a href="{%url 'news_detail' ln.pk%}" class="dis-block how1-child1 trans-03"></a>
+                                <div class="col-sm-6 p-rl-1 p-b-2">
+                                    <div class="bg-img1 size-a-5 how1 pos-relative"
+                                         style="background-image: url({{ ln.picurl }});">
+                                        <a href="{% url 'news_detail' ln.pk %}"
+                                           class="dis-block how1-child1 trans-03"></a>
 
-								<div class="flex-col-e-s s-full p-rl-25 p-tb-20">
-									<a href="#" class="dis-block how1-child2 f1-s-2 cl0 bo-all-1 bocl0 hov-btn1 trans-03 p-rl-5 p-t-2">
-											{{ln.catname}}
-									</a>
+                                        <div class="flex-col-e-s s-full p-rl-25 p-tb-20">
+                                            <a href="#"
+                                               class="dis-block how1-child2 f1-s-2 cl0 bo-all-1 bocl0 hov-btn1 trans-03 p-rl-5 p-t-2">
+                                                {{ ln.catname }}
+                                            </a>
 
-									<h3 class="how1-child2 m-t-14">
-										<a href="{%url 'news_detail' ln.pk %}" class="how-txt1 size-h-1 f1-m-1 cl0 hov-cl10 trans-03">
-												{{ln.name}}
-										</a>
-									</h3>
-								</div>
-							</div>
-						</div>
+                                            <h3 class="how1-child2 m-t-14">
+                                                <a href="{% url 'news_detail' ln.pk %}"
+                                                   class="how-txt1 size-h-1 f1-m-1 cl0 hov-cl10 trans-03">
+                                                    {{ ln.name }}
+                                                </a>
+                                            </h3>
+                                        </div>
+                                    </div>
+                                </div>
 
-						{% endif %}
+                            {% endif %}
 
-						{% if forloop.counter == 4 %}
-						<div class="col-sm-6 p-rl-1 p-b-2">
-							<div class="bg-img1 size-a-5 how1 pos-relative" style="background-image: url({{ln.picurl}});">
-								<a href="{%url 'news_detail' ln.pk %}" class="dis-block how1-child1 trans-03"></a>
+                            {% if forloop.counter == 4 %}
+                                <div class="col-sm-6 p-rl-1 p-b-2">
+                                    <div class="bg-img1 size-a-5 how1 pos-relative"
+                                         style="background-image: url({{ ln.picurl }});">
+                                        <a href="{% url 'news_detail' ln.pk %}"
+                                           class="dis-block how1-child1 trans-03"></a>
 
-								<div class="flex-col-e-s s-full p-rl-25 p-tb-20">
-									<a href="#" class="dis-block how1-child2 f1-s-2 cl0 bo-all-1 bocl0 hov-btn1 trans-03 p-rl-5 p-t-2">
-											{{ln.catname}}
-									</a>
+                                        <div class="flex-col-e-s s-full p-rl-25 p-tb-20">
+                                            <a href="#"
+                                               class="dis-block how1-child2 f1-s-2 cl0 bo-all-1 bocl0 hov-btn1 trans-03 p-rl-5 p-t-2">
+                                                {{ ln.catname }}
+                                            </a>
 
-									<h3 class="how1-child2 m-t-14">
-										<a href="{%url 'news_detail' ln.pk %}" class="how-txt1 size-h-1 f1-m-1 cl0 hov-cl10 trans-03">
-												{{ln.name}}
-										</a>
-									</h3>
-								</div>
-							</div>
-						</div>
+                                            <h3 class="how1-child2 m-t-14">
+                                                <a href="{% url 'news_detail' ln.pk %}"
+                                                   class="how-txt1 size-h-1 f1-m-1 cl0 hov-cl10 trans-03">
+                                                    {{ ln.name }}
+                                                </a>
+                                            </h3>
+                                        </div>
+                                    </div>
+                                </div>
 
-						{% endif %}
+                            {% endif %}
 
-						{% endfor %}
+                        {% endfor %}
 
-					</div>
-				</div>
-			</div>
-		</div>
-	</section>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
 
-</br></br>
+    </br></br>
 
-	<section class="bg0 p-b-140 p-t-10">
-		<div class="container">
-			<div class="row justify-content-center">
-				<div class="col-md-10 col-lg-8 p-b-30">
-					<div class="p-r-10 p-r-0-sr991">
-						<!-- Blog Detail -->
-						<div class="col-md-12 col-lg-12">
-					<div class="p-r-10 p-rl-0-sr991 p-b-20">
+    <section class="bg0 p-b-140 p-t-10">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-md-10 col-lg-8 p-b-30">
+                    <div class="p-r-10 p-r-0-sr991">
+                        <!-- Blog Detail -->
+                        <div class="col-md-12 col-lg-12">
+                            <div class="p-r-10 p-rl-0-sr991 p-b-20">
 
-							{% for newscat in cat %}
-							{% if newscat.count != 0 %}
+                                {% for newscat in cat %}
+                                    {% if newscat.count != 0 %}
 
-						<!-- Life Style  -->
-						<div class="p-b-25 m-r--10 m-r-0-sr991">
-							<div class="how2 how2-cl5 flex-s-c m-r-10 m-r-0-sr991">
-								<h3 class="f1-m-2 cl17 tab01-title">
-									{{newscat.name}}
-								</h3>
-							</div>
+                                        <!-- Life Style  -->
+                                        <div class="p-b-25 m-r--10 m-r-0-sr991">
+                                            <div class="how2 how2-cl5 flex-s-c m-r-10 m-r-0-sr991">
+                                                <h3 class="f1-m-2 cl17 tab01-title">
+                                                    {{ newscat.name }}
+                                                </h3>
+                                            </div>
 
-							<div class="row p-t-35">
-								<div class="col-sm-6 p-r-25 p-r-15-sr991">
-									<!-- Item post -->
+                                            <div class="row p-t-35">
+                                                <div class="col-sm-6 p-r-25 p-r-15-sr991">
+                                                    <!-- Item post -->
 
-									{% for ab in news %}
-									{% if newscat.pk == ab.ocatid %}
-									<div class="flex-wr-sb-s m-b-30">
-										<a href="{%url 'news_detail' ab.pk %}" class="size-w-1 wrap-pic-w hov1 trans-03">
-											<img src="{{ab.picurl}}" alt="IMG">
-										</a>
+                                                    {% for ab in news %}
+                                                        {% if newscat.pk == ab.ocatid %}
+                                                            <div class="flex-wr-sb-s m-b-30">
+                                                                <a href="{% url 'news_detail' ab.pk %}"
+                                                                   class="size-w-1 wrap-pic-w hov1 trans-03">
+                                                                    <img src="{{ ab.picurl }}" alt="IMG">
+                                                                </a>
 
-										<div class="size-w-2">
-											<h5 class="p-b-5">
-												<a href="{%url 'news_detail' ab.pk %}" class="f1-s-5 cl3 hov-cl10 trans-03">
-													{{ab.name}}
-												</a>
-											</h5>
+                                                                <div class="size-w-2">
+                                                                    <h5 class="p-b-5">
+                                                                        <a href="{% url 'news_detail' ab.pk %}"
+                                                                           class="f1-s-5 cl3 hov-cl10 trans-03">
+                                                                            {{ ab.name }}
+                                                                        </a>
+                                                                    </h5>
 
-											<span class="cl8">
+                                                                    <span class="cl8">
 												<a href="#" class="f1-s-6 cl8 hov-cl10 trans-03">
-													{{ab.catname}}
+													{{ ab.catname }}
 												</a>
 
 												<span class="f1-s-3 m-rl-3">
@@ -221,37 +238,40 @@
 												</span>
 
 												<span class="f1-s-3">
-													{{ab.date}} | {{ab.time}}
+													{{ ab.date }} | {{ ab.time }}
 												</span>
 											</span>
-										</div>
-									</div>
-									{% endif %}
-									{% endfor %}
+                                                                </div>
+                                                            </div>
+                                                        {% endif %}
+                                                    {% endfor %}
 
 
-								</div>
-								<div class="col-sm-6 p-r-25 p-r-15-sr991">
-																<!-- Item post -->
+                                                </div>
+                                                <div class="col-sm-6 p-r-25 p-r-15-sr991">
+                                                    <!-- Item post -->
 
-																{%for pop in popnews%}
-																{%if pop.show != 0 %}
-																{%if newscat.pk == pop.ocatid %}
-																<div class="flex-wr-sb-s m-b-30">
-																	<a href="{%url 'news_detail' pop.pk %}" class="size-w-1 wrap-pic-w hov1 trans-03">
-																		<img src="{{pop.picurl}}" alt="IMG">
-																	</a>
+                                                    {% for pop in popnews %}
+                                                        {% if pop.show != 0 %}
+                                                            {% if newscat.pk == pop.ocatid %}
+                                                                <div class="flex-wr-sb-s m-b-30">
+                                                                    <a href="{% url 'news_detail' pop.pk %}"
+                                                                       class="size-w-1 wrap-pic-w hov1 trans-03">
+                                                                        <img src="{{ pop.picurl }}" alt="IMG">
+                                                                    </a>
 
-																	<div class="size-w-2">
-																		<h5 class="p-b-5">
-																			<a href="{%url 'news_detail' pop.pk %}" class="f1-s-5 cl3 hov-cl10 trans-03">
-																				{{pop.name}}
-																			</a>
-																		</h5>
+                                                                    <div class="size-w-2">
+                                                                        <h5 class="p-b-5">
+                                                                            <a href="{% url 'news_detail' pop.pk %}"
+                                                                               class="f1-s-5 cl3 hov-cl10 trans-03">
+                                                                                {{ pop.name }}
+                                                                            </a>
+                                                                        </h5>
 
-																		<span class="cl8">
-																			<a href="#" class="f1-s-6 cl8 hov-cl10 trans-03">
-																				{{pop.catname}}
+                                                                        <span class="cl8">
+																			<a href="#"
+                                                                               class="f1-s-6 cl8 hov-cl10 trans-03">
+																				{{ pop.catname }}
 																			</a>
 
 																			<span class="f1-s-3 m-rl-3">
@@ -259,181 +279,180 @@
 																			</span>
 
 																			<span class="f1-s-3">
-																				{{pop.date}} | {{pop.time}}
+																				{{ pop.date }} | {{ pop.time }}
 																			</span>
 																		</span>
-																	</div>
-																</div>
-																{%endif%}
-																{%endif%}
-																{%endfor%}
+                                                                    </div>
+                                                                </div>
+                                                            {% endif %}
+                                                        {% endif %}
+                                                    {% endfor %}
 
 
+                                                </div>
+                                            </div>
+                                        </div>
+                                    {% endif %}
+                                {% endfor %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
-															</div>
-														</div>
-													</div>
-													{% endif %}
-													{% endfor %}
-												</div>
-											</div>
-											</div>
-											</div>
+                <!-- Sidebar -->
+                <div class="col-md-10 col-lg-4">
+                    <div class="p-l-10 p-rl-0-sr991 p-b-20">
+                        <!-- Category -->
+                        <div class="p-b-60">
+                            <div class="how2 how2-cl5 flex-s-c">
+                                <h3 class="f1-m-2 cl17 tab01-title">
+                                    Currency Exchange Price
+                                </h3>
 
-				<!-- Sidebar -->
-				<div class="col-md-10 col-lg-4">
-					<div class="p-l-10 p-rl-0-sr991 p-b-20">
-						<!-- Category -->
-						<div class="p-b-60">
-							<div class="how2 how2-cl5 flex-s-c">
-								<h3 class="f1-m-2 cl17 tab01-title">
-									Currency Exchange Price
-								</h3>
+                            </div>
 
-							</div>
+                            <!-- Currency price-->
+                            {% for i in currency_price %}
+                                {% if forloop.counter == 1 %}
+                                    <ul class="p-t-35">
+                                        <li class="flex-wr-sb-c p-b-20">
 
-							<!-- Currency price-->
-							{% for i in currency_price %}
-							{% if forloop.counter == 1 %}
-							<ul class="p-t-35">
-							<li class="flex-wr-sb-c p-b-20">
-
-								<div class="size-w-3 flex-wr-sb-c">
-									<span class="flag-icon flag-icon-us"></span>
-									<span class="f1-s-8 cl3 p-r-20">
-										{{i.name}}
+                                            <div class="size-w-3 flex-wr-sb-c">
+                                                <span class="flag-icon flag-icon-us"></span>
+                                                <span class="f1-s-8 cl3 p-r-20">
+										{{ i.name }}
 									</span>
-									<span class="f1-s-8 cl3 p-r-20">
-										sell : {{i.dollar_sell}}0 Rial </br> buy : {{i.dollar_buy}}0 Rial
+                                                <span class="f1-s-8 cl3 p-r-20">
+										sell : {{ i.dollar_sell }}0 Rial </br> buy : {{ i.dollar_buy }}0 Rial
 									</span>
-									<a href="#" class="tab01-link f1-s-1 cl9 hov-cl10 trans-03">
-										Updated at : {{i.dollar_t}}
-									</a>
-								</div>
-							</li>
+                                                <a href="#" class="tab01-link f1-s-1 cl9 hov-cl10 trans-03">
+                                                    Updated at : {{ i.dollar_t }}
+                                                </a>
+                                            </div>
+                                        </li>
 
 
-						</ul>
-						{%endif%}
+                                    </ul>
+                                {% endif %}
 
-						{% if forloop.counter == 2 %}
-						<ul class="p-t-35">
-						<li class="flex-wr-sb-c p-b-20">
+                                {% if forloop.counter == 2 %}
+                                    <ul class="p-t-35">
+                                        <li class="flex-wr-sb-c p-b-20">
 
-							<div class="size-w-3 flex-wr-sb-c">
-								<span class="flag-icon flag-icon-eu"></span>
-								<span class="f1-s-8 cl3 p-r-20">
-									{{i.name}}
+                                            <div class="size-w-3 flex-wr-sb-c">
+                                                <span class="flag-icon flag-icon-eu"></span>
+                                                <span class="f1-s-8 cl3 p-r-20">
+									{{ i.name }}
 								</span>
-								<span class="f1-s-8 cl3 p-r-20">
-									sell : {{i.euro_sell}}0 Rial </br> buy : {{i.euro_buy}}0 Rial
+                                                <span class="f1-s-8 cl3 p-r-20">
+									sell : {{ i.euro_sell }}0 Rial </br> buy : {{ i.euro_buy }}0 Rial
 								</span>
-								<a href="#" class="tab01-link f1-s-1 cl9 hov-cl10 trans-03">
-									Updated at : {{i.euro_t}}
-								</a>
-							</div>
-						</li>
+                                                <a href="#" class="tab01-link f1-s-1 cl9 hov-cl10 trans-03">
+                                                    Updated at : {{ i.euro_t }}
+                                                </a>
+                                            </div>
+                                        </li>
 
 
-					</ul>
-						{%endif%}
+                                    </ul>
+                                {% endif %}
 
-						{% if forloop.counter == 3 %}
-						<ul class="p-t-35">
-						<li class="flex-wr-sb-c p-b-20">
+                                {% if forloop.counter == 3 %}
+                                    <ul class="p-t-35">
+                                        <li class="flex-wr-sb-c p-b-20">
 
-							<div class="size-w-3 flex-wr-sb-c">
-								<span class="flag-icon flag-icon-ae"></span>
-								<span class="f1-s-8 cl3 p-r-20">
-									{{i.name}}
+                                            <div class="size-w-3 flex-wr-sb-c">
+                                                <span class="flag-icon flag-icon-ae"></span>
+                                                <span class="f1-s-8 cl3 p-r-20">
+									{{ i.name }}
 								</span>
-								<span class="f1-s-8 cl3 p-r-20">
-									sell : {{i.emarat_sell}}0 Rial </br> buy : {{i.emarat_buy}}0 Rial
+                                                <span class="f1-s-8 cl3 p-r-20">
+									sell : {{ i.emarat_sell }}0 Rial </br> buy : {{ i.emarat_buy }}0 Rial
 								</span>
-								<a href="#" class="tab01-link f1-s-1 cl9 hov-cl10 trans-03">
-									Updated at : {{i.emarat_t}}
-								</a>
-							</div>
-						</li>
+                                                <a href="#" class="tab01-link f1-s-1 cl9 hov-cl10 trans-03">
+                                                    Updated at : {{ i.emarat_t }}
+                                                </a>
+                                            </div>
+                                        </li>
 
 
-					</ul>
-						{%endif%}
+                                    </ul>
+                                {% endif %}
 
-						{% if forloop.counter == 4 %}
-						<ul class="p-t-35">
-						<li class="flex-wr-sb-c p-b-20">
+                                {% if forloop.counter == 4 %}
+                                    <ul class="p-t-35">
+                                        <li class="flex-wr-sb-c p-b-20">
 
-							<div class="size-w-3 flex-wr-sb-c">
-								<span class="flag-icon flag-icon-tr"></span>
-								<span class="f1-s-8 cl3 p-r-20">
-									{{i.name}}
+                                            <div class="size-w-3 flex-wr-sb-c">
+                                                <span class="flag-icon flag-icon-tr"></span>
+                                                <span class="f1-s-8 cl3 p-r-20">
+									{{ i.name }}
 								</span>
-								<span class="f1-s-8 cl3 p-r-20">
-									sell : {{i.turkey_sell}}0 Rial </br> buy : {{i.turkey_buy}}0 Rial
+                                                <span class="f1-s-8 cl3 p-r-20">
+									sell : {{ i.turkey_sell }}0 Rial </br> buy : {{ i.turkey_buy }}0 Rial
 								</span>
-								<a href="#" class="tab01-link f1-s-1 cl9 hov-cl10 trans-03">
-									Updated at : {{i.turkey_t}}
-								</a>
-							</div>
-						</li>
+                                                <a href="#" class="tab01-link f1-s-1 cl9 hov-cl10 trans-03">
+                                                    Updated at : {{ i.turkey_t }}
+                                                </a>
+                                            </div>
+                                        </li>
 
 
-					</ul>
-						{%endif%}
+                                    </ul>
+                                {% endif %}
 
-						{% if forloop.counter == 5 %}
-						<ul class="p-t-35">
-						<li class="flex-wr-sb-c p-b-20">
+                                {% if forloop.counter == 5 %}
+                                    <ul class="p-t-35">
+                                        <li class="flex-wr-sb-c p-b-20">
 
-							<div class="size-w-3 flex-wr-sb-c">
-								<span class="flag-icon flag-icon-cn"></span>
-								<span class="f1-s-8 cl3 p-r-20">
-									{{i.name}}
+                                            <div class="size-w-3 flex-wr-sb-c">
+                                                <span class="flag-icon flag-icon-cn"></span>
+                                                <span class="f1-s-8 cl3 p-r-20">
+									{{ i.name }}
 								</span>
-								<span class="f1-s-8 cl3 p-r-20">
-									sell : {{i.china_sell}}0 Rial </br> buy : {{i.china_buy}}0 Rial
+                                                <span class="f1-s-8 cl3 p-r-20">
+									sell : {{ i.china_sell }}0 Rial </br> buy : {{ i.china_buy }}0 Rial
 								</span>
-								<a href="#" class="tab01-link f1-s-1 cl9 hov-cl10 trans-03">
-									Updated at : {{i.china_t}}
-								</a>
-							</div>
-						</li>
+                                                <a href="#" class="tab01-link f1-s-1 cl9 hov-cl10 trans-03">
+                                                    Updated at : {{ i.china_t }}
+                                                </a>
+                                            </div>
+                                        </li>
 
 
-					</ul>
-						{%endif%}
+                                    </ul>
+                                {% endif %}
 
-						{% if forloop.counter == 6 %}
-						<ul class="p-t-35">
-						<li class="flex-wr-sb-c p-b-20">
+                                {% if forloop.counter == 6 %}
+                                    <ul class="p-t-35">
+                                        <li class="flex-wr-sb-c p-b-20">
 
-							<div class="size-w-3 flex-wr-sb-c">
-								<span class="flag-icon flag-icon-gb"></span>
-								<span class="f1-s-8 cl3 p-r-20">
-									{{i.name}}
+                                            <div class="size-w-3 flex-wr-sb-c">
+                                                <span class="flag-icon flag-icon-gb"></span>
+                                                <span class="f1-s-8 cl3 p-r-20">
+									{{ i.name }}
 								</span>
-								<span class="f1-s-8 cl3 p-r-20">
-									sell : {{i.england_sell}}0 Rial </br> buy : {{i.england_buy}}0 Rial
+                                                <span class="f1-s-8 cl3 p-r-20">
+									sell : {{ i.england_sell }}0 Rial </br> buy : {{ i.england_buy }}0 Rial
 								</span>
-								<a href="#" class="tab01-link f1-s-1 cl9 hov-cl10 trans-03">
-									Updated at : {{i.england_t}}
-								</a>
-							</div>
-						</li>
+                                                <a href="#" class="tab01-link f1-s-1 cl9 hov-cl10 trans-03">
+                                                    Updated at : {{ i.england_t }}
+                                                </a>
+                                            </div>
+                                        </li>
 
 
-					</ul>
-						{%endif%}
-						{%endfor%}
+                                    </ul>
+                                {% endif %}
+                            {% endfor %}
 
-						</div>
+                        </div>
 
 
-					</div>
-				</div>
-			</div>
-		</div>
-	</section>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
-{%endblock%}
+{% endblock %}

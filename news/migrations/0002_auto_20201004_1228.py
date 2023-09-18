@@ -4,45 +4,44 @@ from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
-        ('news', '0001_initial'),
+        ("news", "0001_initial"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='news',
-            name='act',
+            model_name="news",
+            name="act",
             field=models.IntegerField(default=0),
         ),
         migrations.AddField(
-            model_name='news',
-            name='catid',
+            model_name="news",
+            name="catid",
             field=models.IntegerField(default=0),
         ),
         migrations.AddField(
-            model_name='news',
-            name='catname',
-            field=models.CharField(default='-', max_length=50),
+            model_name="news",
+            name="catname",
+            field=models.CharField(default="-", max_length=50),
         ),
         migrations.AddField(
-            model_name='news',
-            name='ocatid',
+            model_name="news",
+            name="ocatid",
             field=models.IntegerField(default=0),
         ),
         migrations.AddField(
-            model_name='news',
-            name='rand',
+            model_name="news",
+            name="rand",
             field=models.IntegerField(default=0),
         ),
         migrations.AddField(
-            model_name='news',
-            name='show',
+            model_name="news",
+            name="show",
             field=models.IntegerField(default=0),
         ),
         migrations.AddField(
-            model_name='news',
-            name='tag',
-            field=models.TextField(default=''),
+            model_name="news",
+            name="tag",
+            field=models.TextField(default=""),
         ),
     ]

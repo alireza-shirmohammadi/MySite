@@ -4,10 +4,10 @@
  *  Description: Custom javascript code used in Dashboard page
  */
 
-var Index = function() {
+var Index = function () {
 
     return {
-        init: function() {
+        init: function () {
             /* Mini Bar Charts with jquery.sparkline plugin, for more examples you can check out http://omnipotent.net/jquery.sparkline/#s-about */
             var miniChartBarOptions = {
                 type: 'bar',
@@ -21,10 +21,10 @@ var Index = function() {
                 tooltipSuffix: ' Sales',
                 tooltipFormat: '{{prefix}}{{value}}{{suffix}}'
             };
-            $('#mini-chart-sales').sparkline([8,3,1,5,4,8,9,6,5,7,10,5,8,9], miniChartBarOptions);
+            $('#mini-chart-sales').sparkline([8, 3, 1, 5, 4, 8, 9, 6, 5, 7, 10, 5, 8, 9], miniChartBarOptions);
 
             miniChartBarOptions['tooltipSuffix'] = '%';
-            $('#mini-chart-brand').sparkline([50,65,70,90,95,110,140,160,190,200,220,230,260], miniChartBarOptions);
+            $('#mini-chart-brand').sparkline([50, 65, 70, 90, 95, 110, 140, 160, 190, 200, 220, 230, 260], miniChartBarOptions);
 
             /*
              * With Gmaps.js, Check out examples and documentation at http://hpneo.github.io/gmaps/examples.html
@@ -92,7 +92,7 @@ var Index = function() {
 
             // Creating and attaching a tooltip to the widget
             var previousPoint = null, ttlabel = null;
-            dashWidgetChart.bind('plothover', function(event, pos, item) {
+            dashWidgetChart.bind('plothover', function (event, pos, item) {
 
                 if (item) {
                     if (previousPoint !== item.dataIndex) {
@@ -113,8 +113,7 @@ var Index = function() {
                         $('<div id="chart-tooltip" class="chart-tooltip">' + ttlabel + '</div>')
                             .css({top: item.pageY - 50, left: item.pageX - 50}).appendTo("body").show();
                     }
-                }
-                else {
+                } else {
                     $('#chart-tooltip').remove();
                     previousPoint = null;
                 }

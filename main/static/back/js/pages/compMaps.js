@@ -4,10 +4,10 @@
  *  Description: Custom javascript code used in Maps page
  */
 
-var CompMaps = function() {
+var CompMaps = function () {
 
     return {
-        init: function() {
+        init: function () {
             /*
              * With Gmaps.js, Check out examples and documentation at http://hpneo.github.io/gmaps/examples.html
              */
@@ -38,7 +38,7 @@ var CompMaps = function() {
             new GMaps({
                 div: '#gmap-satellite',
                 lat: 0,
-                lng: 0,zoom: 1,
+                lng: 0, zoom: 1,
                 scrollwheel: false
             }).setMapTypeId(google.maps.MapTypeId.SATELLITE);
 
@@ -50,10 +50,34 @@ var CompMaps = function() {
                 zoom: 3,
                 scrollwheel: false
             }).addMarkers([
-                {lat: 20, lng: -31, title: 'Marker #1', animation: google.maps.Animation.DROP, infoWindow: {content: '<strong>Marker #1: HTML Content</strong>'}},
-                {lat: -10, lng: 0, title: 'Marker #2', animation: google.maps.Animation.DROP, infoWindow: {content: '<strong>Marker #2: HTML Content</strong>'}},
-                {lat: -20, lng: 85, title: 'Marker #3', animation: google.maps.Animation.DROP, infoWindow: {content: '<strong>Marker #3: HTML Content</strong>'}},
-                {lat: -20, lng: -110, title: 'Marker #4', animation: google.maps.Animation.DROP, infoWindow: {content: '<strong>Marker #4: HTML Content</strong>'}}
+                {
+                    lat: 20,
+                    lng: -31,
+                    title: 'Marker #1',
+                    animation: google.maps.Animation.DROP,
+                    infoWindow: {content: '<strong>Marker #1: HTML Content</strong>'}
+                },
+                {
+                    lat: -10,
+                    lng: 0,
+                    title: 'Marker #2',
+                    animation: google.maps.Animation.DROP,
+                    infoWindow: {content: '<strong>Marker #2: HTML Content</strong>'}
+                },
+                {
+                    lat: -20,
+                    lng: 85,
+                    title: 'Marker #3',
+                    animation: google.maps.Animation.DROP,
+                    infoWindow: {content: '<strong>Marker #3: HTML Content</strong>'}
+                },
+                {
+                    lat: -20,
+                    lng: -110,
+                    title: 'Marker #4',
+                    animation: google.maps.Animation.DROP,
+                    infoWindow: {content: '<strong>Marker #4: HTML Content</strong>'}
+                }
             ]);
 
             // Initialize street view panorama
@@ -74,7 +98,7 @@ var CompMaps = function() {
             });
 
             GMaps.geolocate({
-                success: function(position) {
+                success: function (position) {
                     gmapGeolocation.setCenter(position.coords.latitude, position.coords.longitude);
                     gmapGeolocation.addMarker({
                         lat: position.coords.latitude,
@@ -86,13 +110,13 @@ var CompMaps = function() {
                         }
                     });
                 },
-                error: function(error) {
+                error: function (error) {
                     alert('Geolocation failed: ' + error.message);
                 },
-                not_supported: function() {
+                not_supported: function () {
                     alert("Your browser does not support geolocation");
                 },
-                always: function() {
+                always: function () {
                     // Message when geolocation succeed
                 }
             });

@@ -4,10 +4,10 @@
  *  Description: Custom javascript code used in Dashboard 2 page
  */
 
-var Index2 = function() {
+var Index2 = function () {
 
     return {
-        init: function() {
+        init: function () {
             /* Mini Bar Charts with jquery.sparkline plugin, for more examples you can check out http://omnipotent.net/jquery.sparkline/#s-about */
             var miniChartBarOptions = {
                 type: 'bar',
@@ -129,14 +129,19 @@ var Index2 = function() {
             // Initialize live chart
             var chartLive = $.plot(chartLive,
                 [{data: getRandomData()}],
-            {
-                series: {shadowSize: 0},
-                lines: {show: true, lineWidth: 1, fill: true, fillColor: {colors: [{opacity: 0.2}, {opacity: 0.2}]}},
-                colors: ['#34495e'],
-                grid: {borderWidth: 0, color: '#aaaaaa'},
-                yaxis: {show: true, min: 0, max: 110},
-                xaxis: {show: false}
-            }
+                {
+                    series: {shadowSize: 0},
+                    lines: {
+                        show: true,
+                        lineWidth: 1,
+                        fill: true,
+                        fillColor: {colors: [{opacity: 0.2}, {opacity: 0.2}]}
+                    },
+                    colors: ['#34495e'],
+                    grid: {borderWidth: 0, color: '#aaaaaa'},
+                    yaxis: {show: true, min: 0, max: 110},
+                    xaxis: {show: false}
+                }
             );
 
             // Start getting new data

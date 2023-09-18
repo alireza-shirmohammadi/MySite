@@ -1,35 +1,34 @@
-
 {% extends 'back/master.html' %}
 {% load staticfiles %}
 
 
 {% block mainblock %}
 
-   <!-- Datatables Header -->
-   <div class="content-header">
-    <div class="header-section">
-        <h1>
-            <i class="fa fa-table"></i>Comment List<br><small>you can add, edit and delete your data!</small>
-        </h1>
+    <!-- Datatables Header -->
+    <div class="content-header">
+        <div class="header-section">
+            <h1>
+                <i class="fa fa-table"></i>Comment List<br><small>you can add, edit and delete your data!</small>
+            </h1>
+        </div>
     </div>
-</div>
-<ul class="breadcrumb breadcrumb-top">
-    <li>Comment</li>
-    <li><a href="/comment/list/">List</a></li>
-</ul>
-<!-- END Datatables Header -->
+    <ul class="breadcrumb breadcrumb-top">
+        <li>Comment</li>
+        <li><a href="/comment/list/">List</a></li>
+    </ul>
+    <!-- END Datatables Header -->
 
 
 
-  <!-- Datatables Content -->
-  <div class="block full">
-    <div class="block-title">
-        <h2><strong>Comment</strong> List</h2>
-    </div>
+    <!-- Datatables Content -->
+    <div class="block full">
+        <div class="block-title">
+            <h2><strong>Comment</strong> List</h2>
+        </div>
 
-    <div class="table-responsive">
-        <table id="example-datatable" class="table table-vcenter table-condensed table-bordered">
-            <thead>
+        <div class="table-responsive">
+            <table id="example-datatable" class="table table-vcenter table-condensed table-bordered">
+                <thead>
                 <tr>
                     <th class="text-center">ID</th>
                     <th class="text-center">name</th>
@@ -40,43 +39,48 @@
 
                     <th class="text-center">Actions</th>
                 </tr>
-            </thead>
-            <tbody>
+                </thead>
+                <tbody>
 
                 {% for cc in cm %}
-                <tr>
-                    <td class="text-center">{{cc.pk}}</td>
-                     <td>{{cc.name}}</td>
-                    <td>{{cc.date}} | {{cc.time}}</td>
-                    <td>{{cc.email}}</td>
-                    <td>{{cc.cm}}</td>
-                    {% if cc.status == 0 %}
-                    <td class="text-center themed-background-warning">Pending</td>
-                    {% elif cc.status == 1 %}
-                    <td class="text-center themed-background-success">Confirmed</td>
-                    {% endif %}
+                    <tr>
+                        <td class="text-center">{{ cc.pk }}</td>
+                        <td>{{ cc.name }}</td>
+                        <td>{{ cc.date }} | {{ cc.time }}</td>
+                        <td>{{ cc.email }}</td>
+                        <td>{{ cc.cm }}</td>
+                        {% if cc.status == 0 %}
+                            <td class="text-center themed-background-warning">Pending</td>
+                        {% elif cc.status == 1 %}
+                            <td class="text-center themed-background-success">Confirmed</td>
+                        {% endif %}
 
 
-                    <td class="text-center">
-                        <div class="btn-group">
-                          {%if cc.status == 0 %}
-                            <a href="{%url 'comments_confirme' pk=cc.pk %}" data-toggle="tooltip" title="Confirme" class="btn btn-xs btn-success"><i class="fa fa-pencil"> Confirm</i></a>
-                            {%else%}
-                            <a href="{%url 'comments_unconfirme' pk=cc.pk %}" data-toggle="tooltip" title="Confirme" class="btn btn-xs btn-warning"><i class="fa fa-pencil"> UnConfirm</i></a>
-                            {%endif%}
-                            <a href="{%url 'comments_del' pk=cc.pk %}" data-toggle="tooltip" title="Delete" class="btn btn-xs btn-danger"><i class="fa fa-times"> Delete</i></a>
+                        <td class="text-center">
+                            <div class="btn-group">
+                                {% if cc.status == 0 %}
+                                    <a href="{% url 'comments_confirme' pk=cc.pk %}" data-toggle="tooltip"
+                                       title="Confirme" class="btn btn-xs btn-success"><i class="fa fa-pencil">
+                                        Confirm</i></a>
+                                {% else %}
+                                    <a href="{% url 'comments_unconfirme' pk=cc.pk %}" data-toggle="tooltip"
+                                       title="Confirme" class="btn btn-xs btn-warning"><i class="fa fa-pencil">
+                                        UnConfirm</i></a>
+                                {% endif %}
+                                <a href="{% url 'comments_del' pk=cc.pk %}" data-toggle="tooltip" title="Delete"
+                                   class="btn btn-xs btn-danger"><i class="fa fa-times"> Delete</i></a>
 
-                        </div>
-                    </td>
-                </tr>
+                            </div>
+                        </td>
+                    </tr>
 
 
-               {% endfor %}
-            </tbody>
-        </table>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
     </div>
-</div>
-<!-- END Datatables Content -->
+    <!-- END Datatables Content -->
 
 
 {% endblock %}
@@ -86,7 +90,9 @@
 
 {% block footerblock %}
 
-   <!-- Load and execute javascript code used only in this page -->
-   <script src="{%static 'back/js/pages/tablesDatatables.js' %}"></script>
-   <script>$(function(){ TablesDatatables.init(); });</script>
-        {% endblock %}
+    <!-- Load and execute javascript code used only in this page -->
+    <script src="{% static 'back/js/pages/tablesDatatables.js' %}"></script>
+    <script>$(function () {
+        TablesDatatables.init();
+    });</script>
+{% endblock %}

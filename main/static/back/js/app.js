@@ -8,23 +8,23 @@
  *  sure to remove its initialization from uiInit().
  */
 
-var App = function() {
+var App = function () {
     /* Helper variables - set in uiInit() */
     var page, pageContent, header, footer, sidebar, sScroll, sidebarAlt, sScrollAlt;
 
     /* Initialization UI Code */
-    var uiInit = function() {
+    var uiInit = function () {
         // Set variables - Cache some often used Jquery objects in variables */
-        page            = $('#page-container');
-        pageContent     = $('#page-content');
-        header          = $('header');
-        footer          = $('#page-content + footer');
+        page = $('#page-container');
+        pageContent = $('#page-content');
+        header = $('header');
+        footer = $('#page-content + footer');
 
-        sidebar         = $('#sidebar');
-        sScroll         = $('#sidebar-scroll');
+        sidebar = $('#sidebar');
+        sScroll = $('#sidebar-scroll');
 
-        sidebarAlt      = $('#sidebar-alt');
-        sScrollAlt      = $('#sidebar-alt-scroll');
+        sidebarAlt = $('#sidebar-alt');
+        sScrollAlt = $('#sidebar-alt-scroll');
 
         // Initialize sidebars functionality
         handleSidebar('init');
@@ -43,18 +43,27 @@ var App = function() {
 
         // Resize #page-content to fill empty space if exists (also add it to resize and orientationchange events)
         resizePageContent();
-        $(window).resize(function(){ resizePageContent(); });
+        $(window).resize(function () {
+            resizePageContent();
+        });
         $(window).bind('orientationchange', resizePageContent);
 
         // Add the correct copyright year at the footer
         var yearCopy = $('#year-copy'), d = new Date();
-        if (d.getFullYear() === 2014) { yearCopy.html('2014'); } else { yearCopy.html('2014-' + d.getFullYear().toString().substr(2,2)); }
+        if (d.getFullYear() === 2014) {
+            yearCopy.html('2014');
+        } else {
+            yearCopy.html('2014-' + d.getFullYear().toString().substr(2, 2));
+        }
 
         // Initialize chat demo functionality (in sidebar)
         chatUi();
 
         // Initialize tabs
-        $('[data-toggle="tabs"] a, .enable-tabs a').click(function(e){ e.preventDefault(); $(this).tab('show'); });
+        $('[data-toggle="tabs"] a, .enable-tabs a').click(function (e) {
+            e.preventDefault();
+            $(this).tab('show');
+        });
 
         // Initialize Tooltips
         $('[data-toggle="tooltip"], .enable-tooltip').tooltip({container: 'body', animation: false});
@@ -66,7 +75,7 @@ var App = function() {
         $('[data-toggle="lightbox-image"]').magnificPopup({type: 'image', image: {titleSrc: 'title'}});
 
         // Initialize image gallery lightbox
-        $('[data-toggle="lightbox-gallery"]').each(function(){
+        $('[data-toggle="lightbox-gallery"]').each(function () {
             $(this).magnificPopup({
                 delegate: 'a.gallery-link',
                 type: 'image',
@@ -83,8 +92,8 @@ var App = function() {
         });
 
         // Initialize Typeahead - Example with countries
-        var exampleTypeheadData = ["Afghanistan","Albania","Algeria","American Samoa","Andorra","Angola","Anguilla","Antarctica","Antigua and Barbuda","Argentina","Armenia","Aruba","Australia","Austria","Azerbaijan","Bahrain","Bangladesh","Barbados","Belarus","Belgium","Belize","Benin","Bermuda","Bhutan","Bolivia","Bosnia and Herzegovina","Botswana","Bouvet Island","Brazil","British Indian Ocean Territory","British Virgin Islands","Brunei","Bulgaria","Burkina Faso","Burundi","CΓ΄te d'Ivoire","Cambodia","Cameroon","Canada","Cape Verde","Cayman Islands","Central African Republic","Chad","Chile","China","Christmas Island","Cocos (Keeling) Islands","Colombia","Comoros","Congo","Cook Islands","Costa Rica","Croatia","Cuba","Cyprus","Czech Republic","Democratic Republic of the Congo","Denmark","Djibouti","Dominica","Dominican Republic","East Timor","Ecuador","Egypt","El Salvador","Equatorial Guinea","Eritrea","Estonia","Ethiopia","Faeroe Islands","Falkland Islands","Fiji","Finland","Former Yugoslav Republic of Macedonia","France","French Guiana","French Polynesia","French Southern Territories","Gabon","Georgia","Germany","Ghana","Gibraltar","Greece","Greenland","Grenada","Guadeloupe","Guam","Guatemala","Guinea","Guinea-Bissau","Guyana","Haiti","Heard Island and McDonald Islands","Honduras","Hong Kong","Hungary","Iceland","India","Indonesia","Iran","Iraq","Ireland","Israel","Italy","Jamaica","Japan","Jordan","Kazakhstan","Kenya","Kiribati","Kuwait","Kyrgyzstan","Laos","Latvia","Lebanon","Lesotho","Liberia","Libya","Liechtenstein","Lithuania","Luxembourg","Macau","Madagascar","Malawi","Malaysia","Maldives","Mali","Malta","Marshall Islands","Martinique","Mauritania","Mauritius","Mayotte","Mexico","Micronesia","Moldova","Monaco","Mongolia","Montserrat","Morocco","Mozambique","Myanmar","Namibia","Nauru","Nepal","Netherlands","Netherlands Antilles","New Caledonia","New Zealand","Nicaragua","Niger","Nigeria","Niue","Norfolk Island","North Korea","Northern Marianas","Norway","Oman","Pakistan","Palau","Panama","Papua New Guinea","Paraguay","Peru","Philippines","Pitcairn Islands","Poland","Portugal","Puerto Rico","Qatar","RΓ©union","Romania","Russia","Rwanda","SΓ£o TomΓ© and PrΓ­ncipe","Saint Helena","Saint Kitts and Nevis","Saint Lucia","Saint Pierre and Miquelon","Saint Vincent and the Grenadines","Samoa","San Marino","Saudi Arabia","Senegal","Seychelles","Sierra Leone","Singapore","Slovakia","Slovenia","Solomon Islands","Somalia","South Africa","South Georgia and the South Sandwich Islands","South Korea","Spain","Sri Lanka","Sudan","Suriname","Svalbard and Jan Mayen","Swaziland","Sweden","Switzerland","Syria","Taiwan","Tajikistan","Tanzania","Thailand","The Bahamas","The Gambia","Togo","Tokelau","Tonga","Trinidad and Tobago","Tunisia","Turkey","Turkmenistan","Turks and Caicos Islands","Tuvalu","US Virgin Islands","Uganda","Ukraine","United Arab Emirates","United Kingdom","United States","United States Minor Outlying Islands","Uruguay","Uzbekistan","Vanuatu","Vatican City","Venezuela","Vietnam","Wallis and Futuna","Western Sahara","Yemen","Yugoslavia","Zambia","Zimbabwe"];
-        $('.input-typeahead').typeahead({ source: exampleTypeheadData });
+        var exampleTypeheadData = ["Afghanistan", "Albania", "Algeria", "American Samoa", "Andorra", "Angola", "Anguilla", "Antarctica", "Antigua and Barbuda", "Argentina", "Armenia", "Aruba", "Australia", "Austria", "Azerbaijan", "Bahrain", "Bangladesh", "Barbados", "Belarus", "Belgium", "Belize", "Benin", "Bermuda", "Bhutan", "Bolivia", "Bosnia and Herzegovina", "Botswana", "Bouvet Island", "Brazil", "British Indian Ocean Territory", "British Virgin Islands", "Brunei", "Bulgaria", "Burkina Faso", "Burundi", "CΓ΄te d'Ivoire", "Cambodia", "Cameroon", "Canada", "Cape Verde", "Cayman Islands", "Central African Republic", "Chad", "Chile", "China", "Christmas Island", "Cocos (Keeling) Islands", "Colombia", "Comoros", "Congo", "Cook Islands", "Costa Rica", "Croatia", "Cuba", "Cyprus", "Czech Republic", "Democratic Republic of the Congo", "Denmark", "Djibouti", "Dominica", "Dominican Republic", "East Timor", "Ecuador", "Egypt", "El Salvador", "Equatorial Guinea", "Eritrea", "Estonia", "Ethiopia", "Faeroe Islands", "Falkland Islands", "Fiji", "Finland", "Former Yugoslav Republic of Macedonia", "France", "French Guiana", "French Polynesia", "French Southern Territories", "Gabon", "Georgia", "Germany", "Ghana", "Gibraltar", "Greece", "Greenland", "Grenada", "Guadeloupe", "Guam", "Guatemala", "Guinea", "Guinea-Bissau", "Guyana", "Haiti", "Heard Island and McDonald Islands", "Honduras", "Hong Kong", "Hungary", "Iceland", "India", "Indonesia", "Iran", "Iraq", "Ireland", "Israel", "Italy", "Jamaica", "Japan", "Jordan", "Kazakhstan", "Kenya", "Kiribati", "Kuwait", "Kyrgyzstan", "Laos", "Latvia", "Lebanon", "Lesotho", "Liberia", "Libya", "Liechtenstein", "Lithuania", "Luxembourg", "Macau", "Madagascar", "Malawi", "Malaysia", "Maldives", "Mali", "Malta", "Marshall Islands", "Martinique", "Mauritania", "Mauritius", "Mayotte", "Mexico", "Micronesia", "Moldova", "Monaco", "Mongolia", "Montserrat", "Morocco", "Mozambique", "Myanmar", "Namibia", "Nauru", "Nepal", "Netherlands", "Netherlands Antilles", "New Caledonia", "New Zealand", "Nicaragua", "Niger", "Nigeria", "Niue", "Norfolk Island", "North Korea", "Northern Marianas", "Norway", "Oman", "Pakistan", "Palau", "Panama", "Papua New Guinea", "Paraguay", "Peru", "Philippines", "Pitcairn Islands", "Poland", "Portugal", "Puerto Rico", "Qatar", "RΓ©union", "Romania", "Russia", "Rwanda", "SΓ£o TomΓ© and PrΓ­ncipe", "Saint Helena", "Saint Kitts and Nevis", "Saint Lucia", "Saint Pierre and Miquelon", "Saint Vincent and the Grenadines", "Samoa", "San Marino", "Saudi Arabia", "Senegal", "Seychelles", "Sierra Leone", "Singapore", "Slovakia", "Slovenia", "Solomon Islands", "Somalia", "South Africa", "South Georgia and the South Sandwich Islands", "South Korea", "Spain", "Sri Lanka", "Sudan", "Suriname", "Svalbard and Jan Mayen", "Swaziland", "Sweden", "Switzerland", "Syria", "Taiwan", "Tajikistan", "Tanzania", "Thailand", "The Bahamas", "The Gambia", "Togo", "Tokelau", "Tonga", "Trinidad and Tobago", "Tunisia", "Turkey", "Turkmenistan", "Turks and Caicos Islands", "Tuvalu", "US Virgin Islands", "Uganda", "Ukraine", "United Arab Emirates", "United Kingdom", "United States", "United States Minor Outlying Islands", "Uruguay", "Uzbekistan", "Vanuatu", "Vatican City", "Venezuela", "Vietnam", "Wallis and Futuna", "Western Sahara", "Yemen", "Yugoslavia", "Zambia", "Zimbabwe"];
+        $('.input-typeahead').typeahead({source: exampleTypeheadData});
 
         // Initialize Chosen
         $('.select-chosen').chosen({width: "100%"});
@@ -100,15 +109,17 @@ var App = function() {
         $('.input-slider').slider();
 
         // Initialize Tags Input
-        $('.input-tags').tagsInput({ width: 'auto', height: 'auto'});
+        $('.input-tags').tagsInput({width: 'auto', height: 'auto'});
 
         // Initialize Datepicker
         $('.input-datepicker, .input-daterange').datepicker({weekStart: 1});
-        $('.input-datepicker-close').datepicker({weekStart: 1}).on('changeDate', function(e){ $(this).datepicker('hide'); });
+        $('.input-datepicker-close').datepicker({weekStart: 1}).on('changeDate', function (e) {
+            $(this).datepicker('hide');
+        });
 
         // Initialize Timepicker
-        $('.input-timepicker').timepicker({minuteStep: 1,showSeconds: true,showMeridian: true});
-        $('.input-timepicker24').timepicker({minuteStep: 1,showSeconds: true,showMeridian: false});
+        $('.input-timepicker').timepicker({minuteStep: 1, showSeconds: true, showMeridian: true});
+        $('.input-timepicker24').timepicker({minuteStep: 1, showSeconds: true, showMeridian: false});
 
         // Easy Pie Chart
         $('.pie-chart').easyPieChart({
@@ -125,7 +136,7 @@ var App = function() {
     };
 
     /* Page Loading functionality */
-    var pageLoading = function(){
+    var pageLoading = function () {
         var pageWrapper = $('#page-wrapper');
 
         if (pageWrapper.hasClass('page-loading')) {
@@ -134,47 +145,44 @@ var App = function() {
     };
 
     /* Gets window width cross browser */
-    var getWindowWidth = function(){
+    var getWindowWidth = function () {
         return window.innerWidth
-                || document.documentElement.clientWidth
-                || document.body.clientWidth;
+            || document.documentElement.clientWidth
+            || document.body.clientWidth;
     };
 
     /* Sidebar Navigation functionality */
-    var handleNav = function() {
+    var handleNav = function () {
         // Animation Speed, change the values for different results
-        var upSpeed     = 250;
-        var downSpeed   = 250;
+        var upSpeed = 250;
+        var downSpeed = 250;
 
         // Get all vital links
-        var menuLinks       = $('.sidebar-nav-menu');
-        var submenuLinks    = $('.sidebar-nav-submenu');
+        var menuLinks = $('.sidebar-nav-menu');
+        var submenuLinks = $('.sidebar-nav-submenu');
 
         // Primary Accordion functionality
-        menuLinks.click(function(){
+        menuLinks.click(function () {
             var link = $(this);
 
             if (page.hasClass('sidebar-mini') && page.hasClass('sidebar-visible-lg-mini') && (getWindowWidth() > 991)) {
                 if (link.hasClass('open')) {
                     link.removeClass('open').next().removeAttr('style');
-                }
-                else {
+                } else {
                     $('.sidebar-nav-menu.open').removeClass('open').next().removeAttr('style');
                     link.addClass('open').next().css('display', 'block');
                 }
-            }
-            else if (!link.parent().hasClass('active')) {
+            } else if (!link.parent().hasClass('active')) {
                 if (link.hasClass('open')) {
-                    link.removeClass('open').next().slideUp(upSpeed, function(){
+                    link.removeClass('open').next().slideUp(upSpeed, function () {
                         handlePageScroll(link, 200, 300);
                     });
 
                     // Resize #page-content to fill empty space if exists
                     setTimeout(resizePageContent, upSpeed);
-                }
-                else {
+                } else {
                     $('.sidebar-nav-menu.open').removeClass('open').next().slideUp(upSpeed);
-                    link.addClass('open').next().slideDown(downSpeed, function(){
+                    link.addClass('open').next().slideDown(downSpeed, function () {
                         handlePageScroll(link, 150, 600);
                     });
 
@@ -189,21 +197,20 @@ var App = function() {
         });
 
         // Submenu Accordion functionality
-        submenuLinks.click(function(){
+        submenuLinks.click(function () {
             var link = $(this);
 
             if (link.parent().hasClass('active') !== true) {
                 if (link.hasClass('open')) {
-                    link.removeClass('open').next().slideUp(upSpeed, function(){
+                    link.removeClass('open').next().slideUp(upSpeed, function () {
                         handlePageScroll(link, 200, 300);
                     });
 
                     // Resize #page-content to fill empty space if exists
                     setTimeout(resizePageContent, upSpeed);
-                }
-                else {
+                } else {
                     link.closest('ul').find('.sidebar-nav-submenu.open').removeClass('open').next().slideUp(upSpeed);
-                    link.addClass('open').next().slideDown(downSpeed, function(){
+                    link.addClass('open').next().slideDown(downSpeed, function () {
                         handlePageScroll(link, 150, 600);
                     });
 
@@ -219,29 +226,29 @@ var App = function() {
     };
 
     /* Scrolls the page (static layout) or the sidebar scroll element (fixed header/sidebars layout) to a specific position - Used when a submenu opens */
-    var handlePageScroll = function(sElem, sHeightDiff, sSpeed) {
+    var handlePageScroll = function (sElem, sHeightDiff, sSpeed) {
         if (!page.hasClass('disable-menu-autoscroll')) {
             var elemScrollToHeight;
 
             // If we have a static layout scroll the page
             if (!header.hasClass('navbar-fixed-top') && !header.hasClass('navbar-fixed-bottom')) {
-                var elemOffsetTop   = sElem.offset().top;
+                var elemOffsetTop = sElem.offset().top;
 
-                elemScrollToHeight  = (((elemOffsetTop - sHeightDiff) > 0) ? (elemOffsetTop - sHeightDiff) : 0);
+                elemScrollToHeight = (((elemOffsetTop - sHeightDiff) > 0) ? (elemOffsetTop - sHeightDiff) : 0);
 
                 $('html, body').animate({scrollTop: elemScrollToHeight}, sSpeed);
             } else { // If we have a fixed header/sidebars layout scroll the sidebar scroll element
-                var sContainer      = sElem.parents('#sidebar-scroll');
-                var elemOffsetCon   = sElem.offset().top + Math.abs($('div:first', sContainer).offset().top);
+                var sContainer = sElem.parents('#sidebar-scroll');
+                var elemOffsetCon = sElem.offset().top + Math.abs($('div:first', sContainer).offset().top);
 
                 elemScrollToHeight = (((elemOffsetCon - sHeightDiff) > 0) ? (elemOffsetCon - sHeightDiff) : 0);
-                sContainer.animate({ scrollTop: elemScrollToHeight}, sSpeed);
+                sContainer.animate({scrollTop: elemScrollToHeight}, sSpeed);
             }
         }
     };
 
     /* Sidebar Functionality */
-    var handleSidebar = function(mode, extra) {
+    var handleSidebar = function (mode, extra) {
         if (mode === 'init') {
             // Init sidebars scrolling functionality
             handleSidebar('sidebar-scroll');
@@ -251,14 +258,18 @@ var App = function() {
             // In smaller screens (the same applies to resized browsers) two visible sidebars
             // could mess up our main content (not enough space), so we hide the other one :-)
             $('.sidebar-partial #sidebar')
-                .mouseenter(function(){ handleSidebar('close-sidebar-alt'); });
+                .mouseenter(function () {
+                    handleSidebar('close-sidebar-alt');
+                });
             $('.sidebar-alt-partial #sidebar-alt')
-                .mouseenter(function(){ handleSidebar('close-sidebar'); });
+                .mouseenter(function () {
+                    handleSidebar('close-sidebar');
+                });
         } else {
             var windowW = getWindowWidth();
 
             if (mode === 'toggle-sidebar') {
-                if ( windowW > 991) { // Toggle main sidebar in large screens (> 991px)
+                if (windowW > 991) { // Toggle main sidebar in large screens (> 991px)
                     page.toggleClass('sidebar-visible-lg');
 
                     if (page.hasClass('sidebar-mini')) {
@@ -285,9 +296,8 @@ var App = function() {
 
                 // Handle main sidebar scrolling functionality
                 handleSidebar('sidebar-scroll');
-            }
-            else if (mode === 'toggle-sidebar-alt') {
-                if ( windowW > 991) { // Toggle alternative sidebar in large screens (> 991px)
+            } else if (mode === 'toggle-sidebar-alt') {
+                if (windowW > 991) { // Toggle alternative sidebar in large screens (> 991px)
                     page.toggleClass('sidebar-alt-visible-lg');
 
                     if (page.hasClass('sidebar-alt-visible-lg')) {
@@ -307,10 +317,11 @@ var App = function() {
                         handleSidebar('close-sidebar');
                     }
                 }
-            }
-            else if (mode === 'open-sidebar') {
-                if ( windowW > 991) { // Open main sidebar in large screens (> 991px)
-                    if (page.hasClass('sidebar-mini')) { page.removeClass('sidebar-visible-lg-mini'); }
+            } else if (mode === 'open-sidebar') {
+                if (windowW > 991) { // Open main sidebar in large screens (> 991px)
+                    if (page.hasClass('sidebar-mini')) {
+                        page.removeClass('sidebar-visible-lg-mini');
+                    }
                     page.addClass('sidebar-visible-lg');
                 } else { // Open main sidebar in small screens (< 992px)
                     page.addClass('sidebar-visible-xs');
@@ -318,9 +329,8 @@ var App = function() {
 
                 // Close the other sidebar
                 handleSidebar('close-sidebar-alt');
-            }
-            else if (mode === 'open-sidebar-alt') {
-                if ( windowW > 991) { // Open alternative sidebar in large screens (> 991px)
+            } else if (mode === 'open-sidebar-alt') {
+                if (windowW > 991) { // Open alternative sidebar in large screens (> 991px)
                     page.addClass('sidebar-alt-visible-lg');
                 } else { // Open alternative sidebar in small screens (< 992px)
                     page.addClass('sidebar-alt-visible-xs');
@@ -328,23 +338,22 @@ var App = function() {
 
                 // Close the other sidebar
                 handleSidebar('close-sidebar');
-            }
-            else if (mode === 'close-sidebar') {
-                if ( windowW > 991) { // Close main sidebar in large screens (> 991px)
+            } else if (mode === 'close-sidebar') {
+                if (windowW > 991) { // Close main sidebar in large screens (> 991px)
                     page.removeClass('sidebar-visible-lg');
-                    if (page.hasClass('sidebar-mini')) { page.addClass('sidebar-visible-lg-mini'); }
+                    if (page.hasClass('sidebar-mini')) {
+                        page.addClass('sidebar-visible-lg-mini');
+                    }
                 } else { // Close main sidebar in small screens (< 992px)
                     page.removeClass('sidebar-visible-xs');
                 }
-            }
-            else if (mode === 'close-sidebar-alt') {
-                if ( windowW > 991) { // Close alternative sidebar in large screens (> 991px)
+            } else if (mode === 'close-sidebar-alt') {
+                if (windowW > 991) { // Close alternative sidebar in large screens (> 991px)
                     page.removeClass('sidebar-alt-visible-lg');
                 } else { // Close alternative sidebar in small screens (< 992px)
                     page.removeClass('sidebar-alt-visible-xs');
                 }
-            }
-            else if (mode === 'sidebar-scroll') { // Handle main sidebar scrolling
+            } else if (mode === 'sidebar-scroll') { // Handle main sidebar scrolling
                 if (page.hasClass('sidebar-mini') && page.hasClass('sidebar-visible-lg-mini') && (windowW > 991)) { // Destroy main sidebar scrolling when in mini sidebar mode
                     if (sScroll.length && sScroll.parent('.slimScrollDiv').length) {
                         sScroll
@@ -352,8 +361,7 @@ var App = function() {
                         sScroll
                             .attr('style', '');
                     }
-                }
-                else if ((page.hasClass('header-fixed-top') || page.hasClass('header-fixed-bottom'))) {
+                } else if ((page.hasClass('header-fixed-top') || page.hasClass('header-fixed-bottom'))) {
                     var sHeight = $(window).height();
 
                     if (sScroll.length && (!sScroll.parent('.slimScrollDiv').length)) { // If scrolling does not exist init it..
@@ -368,22 +376,20 @@ var App = function() {
                         // Handle main sidebar's scrolling functionality on resize or orientation change
                         var sScrollTimeout;
 
-                        $(window).on('resize orientationchange', function(){
+                        $(window).on('resize orientationchange', function () {
                             clearTimeout(sScrollTimeout);
 
-                            sScrollTimeout = setTimeout(function(){
+                            sScrollTimeout = setTimeout(function () {
                                 handleSidebar('sidebar-scroll');
                             }, 150);
                         });
-                    }
-                    else { // ..else resize scrolling height
+                    } else { // ..else resize scrolling height
                         sScroll
                             .add(sScroll.parent())
                             .css('height', sHeight);
                     }
                 }
-            }
-            else if (mode === 'sidebar-alt-scroll') { // Init alternative sidebar scrolling
+            } else if (mode === 'sidebar-alt-scroll') { // Init alternative sidebar scrolling
                 if ((page.hasClass('header-fixed-top') || page.hasClass('header-fixed-bottom'))) {
                     var sHeightAlt = $(window).height();
 
@@ -399,15 +405,14 @@ var App = function() {
                         // Resize alternative sidebar scrolling height on window resize or orientation change
                         var sScrollAltTimeout;
 
-                        $(window).on('resize orientationchange', function(){
+                        $(window).on('resize orientationchange', function () {
                             clearTimeout(sScrollAltTimeout);
 
-                            sScrollAltTimeout = setTimeout(function(){
+                            sScrollAltTimeout = setTimeout(function () {
                                 handleSidebar('sidebar-alt-scroll');
                             }, 150);
                         });
-                    }
-                    else { // ..else resize scrolling height
+                    } else { // ..else resize scrolling height
                         sScrollAlt
                             .add(sScrollAlt.parent())
                             .css('height', sHeightAlt);
@@ -420,12 +425,12 @@ var App = function() {
     };
 
     /* Resize #page-content to fill empty space if exists */
-    var resizePageContent = function() {
-        var windowH         = $(window).height();
-        var sidebarH        = sidebar.outerHeight();
-        var sidebarAltH     = sidebarAlt.outerHeight();
-        var headerH         = header.outerHeight();
-        var footerH         = footer.outerHeight();
+    var resizePageContent = function () {
+        var windowH = $(window).height();
+        var sidebarH = sidebar.outerHeight();
+        var sidebarAltH = sidebarAlt.outerHeight();
+        var headerH = header.outerHeight();
+        var footerH = footer.outerHeight();
 
         // If we have a fixed sidebar/header layout or each sidebars’ height < window height
         if (header.hasClass('navbar-fixed-top') || header.hasClass('navbar-fixed-bottom') || ((sidebarH < windowH) && (sidebarAltH < windowH))) {
@@ -434,7 +439,7 @@ var App = function() {
             } else { // else if footer is static, remove its height
                 pageContent.css('min-height', windowH - (headerH + footerH) + 'px');
             }
-        }  else { // In any other case set #page-content height the same as biggest sidebar's height
+        } else { // In any other case set #page-content height the same as biggest sidebar's height
             if (page.hasClass('footer-fixed')) { // if footer is fixed don't remove its height
                 pageContent.css('min-height', ((sidebarH > sidebarAltH) ? sidebarH : sidebarAltH) - headerH + 'px');
             } else { // else if footer is static, remove its height
@@ -444,10 +449,10 @@ var App = function() {
     };
 
     /* Interactive blocks functionality */
-    var interactiveBlocks = function() {
+    var interactiveBlocks = function () {
 
         // Toggle block's content
-        $('[data-toggle="block-toggle-content"]').on('click', function(){
+        $('[data-toggle="block-toggle-content"]').on('click', function () {
             var blockContent = $(this).closest('.block').find('.block-content');
 
             if ($(this).hasClass('active')) {
@@ -460,7 +465,7 @@ var App = function() {
         });
 
         // Toggle block fullscreen
-        $('[data-toggle="block-toggle-fullscreen"]').on('click', function(){
+        $('[data-toggle="block-toggle-fullscreen"]').on('click', function () {
             var block = $(this).closest('.block');
 
             if ($(this).hasClass('active')) {
@@ -473,17 +478,17 @@ var App = function() {
         });
 
         // Hide block
-        $('[data-toggle="block-hide"]').on('click', function(){
+        $('[data-toggle="block-hide"]').on('click', function () {
             $(this).closest('.block').fadeOut();
         });
     };
 
     /* Scroll to top functionality */
-    var scrollToTop = function() {
+    var scrollToTop = function () {
         // Get link
         var link = $('#to-top');
 
-        $(window).scroll(function() {
+        $(window).scroll(function () {
             // If the user scrolled a bit (150 pixels) show the link in large resolutions
             if (($(this).scrollTop() > 150) && (getWindowWidth() > 991)) {
                 link.fadeIn(100);
@@ -493,25 +498,25 @@ var App = function() {
         });
 
         // On click get to top
-        link.click(function() {
+        link.click(function () {
             $('html, body').animate({scrollTop: 0}, 400);
             return false;
         });
     };
 
     /* Demo chat functionality (in sidebar) */
-    var chatUi = function() {
-        var chatUsers       = $('.chat-users');
-        var chatTalk        = $('.chat-talk');
-        var chatMessages    = $('.chat-talk-messages');
-        var chatInput       = $('#sidebar-chat-message');
-        var chatMsg         = '';
+    var chatUi = function () {
+        var chatUsers = $('.chat-users');
+        var chatTalk = $('.chat-talk');
+        var chatMessages = $('.chat-talk-messages');
+        var chatInput = $('#sidebar-chat-message');
+        var chatMsg = '';
 
         // Initialize scrolling on chat talk list
-        chatMessages.slimScroll({ height: 210, color: '#fff', size: '3px', position: 'left', touchScrollStep: 100 });
+        chatMessages.slimScroll({height: 210, color: '#fff', size: '3px', position: 'left', touchScrollStep: 100});
 
         // If a chat user is clicked show the chat talk
-        $('a', chatUsers).click(function(){
+        $('a', chatUsers).click(function () {
             chatUsers.slideUp();
             chatTalk.slideDown();
             chatInput.focus();
@@ -520,7 +525,7 @@ var App = function() {
         });
 
         // If chat talk close button is clicked show the chat user list
-        $('#chat-talk-close-btn').click(function(){
+        $('#chat-talk-close-btn').click(function () {
             chatTalk.slideUp();
             chatUsers.slideDown();
 
@@ -528,7 +533,7 @@ var App = function() {
         });
 
         // When the chat message form is submitted
-        $('#sidebar-chat-form').submit(function(e){
+        $('#sidebar-chat-form').submit(function (e) {
             // Get text from message input
             chatMsg = chatInput.val();
 
@@ -538,7 +543,7 @@ var App = function() {
                 chatMessages.append('<li class="chat-talk-msg chat-talk-msg-highlight themed-border animation-slideLeft">' + $('<div />').text(chatMsg).html() + '</li>');
 
                 // Scroll the message list to the bottom
-                chatMessages.slimScroll({ scrollTo: chatMessages[0].scrollHeight + 'px' });
+                chatMessages.slimScroll({scrollTo: chatMessages[0].scrollHeight + 'px'});
 
                 // Reset the message input
                 chatInput.val('');
@@ -550,15 +555,15 @@ var App = function() {
     };
 
     /* Template Options, change features functionality */
-    var templateOptions = function() {
+    var templateOptions = function () {
         /*
          * Color Themes
          */
-        var colorList   = $('.sidebar-themes');
-        var themeLink   = $('#theme-link');
+        var colorList = $('.sidebar-themes');
+        var themeLink = $('#theme-link');
 
-        var themeColor  = themeLink.length ? themeLink.attr('href') : 'default';
-        var cookies     = page.hasClass('enable-cookies') ? true : false;
+        var themeColor = themeLink.length ? themeLink.attr('href') : 'default';
+        var cookies = page.hasClass('enable-cookies') ? true : false;
 
         var themeColorCke;
 
@@ -594,7 +599,7 @@ var App = function() {
             .addClass('active');
 
         // When a color theme link is clicked
-        $('a', colorList).click(function(e){
+        $('a', colorList).click(function (e) {
             // Get theme name
             themeColor = $(this).data('theme');
 
@@ -622,11 +627,13 @@ var App = function() {
         });
 
         // Prevent template options dropdown from closing on clicking options
-        $('.dropdown-options a').click(function(e){ e.stopPropagation(); });
+        $('.dropdown-options a').click(function (e) {
+            e.stopPropagation();
+        });
 
         /* Page Style */
-        var optMainStyle        = $('#options-main-style');
-        var optMainStyleAlt     = $('#options-main-style-alt');
+        var optMainStyle = $('#options-main-style');
+        var optMainStyleAlt = $('#options-main-style-alt');
 
         if (page.hasClass('style-alt')) {
             optMainStyleAlt.addClass('active');
@@ -634,21 +641,21 @@ var App = function() {
             optMainStyle.addClass('active');
         }
 
-        optMainStyle.click(function() {
+        optMainStyle.click(function () {
             page.removeClass('style-alt');
             $(this).addClass('active');
             optMainStyleAlt.removeClass('active');
         });
 
-        optMainStyleAlt.click(function() {
+        optMainStyleAlt.click(function () {
             page.addClass('style-alt');
             $(this).addClass('active');
             optMainStyle.removeClass('active');
         });
 
         /* Header options */
-        var optHeaderDefault    = $('#options-header-default');
-        var optHeaderInverse    = $('#options-header-inverse');
+        var optHeaderDefault = $('#options-header-default');
+        var optHeaderInverse = $('#options-header-inverse');
 
         if (header.hasClass('navbar-default')) {
             optHeaderDefault.addClass('active');
@@ -656,13 +663,13 @@ var App = function() {
             optHeaderInverse.addClass('active');
         }
 
-        optHeaderDefault.click(function() {
+        optHeaderDefault.click(function () {
             header.removeClass('navbar-inverse').addClass('navbar-default');
             $(this).addClass('active');
             optHeaderInverse.removeClass('active');
         });
 
-        optHeaderInverse.click(function() {
+        optHeaderInverse.click(function () {
             header.removeClass('navbar-default').addClass('navbar-inverse');
             $(this).addClass('active');
             optHeaderDefault.removeClass('active');
@@ -670,7 +677,7 @@ var App = function() {
     };
 
     /* Datatables basic Bootstrap integration (pagination integration included under the Datatables plugin in plugins.js) */
-    var dtIntegration = function() {
+    var dtIntegration = function () {
         $.extend(true, $.fn.dataTable.defaults, {
             "sDom": "<'row'<'col-sm-6 col-xs-5'l><'col-sm-6 col-xs-7'f>r>t<'row'<'col-sm-5 hidden-xs'i><'col-sm-7 col-xs-12 clearfix'p>>",
             "sPaginationType": "bootstrap",
@@ -692,7 +699,7 @@ var App = function() {
     };
 
     /* Print functionality - Hides all sidebars, prints the page and then restores them (To fix an issue with CSS print styles in webkit browsers)  */
-    var handlePrint = function() {
+    var handlePrint = function () {
         // Store all #page-container classes
         var pageCls = page.prop('class');
 
@@ -707,21 +714,23 @@ var App = function() {
     };
 
     return {
-        init: function() {
+        init: function () {
             uiInit(); // Initialize UI Code
             pageLoading(); // Initialize Page Loading
         },
-        sidebar: function(mode, extra) {
+        sidebar: function (mode, extra) {
             handleSidebar(mode, extra); // Handle sidebars - access functionality from everywhere
         },
-        datatables: function() {
+        datatables: function () {
             dtIntegration(); // Datatables Bootstrap integration
         },
-        pagePrint: function() {
+        pagePrint: function () {
             handlePrint(); // Print functionality
         }
     };
 }();
 
 /* Initialize app when page loads */
-$(function(){ App.init(); });
+$(function () {
+    App.init();
+});

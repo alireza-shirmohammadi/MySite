@@ -1,19 +1,19 @@
 version: '2'
 services:
-    MySite:
-      image: magnews:1.0.0
-      #restart: always
-      build: .
-      command: >
-          sh -c "python manage.py collectstatic --noinput &&
-                 python manage.py makemigrations &&
-                 python manage.py migrate &&
-                 python manage.py runserver 0.0.0.0:5050"
+  MySite:
+    image: magnews:1.0.0
+    #restart: always
+    build: .
+    command: >
+      sh -c "python manage.py collectstatic --noinput &&
+             python manage.py makemigrations &&
+             python manage.py migrate &&
+             python manage.py runserver 0.0.0.0:5050"
 
-      container_name: MySite
-      env_file:
-        - ./.env
-      volumes:
-              - .:/MySite
-      ports:
-          - "0.0.0.0:5050:5050"
+    container_name: MySite
+    env_file:
+      - ./.env
+    volumes:
+      - .:/MySite
+    ports:
+      - "0.0.0.0:5050:5050"

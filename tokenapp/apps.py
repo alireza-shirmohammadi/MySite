@@ -2,4 +2,4 @@ from django.apps import AppConfig
 
 
 class TokenappConfig(AppConfig):
-    name = 'tokenapp'
+    name = "tokenapp"

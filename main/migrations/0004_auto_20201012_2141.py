@@ -4,35 +4,34 @@ from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
-        ('main', '0003_auto_20201002_2143'),
+        ("main", "0003_auto_20201002_2143"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='main',
-            name='abouttxt',
-            field=models.TextField(default=''),
+            model_name="main",
+            name="abouttxt",
+            field=models.TextField(default=""),
         ),
         migrations.AddField(
-            model_name='main',
-            name='picname',
-            field=models.TextField(default=''),
+            model_name="main",
+            name="picname",
+            field=models.TextField(default=""),
         ),
         migrations.AddField(
-            model_name='main',
-            name='picname2',
-            field=models.TextField(default=''),
+            model_name="main",
+            name="picname2",
+            field=models.TextField(default=""),
         ),
         migrations.AddField(
-            model_name='main',
-            name='picurl',
-            field=models.TextField(default=''),
+            model_name="main",
+            name="picurl",
+            field=models.TextField(default=""),
         ),
         migrations.AddField(
-            model_name='main',
-            name='picurl2',
-            field=models.TextField(default=''),
+            model_name="main",
+            name="picurl2",
+            field=models.TextField(default=""),
         ),
     ]

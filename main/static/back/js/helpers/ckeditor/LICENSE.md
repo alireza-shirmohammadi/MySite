@@ -7,17 +7,17 @@ Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
 Licensed under the terms of any of the following licenses at your
 choice:
 
- - GNU General Public License Version 2 or later (the "GPL")
-   http://www.gnu.org/licenses/gpl.html
-   (See Appendix A)
+- GNU General Public License Version 2 or later (the "GPL")
+  http://www.gnu.org/licenses/gpl.html
+  (See Appendix A)
 
- - GNU Lesser General Public License Version 2.1 or later (the "LGPL")
-   http://www.gnu.org/licenses/lgpl.html
-   (See Appendix B)
+- GNU Lesser General Public License Version 2.1 or later (the "LGPL")
+  http://www.gnu.org/licenses/lgpl.html
+  (See Appendix B)
 
- - Mozilla Public License Version 1.1 or later (the "MPL")
-   http://www.mozilla.org/MPL/MPL-1.1.html
-   (See Appendix C)
+- Mozilla Public License Version 1.1 or later (the "MPL")
+  http://www.mozilla.org/MPL/MPL-1.1.html
+  (See Appendix C)
 
 You are not required to, but if you want to explicitly declare the
 license you have chosen to be bound to when using, reproducing,
@@ -53,7 +53,6 @@ The following libraries are included in CKEditor under the BSD-3 License (see Ap
 
 * highlight.js (included in the `codesnippet` plugin) - Copyright (c) 2006, Ivan Sagalaev.
 * YUI Library (included in the `uicolor` plugin) - Copyright (c) 2009, Yahoo! Inc.
-
 
 Trademarks
 ----------

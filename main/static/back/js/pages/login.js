@@ -4,16 +4,16 @@
  *  Description: Custom javascript code used in Login page
  */
 
-var Login = function() {
+var Login = function () {
 
     // Function for switching form views (login, reminder and register forms)
-    var switchView = function(viewHide, viewShow, viewHash){
+    var switchView = function (viewHide, viewShow, viewHash) {
         viewHide.slideUp(250);
-        viewShow.slideDown(250, function(){
+        viewShow.slideDown(250, function () {
             $('input').placeholder();
         });
 
-        if ( viewHash ) {
+        if (viewHash) {
             window.location = '#' + viewHash;
         } else {
             window.location = '#';
@@ -21,25 +21,25 @@ var Login = function() {
     };
 
     return {
-        init: function() {
+        init: function () {
             /* Switch Login, Reminder and Register form views */
-            var formLogin       = $('#form-login'),
-                formReminder    = $('#form-reminder'),
-                formRegister    = $('#form-register');
+            var formLogin = $('#form-login'),
+                formReminder = $('#form-reminder'),
+                formRegister = $('#form-register');
 
-            $('#link-register-login').click(function(){
+            $('#link-register-login').click(function () {
                 switchView(formLogin, formRegister, 'register');
             });
 
-            $('#link-register').click(function(){
+            $('#link-register').click(function () {
                 switchView(formRegister, formLogin, '');
             });
 
-            $('#link-reminder-login').click(function(){
+            $('#link-reminder-login').click(function () {
                 switchView(formLogin, formReminder, 'reminder');
             });
 
-            $('#link-reminder').click(function(){
+            $('#link-reminder').click(function () {
                 switchView(formReminder, formLogin, '');
             });
 
@@ -63,14 +63,14 @@ var Login = function() {
             $('#form-login').validate({
                 errorClass: 'help-block animation-slideDown', // You can change the animation class for a different entrance animation - check animations page
                 errorElement: 'div',
-                errorPlacement: function(error, e) {
+                errorPlacement: function (error, e) {
                     e.parents('.form-group > div').append(error);
                 },
-                highlight: function(e) {
+                highlight: function (e) {
                     $(e).closest('.form-group').removeClass('has-success has-error').addClass('has-error');
                     $(e).closest('.help-block').remove();
                 },
-                success: function(e) {
+                success: function (e) {
                     e.closest('.form-group').removeClass('has-success has-error');
                     e.closest('.help-block').remove();
                 },
@@ -97,14 +97,14 @@ var Login = function() {
             $('#form-reminder').validate({
                 errorClass: 'help-block animation-slideDown', // You can change the animation class for a different entrance animation - check animations page
                 errorElement: 'div',
-                errorPlacement: function(error, e) {
+                errorPlacement: function (error, e) {
                     e.parents('.form-group > div').append(error);
                 },
-                highlight: function(e) {
+                highlight: function (e) {
                     $(e).closest('.form-group').removeClass('has-success has-error').addClass('has-error');
                     $(e).closest('.help-block').remove();
                 },
-                success: function(e) {
+                success: function (e) {
                     e.closest('.form-group').removeClass('has-success has-error');
                     e.closest('.help-block').remove();
                 },
@@ -123,14 +123,14 @@ var Login = function() {
             $('#form-register').validate({
                 errorClass: 'help-block animation-slideDown', // You can change the animation class for a different entrance animation - check animations page
                 errorElement: 'div',
-                errorPlacement: function(error, e) {
+                errorPlacement: function (error, e) {
                     e.parents('.form-group > div').append(error);
                 },
-                highlight: function(e) {
+                highlight: function (e) {
                     $(e).closest('.form-group').removeClass('has-success has-error').addClass('has-error');
                     $(e).closest('.help-block').remove();
                 },
-                success: function(e) {
+                success: function (e) {
                     if (e.closest('.form-group').find('.help-block').length === 2) {
                         e.closest('.help-block').remove();
                     } else {

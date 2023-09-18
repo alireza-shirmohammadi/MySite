@@ -4,10 +4,10 @@
  *  Description: Custom javascript code used in Social Widgets page
  */
 
-var WidgetsSocial = function() {
+var WidgetsSocial = function () {
 
     return {
-        init: function() {
+        init: function () {
             /*
              * With Gmaps.js, Check out examples and documentation at http://hpneo.github.io/gmaps/examples.html
              */
@@ -30,7 +30,8 @@ var WidgetsSocial = function() {
                 zoom: 15,
                 disableDefaultUI: true,
                 scrollwheel: false
-            }).setMapTypeId(google.maps.MapTypeId.SATELLITE);;
+            }).setMapTypeId(google.maps.MapTypeId.SATELLITE);
+            ;
         }
     };
 }();

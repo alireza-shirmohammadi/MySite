@@ -4,54 +4,53 @@ from django.db import migrations
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
-        ('main', '0001_initial'),
+        ("main", "0001_initial"),
     ]
 
     operations = [
         migrations.RemoveField(
-            model_name='main',
-            name='abouttxt',
+            model_name="main",
+            name="abouttxt",
         ),
         migrations.RemoveField(
-            model_name='main',
-            name='fb',
+            model_name="main",
+            name="fb",
         ),
         migrations.RemoveField(
-            model_name='main',
-            name='link',
+            model_name="main",
+            name="link",
         ),
         migrations.RemoveField(
-            model_name='main',
-            name='picname',
+            model_name="main",
+            name="picname",
         ),
         migrations.RemoveField(
-            model_name='main',
-            name='picname2',
+            model_name="main",
+            name="picname2",
         ),
         migrations.RemoveField(
-            model_name='main',
-            name='picurl',
+            model_name="main",
+            name="picurl",
         ),
         migrations.RemoveField(
-            model_name='main',
-            name='picurl2',
+            model_name="main",
+            name="picurl2",
         ),
         migrations.RemoveField(
-            model_name='main',
-            name='set_name',
+            model_name="main",
+            name="set_name",
         ),
         migrations.RemoveField(
-            model_name='main',
-            name='tell',
+            model_name="main",
+            name="tell",
         ),
         migrations.RemoveField(
-            model_name='main',
-            name='tw',
+            model_name="main",
+            name="tw",
         ),
         migrations.RemoveField(
-            model_name='main',
-            name='yt',
+            model_name="main",
+            name="yt",
         ),
     ]

@@ -4,10 +4,10 @@
  *  Description: Custom javascript code used in Charts page
  */
 
-var CompCharts = function() {
+var CompCharts = function () {
 
     return {
-        init: function() {
+        init: function () {
             /* Mini Bar/Line Charts with jquery.sparkline plugin, for more examples you can check out http://omnipotent.net/jquery.sparkline/#s-about */
             var miniChartBarOptions = {
                 type: 'bar',
@@ -68,8 +68,8 @@ var CompCharts = function() {
             // Randomize easy pie charts values
             var random;
 
-            $('.toggle-pies').click(function() {
-                $('.pie-chart').each(function() {
+            $('.toggle-pies').click(function () {
+                $('.pie-chart').each(function () {
                     random = getRandomInt(1, 100);
                     $(this).data('easyPieChart').update(random);
                     $(this).find('span').text(random + '%');
@@ -130,7 +130,7 @@ var CompCharts = function() {
 
             // Creating and attaching a tooltip to the classic chart
             var previousPoint = null, ttlabel = null;
-            chartClassic.bind('plothover', function(event, pos, item) {
+            chartClassic.bind('plothover', function (event, pos, item) {
 
                 if (item) {
                     if (previousPoint !== item.dataIndex) {
@@ -148,8 +148,7 @@ var CompCharts = function() {
                         $('<div id="chart-tooltip" class="chart-tooltip">' + ttlabel + '</div>')
                             .css({top: item.pageY - 45, left: item.pageX + 5}).appendTo("body").show();
                     }
-                }
-                else {
+                } else {
                     $('#chart-tooltip').remove();
                     previousPoint = null;
                 }
@@ -212,14 +211,19 @@ var CompCharts = function() {
             // Initialize live chart
             var chartLive = $.plot(chartLive,
                 [{data: getRandomData()}],
-            {
-                series: {shadowSize: 0},
-                lines: {show: true, lineWidth: 1, fill: true, fillColor: {colors: [{opacity: 0.2}, {opacity: 0.2}]}},
-                colors: ['#34495e'],
-                grid: {borderWidth: 0, color: '#aaaaaa'},
-                yaxis: {show: true, min: 0, max: 110},
-                xaxis: {show: false}
-            }
+                {
+                    series: {shadowSize: 0},
+                    lines: {
+                        show: true,
+                        lineWidth: 1,
+                        fill: true,
+                        fillColor: {colors: [{opacity: 0.2}, {opacity: 0.2}]}
+                    },
+                    colors: ['#34495e'],
+                    grid: {borderWidth: 0, color: '#aaaaaa'},
+                    yaxis: {show: true, min: 0, max: 110},
+                    xaxis: {show: false}
+                }
             );
 
             // Start getting new data
@@ -242,7 +246,7 @@ var CompCharts = function() {
                             label: {
                                 show: true,
                                 radius: 3 / 4,
-                                formatter: function(label, pieSeries) {
+                                formatter: function (label, pieSeries) {
                                     return '<div class="chart-pie-label">' + label + '<br>' + Math.round(pieSeries.percent) + '%</div>';
                                 },
                                 background: {opacity: 0.75, color: '#000000'}
@@ -258,7 +262,12 @@ var CompCharts = function() {
                 {
                     colors: ['#f1c40f', '#f39c12'],
                     series: {stack: true, lines: {show: true, fill: true}},
-                    lines: {show: true, lineWidth: 0, fill: true, fillColor: {colors: [{opacity: 0.75}, {opacity: 0.75}]}},
+                    lines: {
+                        show: true,
+                        lineWidth: 0,
+                        fill: true,
+                        fillColor: {colors: [{opacity: 0.75}, {opacity: 0.75}]}
+                    },
                     legend: {show: true, position: 'nw', margin: [15, 10], sorted: true},
                     grid: {borderWidth: 0},
                     yaxis: {ticks: 4, tickColor: '#eeeeee'},

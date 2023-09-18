@@ -4,10 +4,10 @@
  *  Description: Custom javascript code used in Statistic Widgets page
  */
 
-var WidgetsStats = function() {
+var WidgetsStats = function () {
 
     return {
-        init: function() {
+        init: function () {
             /* Mini Bar/Line Charts with jquery.sparkline plugin, for more examples you can check out http://omnipotent.net/jquery.sparkline/#s-about */
             var miniChartBarOptions = {
                 type: 'bar',
@@ -137,7 +137,7 @@ var WidgetsStats = function() {
 
             // Creating and attaching a tooltip to both charts
             var previousPoint = null, ttlabel = null;
-            chartWidget1.add(chartWidget2).bind('plothover', function(event, pos, item) {
+            chartWidget1.add(chartWidget2).bind('plothover', function (event, pos, item) {
 
                 if (item) {
                     if (previousPoint !== item.dataIndex) {
@@ -158,8 +158,7 @@ var WidgetsStats = function() {
                         $('<div id="chart-tooltip" class="chart-tooltip">' + ttlabel + '</div>')
                             .css({top: item.pageY - 50, left: item.pageX - 50}).appendTo("body").show();
                     }
-                }
-                else {
+                } else {
                     $('#chart-tooltip').remove();
                     previousPoint = null;
                 }

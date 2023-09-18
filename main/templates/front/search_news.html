@@ -5,7 +5,7 @@
 
 
 {% block headblock %}
-<title>{{site.name}} | Search</title>
+    <title>{{ site.name }} | Search</title>
 {% endblock %}
 
 
@@ -18,34 +18,35 @@
 
 
 
-<!-- Latest -->
-<section class="bg0 p-t-60 p-b-40">
-	<div class="container">
+    <!-- Latest -->
+    <section class="bg0 p-t-60 p-b-40">
+        <div class="container">
 
 
-		<div class="row p-t-35">
+            <div class="row p-t-35">
 
-			{% for i in searchnews %}
-			<div class="col-sm-6 col-md-4">
-				<!-- Item latest -->
-				<div class="m-b-45">
-                    <a href="{%url 'news_detail' i.id %}" class="wrap-pic-w hov1 trans-03">
-						<img style="display: inline-block; width:330px; height:240px;" src="{{i.picurl}}" alt="IMG">
-					</a>
+                {% for i in searchnews %}
+                    <div class="col-sm-6 col-md-4">
+                        <!-- Item latest -->
+                        <div class="m-b-45">
+                            <a href="{% url 'news_detail' i.id %}" class="wrap-pic-w hov1 trans-03">
+                                <img style="display: inline-block; width:330px; height:240px;" src="{{ i.picurl }}"
+                                     alt="IMG">
+                            </a>
 
-					<div class="p-t-16">
-						<h5 class="p-b-5">
-							<a href="{%url 'news_detail' i.id %}" class="f1-m-3 cl2 hov-cl10 trans-03">
-								{{i.name}}
-							</a>
-						</h5>
+                            <div class="p-t-16">
+                                <h5 class="p-b-5">
+                                    <a href="{% url 'news_detail' i.id %}" class="f1-m-3 cl2 hov-cl10 trans-03">
+                                        {{ i.name }}
+                                    </a>
+                                </h5>
 
-						<p>{{i.short_txt|safe}}</p>
-						<br/>
+                                <p>{{ i.short_txt|safe }}</p>
+                                <br/>
 
-						<span class="cl8">
+                                <span class="cl8">
 							<a href="#" class="f1-s-4 cl8 hov-cl10 trans-03">
-								by {{i.writer}}
+								by {{ i.writer }}
 							</a>
 
 							<span class="f1-s-3 m-rl-3">
@@ -53,39 +54,43 @@
 							</span>
 
 							<span class="f1-s-3">
-								{{i.date}}
+								{{ i.date }}
 							</span>
 						</span>
-					</div>
-				</div>
-			</div>
-			{% endfor %}
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
 
 
-		</div>
+            </div>
 
-    Page {{searchnews.number}} From {{searchnews.paginator.num_pages}}
-    <div class="pullright">
-    {% if searchnews.has_previous %}
-    <a href="?page={{searchnews.previous_page_number}}"  data-toggle="tooltip" title="Previous" class="btn btn-xs btn-default"> Previous</a>
-    {% endif %}
+            Page {{ searchnews.number }} From {{ searchnews.paginator.num_pages }}
+            <div class="pullright">
+                {% if searchnews.has_previous %}
+                    <a href="?page={{ searchnews.previous_page_number }}" data-toggle="tooltip" title="Previous"
+                       class="btn btn-xs btn-default"> Previous</a>
+                {% endif %}
 
-    {% for i in searchnews.paginator.page_range %}
-        {% if searchnews.number == i %}
-            <a href="#" onclick="return false;" data-toggle="tooltip" title="{{Disables}}" class="btn btn-xs btn-default"> {{i}}</a>
-        {% else %}
-            <a href="?page={{i}}" data-toggle="tooltip" title="{{i}}" class="btn btn-xs btn-default"> {{i}}</a>
-        {% endif %}
-    {% endfor %}
+                {% for i in searchnews.paginator.page_range %}
+                    {% if searchnews.number == i %}
+                        <a href="#" onclick="return false;" data-toggle="tooltip" title="{{ Disables }}"
+                           class="btn btn-xs btn-default"> {{ i }}</a>
+                    {% else %}
+                        <a href="?page={{ i }}" data-toggle="tooltip" title="{{ i }}"
+                           class="btn btn-xs btn-default"> {{ i }}</a>
+                    {% endif %}
+                {% endfor %}
 
-        {% if searchnews.has_next %}
-    <a href="?page={{searchnews.next_page_number}}" data-toggle="tooltip" title="Next" class="btn btn-xs btn-default"> Next</a>
-    {% endif %}
+                {% if searchnews.has_next %}
+                    <a href="?page={{ searchnews.next_page_number }}" data-toggle="tooltip" title="Next"
+                       class="btn btn-xs btn-default"> Next</a>
+                {% endif %}
 
-  </div>
+            </div>
 
-	</div>
-</section>
+        </div>
+    </section>
 
 
 

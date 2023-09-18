@@ -4,10 +4,10 @@
  *  Description: Custom javascript code used in Timeline page
  */
 
-var ReadyTimeline = function() {
+var ReadyTimeline = function () {
 
     return {
-        init: function() {
+        init: function () {
             /*
              * With Gmaps.js, Check out examples and documentation at http://hpneo.github.io/gmaps/examples.html
              */

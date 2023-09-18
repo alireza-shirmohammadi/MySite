@@ -4,10 +4,10 @@
  *  Description: Custom javascript code used in eCommerce Dashboard page
  */
 
-var EcomDashboard = function() {
+var EcomDashboard = function () {
 
     return {
-        init: function() {
+        init: function () {
             /*
              * Flot Jquery plugin is used for charts
              *
@@ -19,11 +19,11 @@ var EcomDashboard = function() {
             var chartOverview = $('#chart-overview');
 
             // Random data for the charts
-            var dataEarnings    = [[1, 11600], [2, 13950], [3, 10900], [4, 10050], [5, 11000], [6, 14300], [7, 12500], [8, 15050], [9, 12650], [10, 14000], [11, 15000], [12, 17900]];
-            var dataOrders      = [[1, 3000], [2, 3500], [3, 2900], [4, 3800], [5, 2800], [6, 2408], [7, 2682], [8, 4400], [9, 5400], [10, 4750], [11, 6100], [12, 7560]];
+            var dataEarnings = [[1, 11600], [2, 13950], [3, 10900], [4, 10050], [5, 11000], [6, 14300], [7, 12500], [8, 15050], [9, 12650], [10, 14000], [11, 15000], [12, 17900]];
+            var dataOrders = [[1, 3000], [2, 3500], [3, 2900], [4, 3800], [5, 2800], [6, 2408], [7, 2682], [8, 4400], [9, 5400], [10, 4750], [11, 6100], [12, 7560]];
 
             // Array with month labels used in Classic and Stacked chart
-            var chartMonths     = [[1, 'Jan'], [2, 'Feb'], [3, 'Mar'], [4, 'Apr'], [5, 'May'], [6, 'Jun'], [7, 'Jul'], [8, 'Aug'], [9, 'Sep'], [10, 'Oct'], [11, 'Nov'], [12, 'Dec']];
+            var chartMonths = [[1, 'Jan'], [2, 'Feb'], [3, 'Mar'], [4, 'Apr'], [5, 'May'], [6, 'Jun'], [7, 'Jul'], [8, 'Aug'], [9, 'Sep'], [10, 'Oct'], [11, 'Nov'], [12, 'Dec']];
 
             // Overview Chart
             $.plot(chartOverview,
@@ -52,7 +52,7 @@ var EcomDashboard = function() {
 
             // Creating and attaching a tooltip to the classic chart
             var previousPoint = null, ttlabel = null;
-            chartOverview.bind('plothover', function(event, pos, item) {
+            chartOverview.bind('plothover', function (event, pos, item) {
 
                 if (item) {
                     if (previousPoint !== item.dataIndex) {
@@ -70,8 +70,7 @@ var EcomDashboard = function() {
                         $('<div id="chart-tooltip" class="chart-tooltip">' + ttlabel + '</div>')
                             .css({top: item.pageY - 45, left: item.pageX + 5}).appendTo("body").show();
                     }
-                }
-                else {
+                } else {
                     $('#chart-tooltip').remove();
                     previousPoint = null;
                 }
