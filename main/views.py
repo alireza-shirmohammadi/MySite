@@ -91,14 +91,8 @@ def home(request):
 
     # location=DbIpCity.get(ip,api_key='free')
     # city=location.city
-    try:
-        access_token = '7dc5d069dccacd'
-        handler = ipinfo.getHandler(access_token)
-        location = handler.getDetails(ip)
 
-        city = location.city
-    except:
-        city = 'Tehran'
+    city = 'Tehran'
     try:
         url = 'http://api.weatherstack.com/current'
         payload = {"access_key": "f6265b2da0a8adc32a036379c75d9ca3", "query": city}
@@ -108,7 +102,7 @@ def home(request):
         weather = {
             "city": result['location']['name'],
             'temperature': result['current']['temperature'],
-            "icon": (result['current']['weather_icons'][0]),
+            # "icon": (result['current']['weather_icons'][0]),
         }
         weather_data = []
         weather_data.append(weather)

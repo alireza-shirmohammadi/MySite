@@ -1,4 +1,4 @@
-FROM python:3.8
+FROM python:3.8-alpine
 MAINTAINER "Alireza"
 ENV PYTHONUNBUFFERED 1
 #RUN apt update && apt install -y cron
