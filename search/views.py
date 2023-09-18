@@ -1,6 +1,5 @@
 from django.shortcuts import render
 from news.models import News
-from .documents import NewsDocument
 from main.models import Main
 from subcat.models import SubCat
 from cat.models import Cat
@@ -11,7 +10,8 @@ from django.http import JsonResponse
 
 mysearch=None
 
-
+def search_db(search_text):
+    return News.objects.filter(name__icontains=search_text).order_by('-show')[:5]
 def search(request):
     site = Main.objects.get(pk=1)
     news = News.objects.filter(act=1).order_by('-pk')
@@ -31,8 +31,10 @@ def search(request):
         mysearch=q
         #print(mysearch)
         if q:
-            searchnewss= NewsDocument.search().filter('prefix',name=q)
-            response = searchnewss.execute()
+            response = search_db(q)
+            print(response)
+            # searchnewss= NewsDocument.search().filter('prefix',name=q)
+            # response = searchnewss.execute()
            # print(response[0].name)
 
         else:
@@ -42,8 +44,10 @@ def search(request):
 
         if mysearch:
             #print(mysearch)
-            searchnewss= NewsDocument.search().filter('prefix',name=mysearch)
-            response = searchnewss.execute()
+            response = search_db(mysearch)
+            print(response)
+            # searchnewss= NewsDocument.search().filter('prefix',name=mysearch)
+            # response = searchnewss.execute()
             #print(mysearch)
         else:
            # print(mysearch)
@@ -115,8 +119,10 @@ def search_api(request):
     if request.is_ajax():
         res = None
         search_text=request.POST.get('search_text')
-        query=NewsDocument.search().filter('prefix',name=search_text)
-        response = query.execute()
+        response = search_db(search_text)
+        print(response)
+        # query=NewsDocument.search().filter('prefix',name=search_text)
+        # response = query.execute()
 
         if len(response)>0 and len(search_text) > 0 :
             data=[]

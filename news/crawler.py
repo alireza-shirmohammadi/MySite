@@ -5,15 +5,17 @@ import requests
 
 class Crawler:
 
-    def __init__(self,proxy=True,index=15):
-        self.use_proxy = proxy
-        self.index = index
-        get_proxy=self.get_proxy()
-        page = requests.get("https://www.npr.org/sections/news/",proxies=get_proxy)
-        #print(page.status_code)
-        soup = BeautifulSoup(page.content, 'html.parser')
-        self.news=soup.find_all('article',attrs={"class":"item has-image"})
-        print(self.news)
+    def __init__(self,proxy=False,index=103):
+        pass
+        # self.use_proxy = proxy
+        # self.index = index
+        # get_proxy=self.get_proxy()
+        # print(get_proxy)
+        # page = requests.get("https://www.npr.org/sections/news/",proxies=get_proxy)
+        # #print(page.status_code)
+        # soup = BeautifulSoup(page.content, 'html.parser')
+        # self.news=soup.find_all('article',attrs={"class":"item has-image"})
+        # print(self.news)
 
 
     def get_proxy(self):
@@ -60,8 +62,8 @@ class Crawler:
         # print(i)
         return crawl
 
-# b=Crawler().crawl()
-#
-#
-# for i in range(len(b)):
-#     print(b[i]['title'])
+b=Crawler().crawl()
+
+
+for i in range(len(b)):
+    print(b[i]['title'])

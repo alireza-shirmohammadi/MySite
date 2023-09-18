@@ -10,7 +10,7 @@ from django.contrib.auth.models import User,Group,Permission
 from comment.models import Comment
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.http import HttpResponse
-from .crawler import Crawler
+#from .crawler import Crawler
 import csv
 
 from itertools import chain

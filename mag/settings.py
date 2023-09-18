@@ -49,11 +49,11 @@ INSTALLED_APPS = [
     'comment',
     'blacklist',
     'qr_code',
-    'django_crontab',
+    # 'django_crontab',
     'tokenapp',
     'rest_framework',
     'search',
-    'django_elasticsearch_dsl',
+    # 'django_elasticsearch_dsl',
 ]
 
 MIDDLEWARE = [
@@ -139,12 +139,12 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
-
-CRONJOBS= [
-    ('* * * * *' , 'news.cron.News_Crawler'),
-    #('* * * * *' , 'main.cron.my_job'),
-
-]
+#
+# CRONJOBS= [
+#     ('* * * * *' , 'news.cron.News_Crawler'),
+#     #('* * * * *' , 'main.cron.my_job'),
+#
+# ]
 EMAIL_BAKCEND='django.core.mail.backends.smtp.EmailBackend'
 EMAIL_USE_TLS=True
 EMAIL_HOST='smtp.gmail.com'
@@ -153,11 +153,11 @@ EMAIL_HOST_PASSWORD='unevqmyjxrgtmavy'
 EMAIL_PORT= 587
 
 
-ELASTICSEARCH_DSL={
-    'default': {
-        'hosts': 'localhost:9200'
-    },
-}
+# ELASTICSEARCH_DSL={
+#     'default': {
+#         'hosts': 'localhost:9200'
+#     },
+# }
 
 
 
